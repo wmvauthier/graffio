@@ -28,6 +28,19 @@
     </style>
 </head>
 
+<script>
+function loadDoc() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+       alert(this.responseText);
+      }
+    };
+    xhttp.open("GET", "http://localhost:3000/user", true);
+    xhttp.send();
+  }
+</script>
+
 <body>
     <!-- ============================================================== -->
     <!-- login page  -->
@@ -48,7 +61,7 @@
                             <input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                    <button id="btnTest" onclick="loadDoc()" class="btn btn-primary btn-lg btn-block">Sign in</button>
                 </form>
             </div>
             <div class="card-footer bg-white p-0  ">
