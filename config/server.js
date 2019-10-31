@@ -32,6 +32,7 @@ consign()
 	.include('app/routes')
 	.then('app/models')
 	.then('app/controllers')
+	.then('app/concept')
 	.into(app);
 
 /* middleware que configura páginas de status */
