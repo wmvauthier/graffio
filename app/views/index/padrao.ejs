@@ -28,80 +28,15 @@
     </style>
 </head>
 
-<script>
-    function loadDoc2() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                alert(this.responseText);
-            }
-        };
-        xhttp.open("GET", "http://localhost:3000/user", true);
-        xhttp.send();
-    }
-
-    function loadDoc() {
-
-        var formData = new FormData();
-
-        var user_login = "link";
-        var user_senha = "ti159753";
-        formData.append(user_login, "user_login");
-        formData.append(user_senha, "user_senha");
-        console.log(formData.user_login);
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                alert(this.responseText);
-            }
-        };
-
-        var url = "http://localhost:3000/login";
-        var dados = {
-            "user_login": "link",
-            "user_senha": "ti159753"
-        };
-        xhttp.open("POST", url, true);
-        xhttp.send(formData);
-
-    }
-
-    function register() {
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                location.reload();
-            } else {
-                msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "error", "glyphicon-remove", "Erro no Login! Tente Novamente!");
-            }
-        };
-        var url = "http://www.henriquesantos.pro.br:8080/api/trello/users/new";
-        var dados = {
-            "user_login": "link",
-            "user_senha": "ti159753"
-        };
-        xhttp.open("POST", url, true);
-        xhttp.setRequestHeader("Content-type", "application/json");
-
-        xhttp.send(JSON.stringify(dados));
-
-    }
-
-</script>
-
 <body>
-    <!-- ============================================================== -->
-    <!-- login page  -->
-    <!-- ============================================================== -->
+
     <div class="splash-container">
         <div class="card ">
             <div class="card-header text-center"><a href="../index.html"><img class="logo-img"
                         src="../assets/images/logo.png" alt="logo"></a><span class="splash-description">Please enter
                     your user information.</span></div>
             <div class="card-body">
-                <form>
+                <form id="formLogin">
                     <div class="form-group">
                         <input class="form-control form-control-lg" id="username" type="text" placeholder="Username"
                             autocomplete="off">
@@ -116,7 +51,7 @@
                                 class="custom-control-label">Remember Me</span>
                         </label>
                     </div>
-                    <button id="btnTest" onclick="loadDoc()" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
                 </form>
             </div>
             <div class="card-footer bg-white p-0  ">
@@ -129,12 +64,37 @@
         </div>
     </div>
 
-    <!-- ============================================================== -->
-    <!-- end login page  -->
-    <!-- ============================================================== -->
-    <!-- Optional JavaScript -->
     <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
 </body>
+
+<script>
+
+    document.getElementById('formLogin').addEventListener('submit', function(evt){
+    
+        evt.preventDefault();
+        var xhttp = new XMLHttpRequest();
+    
+        var login = document.getElementById('username').value;
+        var senha = document.getElementById('password').value;
+            
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var response = JSON.parse(this.responseText);
+                if(response.msg){
+                    alert(response.msg);
+                }else{
+                    console.log(response);
+                }
+            }
+        };
+    
+        var url = "http://localhost:3000/login";
+        xhttp.open("POST", url, true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send(`user_login=${login}&user_senha=${senha}`);
+    });
+    
+    </script>
 
 </html>
