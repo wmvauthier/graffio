@@ -31,20 +31,19 @@ app.use(expressValidator());
 consign()
 	.include('app/routes')
 	.then('app/controllers')
-	.then('app/htmlSections')
 	.into(app);
 
-/* middleware que configura páginas de status 
+/* middleware que configura páginas de status */
 app.use(function(req, res, next){
 	res.status(404).render('errors/404');
 	next();
 });
 
-/* middleware que configura msgs de erro internos 
+/* middleware que configura msgs de erro internos */
 app.use(function(err, req, res, next){
 	res.status(500).render('errors/500');
 	next();
-});*/
+});
 
 /* exportar o objeto app */
 module.exports = app;
