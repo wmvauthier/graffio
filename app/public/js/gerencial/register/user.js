@@ -5,6 +5,22 @@ var user_login = document.getElementById('user_login').value;
 var user_senha = document.getElementById('user_senha').value;
 var nivel_acesso = document.getElementById('nivel_acesso').value;
 
+document.getElementById("btnPreRegisterUser").addEventListener("click", function () {
+    preRegisterUser();
+});
+
+document.getElementById("btnDAODeleteUser").addEventListener("click", function () {
+    DAOdeleteUser();
+});
+
+document.getElementById("btnDAOUpdateUser").addEventListener("click", function () {
+    DAOupdateUser();
+});
+
+document.getElementById("btnDAORegisterUser").addEventListener("click", function () {
+    DAOregisterUser();
+});
+
 function DAOgetAllUsers() {
 
     var xhttp = new XMLHttpRequest();
@@ -27,10 +43,18 @@ function DAOregisterUser() {
 
     var xhttp = new XMLHttpRequest();
 
+    var nome = document.getElementById('nome').value;
+    var cargo = document.getElementById('cargo').value;
+    var user_login = document.getElementById('user_login').value;
+    var user_senha = document.getElementById('user_senha').value;
+    var nivel_acesso = document.getElementById('nivel_acesso').value;
+
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var response = JSON.parse(this.responseText);
+            console.log(response);
             createUserToUserTable(userTableBody, response);
+            cleanRegisterUserForm();
             $('#registerUserModal').modal('hide');
         }
     };
@@ -42,35 +66,53 @@ function DAOregisterUser() {
 
 }
 
-function preRegisterUser() {
-    document.getElementById('nome').value = "";
-    document.getElementById('cargo').value = "";
-    document.getElementById('user_login').value = "";
-    document.getElementById('user_senha').value = "";
-    document.getElementById('nivel_acesso').value = "";
-    document.getElementById('btnDAOUser').onclick = DAOregisterUser();
-    document.getElementById('registerUserModalTitle').innerHTML = "Insira as Informações do Novo Usuário";
+function DAOupdateUser() {
+
+    var xhttp = new XMLHttpRequest();
+
+    var id = document.getElementById('id_userUpd').value;
+    var nome = document.getElementById('nomeUpd').value;
+    var cargo = document.getElementById('cargoUpd').value;
+    var user_login = document.getElementById('user_loginUpd').value;
+    var user_senha = document.getElementById('user_senhaUpd').value;
+    var nivel_acesso = document.getElementById('nivel_acessoUpd').value;
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = JSON.parse(this.responseText);
+            DAOgetAllUsers();
+            cleanUpdateUserForm();
+            $('#updateUserModal').modal('hide');
+        }
+    };
+
+    var url = `http://localhost:3000/user/${id}`;
+    xhttp.open("PUT", url, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send(`id_user=${id}&nome=${nome}&cargo=${cargo}&user_login=${user_login}&user_senha=${user_senha}&nivel_acesso=${nivel_acesso}`);
 
 }
 
-function preChangeUser(id) {
+function preRegisterUser() {
+    cleanRegisterUserForm();
+}
 
+function preUpdateUser(id) {
+
+    cleanUpdateUserForm();
     var data = id.getAttribute("dataID");
-    userTableBody, nome, cargo, user_login, user_senha, nivel_acesso = "";
-
     var xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var response = JSON.parse(this.responseText);
-            document.getElementById('nome').value = response.nome;
-            document.getElementById('cargo').value = response.cargo;
-            document.getElementById('user_login').value = response.user_login;
-            document.getElementById('user_senha').value = response.user_senha;
-            document.getElementById('nivel_acesso').value = response.nivel_acesso;
-            //document.getElementById('btnDAOUser').onclick = DAOupdateUser();
-            document.getElementById('registerUserModalTitle').innerHTML = "Insira as Novas Informações do Usuário";
-            $('#registerUserModal').modal('show');
+            document.getElementById('id_userUpd').value = response.id_user;
+            document.getElementById('nomeUpd').value = response.nome;
+            document.getElementById('cargoUpd').value = response.cargo;
+            document.getElementById('user_loginUpd').value = response.user_login;
+            document.getElementById('user_senhaUpd').value = response.user_senha;
+            document.getElementById('nivel_acessoUpd').value = response.nivel_acesso;
+            $('#updateUserModal').modal('show');
         }
     };
 
@@ -82,7 +124,46 @@ function preChangeUser(id) {
 }
 
 function preDeleteUser(id) {
-    alert(user);
+
+    cleanUpdateUserForm();
+    var data = id.getAttribute("dataID");
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = JSON.parse(this.responseText);
+            document.getElementById('id_userDel').value = response.id_user;
+            $('#deleteUserModal').modal('show');
+        }
+    };
+
+    var url = `http://localhost:3000/user/${data}`;
+    xhttp.open("GET", url, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send();
+
+}
+
+function DAOdeleteUser() {
+
+    var xhttp = new XMLHttpRequest();
+
+    var id = document.getElementById('id_userDel').value;
+    console.log(id);
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var response = JSON.parse(this.responseText);
+            DAOgetAllUsers();
+            $('#deleteUserModal').modal('hide');
+        }
+    };
+
+    var url = `http://localhost:3000/user/${id}`;
+    xhttp.open("DELETE", url, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send();
+
 }
 
 function fillUserTable(table, data) {
@@ -112,8 +193,14 @@ function createUserToUserTable(table, user) {
     td3.innerHTML = user.cargo;
     td4.innerHTML = user.user_login;
     td5.innerHTML = user.nivel_acesso;
-    td6.innerHTML = `<button class="btn btn-rounded btn-warning" dataID="${user.id_user}" onclick="preChangeUser(this)">Editar</button>
-                     <button class="btn btn-rounded btn-danger" dataID="${user.id_user}" onclick="preDeleteUser(this)">Excluir</button>`;
+    td6.innerHTML = `<button class="btn btn-rounded btn-warning" dataID="${user.id_user}" 
+                        data-toggle="modal" data-target="#updateUserModal"
+                        data-backdrop="static" onclick="preUpdateUser(this)">
+                        Editar</button>
+                     <button class="btn btn-rounded btn-danger" dataID="${user.id_user}"
+                        data-toggle="modal" data-target="#deleteUserModal"
+                        data-backdrop="static" onclick="preDeleteUser(this)">
+                        Excluir</button>`;
 
     td1.setAttribute("data-title", "ID");
     td2.setAttribute("data-title", "Nome");
@@ -133,4 +220,20 @@ function createUserToUserTable(table, user) {
 
     table.appendChild(tr);
 
+}
+
+function cleanRegisterUserForm() {
+    document.getElementById('nome').value = "";
+    document.getElementById('cargo').value = "";
+    document.getElementById('user_login').value = "";
+    document.getElementById('user_senha').value = "";
+    document.getElementById('nivel_acesso').value = "";
+}
+
+function cleanUpdateUserForm() {
+    document.getElementById('nomeUpd').value = "";
+    document.getElementById('cargoUpd').value = "";
+    document.getElementById('user_loginUpd').value = "";
+    document.getElementById('user_senhaUpd').value = "";
+    document.getElementById('nivel_acessoUpd').value = "";
 }

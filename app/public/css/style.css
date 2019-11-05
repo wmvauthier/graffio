@@ -6,3 +6,11 @@
 .btn{
 	cursor: pointer;
 }
+
+.centered{
+	text-align:center;
+}
+
+.invisible{
+	display:none;
+}
