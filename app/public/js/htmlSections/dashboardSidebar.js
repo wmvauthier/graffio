@@ -1,7 +1,7 @@
 function setDashboardSidebar(mainDashBoard) {
 
     var div = document.createElement("div");
-    
+
     div.innerHTML = `        <div class="nav-left-sidebar sidebar-dark">
                                 <div class="menu-list">
                                     <nav class="navbar navbar-expand-lg navbar-light">
@@ -20,19 +20,37 @@ function setDashboardSidebar(mainDashBoard) {
                                                 </li>
                                                 <li class="nav-item ">
                                                     <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
-                                                        data-target="#submenu-15" aria-controls="submenu-15"><i
+                                                        data-target="#submenu-register" aria-controls="submenu-register"><i
                                                             class="fa fa-fw fa-user-circle"></i>Cadastros <span
                                                             class="badge badge-success">6</span></a>
-                                                    <div id="submenu-15" class="collapse submenu">
+                                                    <div id="submenu-register" class="collapse submenu">
                                                         <ul class="nav flex-column">
                                                             <li class="nav-item">
-                                                                <a class="nav-link" href="#">Usuários</a>
+                                                                <a class="nav-link" href="./register_User">Usuários</a>
                                                             </li>
                                                         </ul>
                                                     </div>
                                                 </li>
                                                 <li class="nav-divider">
                                                     Configurações
+                                                </li>
+                                                <li class="nav-item ">
+                                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                                                        data-target="#submenu-payment" aria-controls="submenu-payment"><i
+                                                            class="fa fa-fw fa-dollar-sign"></i>Formas de Pagamento <span
+                                                            class="badge badge-success">6</span></a>
+                                                    <div id="submenu-payment" class="collapse submenu">
+                                                        <ul class="nav flex-column">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" href="./config_priceTable">Tabela de Preço</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item ">
+                                                    <a class="nav-link" href="./config_Courtyard">
+                                                    <i class="fa fa-fw fa-car"></i>Pátios 
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </div>

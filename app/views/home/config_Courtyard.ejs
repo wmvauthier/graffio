@@ -36,10 +36,10 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="mb-0">Lista de Tabelas de Preço Cadastradas
-                                    <button id="btnPreRegisterPriceTable"
+                                <h5 class="mb-0">Lista de Pátios Cadastrados
+                                    <button id="btnPreRegisterCourtyard"
                                         class="btn btn-rounded btn-success floatingRightButton" data-toggle="modal"
-                                        data-target="#registerPriceTableModal" data-backdrop="static">Adicionar
+                                        data-target="#registerCourtyardModal" data-backdrop="static">Adicionar
                                     </button>
                                 </h5>
                             </div>
@@ -52,13 +52,13 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Nome</th>
-                                                <th>Período</th>
-                                                <th>Valor</th>
-                                                <th>Tabela Auxiliar</th>
+                                                <th>Vagas</th>
+                                                <th>Tabela de Preço</th>
+                                                <th>Ocupação</th>
                                                 <th>Ações</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="priceTableTableBody"></tbody>
+                                        <tbody id="courtyardTableBody"></tbody>
                                     </table>
                                 </div>
                             </div>
@@ -71,39 +71,35 @@
             <div class="container">
 
                 <!-- Modal para Inserção de Usuários -->
-                <div class="modal fade" id="registerPriceTableModal" role="dialog">
+                <div class="modal fade" id="registerCourtyardModal" role="dialog">
                     <div class="modal-dialog">
 
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Insira as Informações da Nova Tabela</h4>
+                                <h4 class="modal-title">Insira as Informações do Novo Pátio</h4>
                             </div>
                             <div class="modal-body">
-                                <form id="registerPriceTableForm">
+                                <form id="registerCourtyardForm">
                                     <div class="form-group">
                                         <label for="nome" class="col-form-label">Nome</label>
                                         <input id="nome" type="text" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="periodo" class="col-form-label">Período</label>
-                                        <input id="periodo" type="number" class="form-control">
+                                        <label for="qtd" class="col-form-label">Vagas</label>
+                                        <input id="qtd" type="number" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="valor" class="col-form-label">Valor</label>
-                                        <input id="valor" type="number" step="0.01" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="tabela_aux" class="col-form-label">Tabela de Preço Auxiliar</label>
-                                        <select id="tabela_aux" class="form-control">
-                                            <option disabled selected>Selecione a Tabela de Preco Auxiliar</option>
+                                        <label for="tabela_preco" class="col-form-label">Tabela de Preco</label>
+                                        <select id="tabela_preco" class="form-control">
+                                            <option disabled selected>Selecione a Tabela de Preco</option>
                                             <option>1</option>
                                         </select>
                                     </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button id="btnDAORegisterPriceTable" type="button"
+                                <button id="btnDAORegisterCourtyard" type="button"
                                     class="btn btn-rounded btn-success">Registrar</button>
                                 <button type="button" class="btn btn-rounded btn-danger"
                                     data-dismiss="modal">Cancelar</button>
@@ -114,43 +110,39 @@
                 </div>
 
                 <!-- Modal para Edição de Usuários -->
-                <div class="modal fade" id="updatePriceTableModal" role="dialog">
+                <div class="modal fade" id="updateCourtyardModal" role="dialog">
                     <div class="modal-dialog">
 
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Insira as Novas Informações da Tabela de Preço</h4>
+                                <h4 class="modal-title">Insira as Novas Informações do Pátio</h4>
                             </div>
                             <div class="modal-body">
-                                <form id="updatePriceTableForm">
+                                <form id="updateCourtyardForm">
                                     <div class="form-group">
-                                        <label for="id_tabela_precoUpd" class="col-form-label">ID</label>
-                                        <input id="id_tabela_precoUpd" disabled type="text" class="form-control">
+                                        <label for="id_patioUpd" class="col-form-label">ID</label>
+                                        <input id="id_patioUpd" disabled type="text" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="nomeUpd" class="col-form-label">Nome</label>
                                         <input id="nomeUpd" type="text" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="periodoUpd" class="col-form-label">Período</label>
-                                        <input id="periodoUpd" type="number" class="form-control">
+                                        <label for="qtdUpd" class="col-form-label">Vagas</label>
+                                        <input id="qtdUpd" type="number" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="valorUpd" class="col-form-label">Valor</label>
-                                        <input id="valorUpd" type="number" step="0.01" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="tabela_auxUpd" class="col-form-label">Tabela de Preço Auxiliar</label>
-                                        <select id="tabela_auxUpd" class="form-control">
-                                            <option disabled selected>Selecione a Tabela de Preco Auxiliar</option>
+                                        <label for="tabela_precoUpd" class="col-form-label">Tabela de Preco</label>
+                                        <select id="tabela_precoUpd" class="form-control">
+                                            <option disabled selected>Selecione a Tabela de Preco</option>
                                             <option>1</option>
                                         </select>
                                     </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button id="btnDAOUpdatePriceTable" type="button"
+                                <button id="btnDAOUpdateCourtyard" type="button"
                                     class="btn btn-rounded btn-success">Alterar</button>
                                 <button type="button" class="btn btn-rounded btn-danger"
                                     data-dismiss="modal">Cancelar</button>
@@ -161,18 +153,18 @@
                 </div>
 
                 <!-- Modal para Exclusão de Usuários -->
-                <div class="modal fade" id="deletePriceTableModal" role="dialog">
+                <div class="modal fade" id="deleteCourtyardModal" role="dialog">
                     <div class="modal-dialog">
 
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-body">
-                                <h4>Você deseja mesmo excluir esta Tabela de Preço?</h4>
+                                <h4>Você deseja mesmo excluir este Pátio?</h4>
                                 <h5 id="nomeDel" class="centeredX"></h5>
-                                <input id="id_priceTableDel" class="" />
+                                <input id="id_courtyardDel" class="invisible" />
                             </div>
                             <div class="modal-footer">
-                                <button id="btnDAODeletePriceTable" type="button"
+                                <button id="btnDAODeleteCourtyard" type="button"
                                     class="btn btn-rounded btn-success">Sim</button>
                                 <button type="button" class="btn btn-rounded btn-danger"
                                     data-dismiss="modal">Não</button>
@@ -215,7 +207,7 @@
     <script src="js/htmlSections/header.js"></script>
 
     <!-- Graffio JS que contém o BusinessJS-->
-    <script src="js/config/priceTable.js"></script>
+    <script src="js/config/courtyard.js"></script>
 
     <!-- Graffio JS que contém a Autenticação-->
     <script src="js/system/authenticationLogout.js"></script>
@@ -235,12 +227,12 @@
 
         setDashboardHeader(mainDashboard);
         setDashboardSidebar(mainDashboard);
-        setPageHeader(mainDashboardHeader, "Configuração de Tabelas de Preço");
+        setPageHeader(mainDashboardHeader, "Configuração de Pátios");
 
         document.getElementById("loggedUserNome").innerHTML = loggedUserNome;
         document.getElementById("loggedUserCargo").innerHTML = loggedUserCargo;
 
-        DAOgetAllPriceTables();
+        DAOgetAllCourtyards();
 
     }
 

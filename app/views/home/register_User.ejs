@@ -36,10 +36,9 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="mb-0">Lista de Tabelas de Preço Cadastradas
-                                    <button id="btnPreRegisterPriceTable"
-                                        class="btn btn-rounded btn-success floatingRightButton" data-toggle="modal"
-                                        data-target="#registerPriceTableModal" data-backdrop="static">Adicionar
+                                <h5 class="mb-0">Lista de Usuários Cadastrados
+                                    <button id="btnPreRegisterUser" class="btn btn-rounded btn-success floatingRightButton" data-toggle="modal"
+                                        data-target="#registerUserModal" data-backdrop="static">Adicionar
                                     </button>
                                 </h5>
                             </div>
@@ -52,13 +51,13 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Nome</th>
-                                                <th>Período</th>
-                                                <th>Valor</th>
-                                                <th>Tabela Auxiliar</th>
+                                                <th>Login</th>
+                                                <th>Cargo</th>
+                                                <th>Nível de Acesso</th>
                                                 <th>Ações</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="priceTableTableBody"></tbody>
+                                        <tbody id="userTableBody"></tbody>
                                     </table>
                                 </div>
                             </div>
@@ -70,41 +69,48 @@
 
             <div class="container">
 
-                <!-- Modal para Inserção de Usuários -->
-                <div class="modal fade" id="registerPriceTableModal" role="dialog">
+                <!-- Modal para Edição de Usuários -->
+                <div class="modal fade" id="updateUserModal" role="dialog">
                     <div class="modal-dialog">
 
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Insira as Informações da Nova Tabela</h4>
+                                <h4 class="modal-title">Insira as Novas Informações do Usuário</h4>
                             </div>
                             <div class="modal-body">
-                                <form id="registerPriceTableForm">
+                                <form id="updateUserForm">
+                                    <div class="form-group">
+                                        <label for="id" class="col-form-label">ID</label>
+                                        <input id="id_userUpd" disabled type="text" class="form-control">
+                                    </div>
                                     <div class="form-group">
                                         <label for="nome" class="col-form-label">Nome</label>
-                                        <input id="nome" type="text" class="form-control">
+                                        <input id="nomeUpd" type="text" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="periodo" class="col-form-label">Período</label>
-                                        <input id="periodo" type="number" class="form-control">
+                                        <label for="cargo" class="col-form-label">Cargo</label>
+                                        <input id="cargoUpd" type="text" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="valor" class="col-form-label">Valor</label>
-                                        <input id="valor" type="number" step="0.01" class="form-control">
+                                        <label for="user_login" class="col-form-label">Login</label>
+                                        <input id="user_loginUpd" type="text" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="tabela_aux" class="col-form-label">Tabela de Preço Auxiliar</label>
-                                        <select id="tabela_aux" class="form-control">
-                                            <option disabled selected>Selecione a Tabela de Preco Auxiliar</option>
-                                            <option>1</option>
+                                        <label for="user_senha" class="col-form-label">Senha</label>
+                                        <input id="user_senhaUpd" type="password" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nivel_acesso" class="col-form-label">Nível de Acesso</label>
+                                        <select id="nivel_acessoUpd" class="form-control">
+                                            <option disabled selected>Selecione o Nível de Acesso</option>
+                                            <option>Link</option>
                                         </select>
                                     </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button id="btnDAORegisterPriceTable" type="button"
-                                    class="btn btn-rounded btn-success">Registrar</button>
+                                <button id="btnDAOUpdateUser"  type="button" class="btn btn-rounded btn-success">Alterar</button>
                                 <button type="button" class="btn btn-rounded btn-danger"
                                     data-dismiss="modal">Cancelar</button>
                             </div>
@@ -113,45 +119,44 @@
                     </div>
                 </div>
 
-                <!-- Modal para Edição de Usuários -->
-                <div class="modal fade" id="updatePriceTableModal" role="dialog">
+                <!-- Modal para Inserção de Usuários -->
+                <div class="modal fade" id="registerUserModal" role="dialog">
                     <div class="modal-dialog">
 
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Insira as Novas Informações da Tabela de Preço</h4>
+                                <h4 class="modal-title">Insira as Informações do Novo Usuário</h4>
                             </div>
                             <div class="modal-body">
-                                <form id="updatePriceTableForm">
+                                <form id="registerUserForm">
                                     <div class="form-group">
-                                        <label for="id_tabela_precoUpd" class="col-form-label">ID</label>
-                                        <input id="id_tabela_precoUpd" disabled type="text" class="form-control">
+                                        <label for="nome" class="col-form-label">Nome</label>
+                                        <input id="nome" type="text" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="nomeUpd" class="col-form-label">Nome</label>
-                                        <input id="nomeUpd" type="text" class="form-control">
+                                        <label for="cargo" class="col-form-label">Cargo</label>
+                                        <input id="cargo" type="text" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="periodoUpd" class="col-form-label">Período</label>
-                                        <input id="periodoUpd" type="number" class="form-control">
+                                        <label for="user_login" class="col-form-label">Login</label>
+                                        <input id="user_login" type="text" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="valorUpd" class="col-form-label">Valor</label>
-                                        <input id="valorUpd" type="number" step="0.01" class="form-control">
+                                        <label for="user_senha" class="col-form-label">Senha</label>
+                                        <input id="user_senha" type="password" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="tabela_auxUpd" class="col-form-label">Tabela de Preço Auxiliar</label>
-                                        <select id="tabela_auxUpd" class="form-control">
-                                            <option disabled selected>Selecione a Tabela de Preco Auxiliar</option>
-                                            <option>1</option>
+                                        <label for="nivel_acesso" class="col-form-label">Nível de Acesso</label>
+                                        <select id="nivel_acesso" class="form-control">
+                                            <option disabled selected>Selecione o Nível de Acesso</option>
+                                            <option>Link</option>
                                         </select>
                                     </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button id="btnDAOUpdatePriceTable" type="button"
-                                    class="btn btn-rounded btn-success">Alterar</button>
+                                <button id="btnDAORegisterUser"  type="button" class="btn btn-rounded btn-success">Registrar</button>
                                 <button type="button" class="btn btn-rounded btn-danger"
                                     data-dismiss="modal">Cancelar</button>
                             </div>
@@ -161,26 +166,25 @@
                 </div>
 
                 <!-- Modal para Exclusão de Usuários -->
-                <div class="modal fade" id="deletePriceTableModal" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <h4>Você deseja mesmo excluir esta Tabela de Preço?</h4>
-                                <h5 id="nomeDel" class="centeredX"></h5>
-                                <input id="id_priceTableDel" class="" />
+                <div class="modal fade" id="deleteUserModal" role="dialog">
+                        <div class="modal-dialog">
+    
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <h4>Você deseja mesmo excluir este Usuário?</h4>
+                                    <h5 id="nomeDel" class="centeredX"></h5>
+                                    <input id="id_userDel" class="invisible"/>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="btnDAODeleteUser"  type="button" class="btn btn-rounded btn-success">Sim</button>
+                                    <button type="button" class="btn btn-rounded btn-danger"
+                                        data-dismiss="modal">Não</button>
+                                </div>
                             </div>
-                            <div class="modal-footer">
-                                <button id="btnDAODeletePriceTable" type="button"
-                                    class="btn btn-rounded btn-success">Sim</button>
-                                <button type="button" class="btn btn-rounded btn-danger"
-                                    data-dismiss="modal">Não</button>
-                            </div>
+    
                         </div>
-
                     </div>
-                </div>
 
             </div>
 
@@ -215,7 +219,7 @@
     <script src="js/htmlSections/header.js"></script>
 
     <!-- Graffio JS que contém o BusinessJS-->
-    <script src="js/config/priceTable.js"></script>
+    <script src="js/gerencial/register/user.js"></script>
 
     <!-- Graffio JS que contém a Autenticação-->
     <script src="js/system/authenticationLogout.js"></script>
@@ -235,12 +239,12 @@
 
         setDashboardHeader(mainDashboard);
         setDashboardSidebar(mainDashboard);
-        setPageHeader(mainDashboardHeader, "Configuração de Tabelas de Preço");
+        setPageHeader(mainDashboardHeader, "Cadastro de Usuários");
 
         document.getElementById("loggedUserNome").innerHTML = loggedUserNome;
         document.getElementById("loggedUserCargo").innerHTML = loggedUserCargo;
 
-        DAOgetAllPriceTables();
+        DAOgetAllUsers();
 
     }
 

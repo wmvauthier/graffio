@@ -132,6 +132,7 @@ function preDeleteUser(id) {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var response = JSON.parse(this.responseText);
+            document.getElementById('nomeDel').innerHTML = response.nome;
             document.getElementById('id_userDel').value = response.id_user;
             $('#deleteUserModal').modal('show');
         }

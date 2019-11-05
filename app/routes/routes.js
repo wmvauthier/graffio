@@ -8,8 +8,4 @@ module.exports = function(application){
 		application.app.controllers.home.home(application, req, res);
 	});
 
-	application.get('/home/home', function(req, res){
-		application.app.controllers.home.home(application, req, res);
-	});
-
 }
