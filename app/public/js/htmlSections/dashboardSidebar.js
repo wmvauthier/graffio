@@ -42,7 +42,10 @@ function setDashboardSidebar(mainDashBoard) {
                                                     <div id="submenu-payment" class="collapse submenu">
                                                         <ul class="nav flex-column">
                                                             <li class="nav-item">
-                                                                <a class="nav-link" href="./config_priceTable">Tabela de Preço</a>
+                                                                <a class="nav-link" href="./config_priceTable">Tabelas de Preço</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" href="./config_priceTableAux">Tabelas de Preço Auxiliares</a>
                                                             </li>
                                                         </ul>
                                                     </div>
