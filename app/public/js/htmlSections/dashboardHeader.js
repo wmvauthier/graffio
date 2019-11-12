@@ -136,7 +136,8 @@ function setDashboardHeader(mainDashBoard) {
             </ul>
         </div>
     </nav>
-    </div>`;
+    </div>
+`;
 
     mainDashBoard.appendChild(div);
 

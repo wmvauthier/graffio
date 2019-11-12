@@ -31,6 +31,97 @@
             <div class="container-fluid dashboard-content ">
 
                 <div id="mainDashboardHeader"></div>
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                        </ol>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-inline-block">
+                                            <h5 class="text-muted">Nome</h5>
+                                            <h2 id="widget_Name" class="mb-0"></h2>
+                                        </div>
+                                        <div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
+                                            <i class="fa fa-pencil-alt fa-fw fa-sm text-primary"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-inline-block">
+                                            <h5 class="text-muted">ID</h5>
+                                            <h2 id="widget_ID" class="mb-0"></h2>
+                                        </div>
+                                        <div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
+                                            <i class="fa fa-hashtag fa-fw fa-sm text-primary"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-inline-block">
+                                            <h5 class="text-muted">Ocupação Atual</h5>
+                                            <h2 id="widget_Percent" class="mb-0"></h2>
+                                        </div>
+                                        <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                                            <i class="fa fa-percent fa-fw fa-sm text-brand"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-inline-block">
+                                            <h5 class="text-muted">Veículos no Pátio</h5>
+                                            <h2 id="widget_onCourtyard" class="mb-0"></h2>
+                                        </div>
+                                        <div
+                                            class="float-right icon-circle-medium  icon-box-lg  bg-secondary-light mt-1">
+                                            <i class="fa fa-car fa-fw fa-sm text-secondary"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-inline-block">
+                                            <h5 class="text-muted">Vagas Disponíveis</h5>
+                                            <h2 id="widget_outCourtyard" class="mb-0"></h2>
+                                        </div>
+                                        <div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
+                                            <i class="fa fa-eye fa-fw fa-sm text-info"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header">Percentual de Ocupação</h5>
+                            <div class="card-body">
+                                <div id="c3chart_Occupation"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -200,6 +291,10 @@
     <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
     <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+
+    <script src="../assets/vendor/charts/c3charts/c3.min.js"></script>
+    <script src="../assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
+    <script src="../assets/vendor/charts/c3charts/C3chartjs.js"></script>
 
     <!-- Graffio JS que contém os HTML Sections-->
     <script src="js/htmlSections/dashboardHeader.js"></script>

@@ -25,8 +25,50 @@ function DAOgetAllCourtyards() {
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
+            
             var response = JSON.parse(this.responseText);
             fillCourtyardTable(courtyardTableBody, response);
+
+            response.forEach(element => {
+                createCourtyardWidgets(element);
+            });
+
+            if ($('#c3chart_Occupation').length) {
+                var chart = c3.generate({
+                    bindto: "#c3chart_Occupation",
+                    data: {
+                        columns: [
+
+                        ],
+                        type: 'donut',
+                        onclick: function (d, i) { console.log("onclick", d, i); },
+                        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+                        onmouseout: function (d, i) { console.log("onmouseout", d, i); },
+
+                        colors: {
+                            Disponível: '#F5F5F5'
+                        }
+                    },
+                    donut: {
+                        title: "Tipos de Clientes"
+                    }
+
+                });
+
+                setTimeout(function () {
+                    chart.load({
+                        columns: [
+                            ['Afiliados', 30],
+                            ['Mensalistas', 120],
+                            ['Horistas', 30],
+                            ['Disponível', 30],
+                            ['Autorizados', 120]
+                        ]
+                    });
+                }, 1500);
+
+            }
+
         }
     };
 
@@ -34,6 +76,16 @@ function DAOgetAllCourtyards() {
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
+
+}
+
+function createCourtyardWidgets(element) {
+
+    document.getElementById("widget_ID").innerHTML = element.id_patio;
+    document.getElementById("widget_Name").innerHTML = element.nome;
+    document.getElementById("widget_Percent").innerHTML = (element.onCourtyard * 100 / element.qtd) + "%";
+    document.getElementById("widget_onCourtyard").innerHTML = element.onCourtyard;
+    document.getElementById("widget_outCourtyard").innerHTML = element.outCourtyard;
 
 }
 
@@ -165,7 +217,6 @@ function fillCourtyardTable(table, data) {
     data.forEach(function (courtyard) {
         createCourtyardToCourtyardTable(table, courtyard);
     });
-
 
 }
 
