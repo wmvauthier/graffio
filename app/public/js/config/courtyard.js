@@ -26,29 +26,29 @@ function DAOgetAllCourtyards(courtyardWidgets) {
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            
+
             var response = JSON.parse(this.responseText);
             fillCourtyardTable(courtyardTableBody, response);
 
             response.forEach(element => {
 
                 var xhttp2 = new XMLHttpRequest();
-            
+
                 xhttp2.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         var dados = JSON.parse(this.responseText);
-                        setCourtyardWidgets(courtyardWidgets,element);
+                        setCourtyardWidgets(courtyardWidgets, element, dados);
                         setCourtyardChart(element, dados);
                         console.log(element);
                         console.log(dados);
                     }
                 };
-            
+
                 var url = `http://localhost:3000/countDocumentsFromCourtyards/${element.id_patio}`;
                 xhttp2.open("GET", url, true);
                 xhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhttp2.send();
-                
+
             });
 
         }
@@ -98,7 +98,7 @@ function DAOupdateCourtyard() {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var response = JSON.parse(this.responseText);
-            DAOgetAllCoutyards();
+            DAOgetAllCourtyards();
             cleanUpdateCourtyardForm();
             $('#updateCourtyardModal').modal('hide');
         }

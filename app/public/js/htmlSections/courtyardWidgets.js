@@ -1,8 +1,9 @@
-function setCourtyardWidgets(courtyardWidgets, courtyard) {
-
-    var token = localStorage.getItem("token");
+function setCourtyardWidgets(courtyardWidgets, courtyard, dados) {
 
     var div = document.createElement("div");
+    var total = objectSum(dados);
+    var docsOnCourtyard = objectSum(dados) - dados.Disponível;
+
     div.innerHTML = `                
     <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
@@ -40,7 +41,7 @@ function setCourtyardWidgets(courtyardWidgets, courtyard) {
                         <div class="card-body">
                             <div class="d-inline-block">
                                 <h5 class="text-muted">Ocupação Atual</h5>
-                                <h2 class="mb-0">${(courtyard.onCourtyard * 100 / courtyard.qtd) + "%"}</h2>
+                                <h2 class="mb-0">${(docsOnCourtyard * 100) / total + "%"}</h2>
                             </div>
                             <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
                                 <i class="fa fa-percent fa-fw fa-sm text-brand"></i>
@@ -55,7 +56,7 @@ function setCourtyardWidgets(courtyardWidgets, courtyard) {
                         <div class="card-body">
                             <div class="d-inline-block">
                                 <h5 class="text-muted">Veículos no Pátio</h5>
-                                <h2 class="mb-0">${courtyard.onCourtyard}</h2>
+                                <h2 class="mb-0">${docsOnCourtyard}</h2>
                             </div>
                             <div
                                 class="float-right icon-circle-medium  icon-box-lg  bg-secondary-light mt-1">
@@ -70,7 +71,7 @@ function setCourtyardWidgets(courtyardWidgets, courtyard) {
                         <div class="card-body">
                             <div class="d-inline-block">
                                 <h5 class="text-muted">Vagas Disponíveis</h5>
-                                <h2 class="mb-0">${courtyard.outCourtyard}</h2>
+                                <h2 class="mb-0">${total - docsOnCourtyard}</h2>
                             </div>
                             <div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
                                 <i class="fa fa-eye fa-fw fa-sm text-info"></i>
@@ -95,7 +96,7 @@ function setCourtyardWidgets(courtyardWidgets, courtyard) {
 
 }
 
-function setCourtyardChart(courtyard, dados){
+function setCourtyardChart(courtyard, dados) {
 
     if ($(`#c3chart_Occupation${courtyard.id_patio}`).length) {
         var chart = c3.generate({
@@ -118,7 +119,7 @@ function setCourtyardChart(courtyard, dados){
             }
 
         });
-        
+
         setTimeout(function () {
             chart.load({
                 columns: [
@@ -133,4 +134,14 @@ function setCourtyardChart(courtyard, dados){
 
     }
 
+}
+
+function objectSum(obj) {
+    var sum = 0;
+    for (var el in obj) {
+        if (obj.hasOwnProperty(el)) {
+            sum += parseFloat(obj[el]);
+        }
+    }
+    return sum;
 }
