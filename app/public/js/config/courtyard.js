@@ -2,6 +2,7 @@ var courtyardTableBody = document.getElementById("courtyardTableBody");
 var nome = document.getElementById('nome').value;
 var qtd = document.getElementById('qtd').value;
 var tabela_preco = document.getElementById('tabela_preco').value;
+var courtyardWidgets = document.getElementById('courtyardWidgets').value;
 
 document.getElementById("btnPreRegisterCourtyard").addEventListener("click", function () {
     preRegisterCourtyard();
@@ -19,7 +20,7 @@ document.getElementById("btnDAORegisterCourtyard").addEventListener("click", fun
     DAOregisterCourtyard();
 });
 
-function DAOgetAllCourtyards() {
+function DAOgetAllCourtyards(courtyardWidgets) {
 
     var xhttp = new XMLHttpRequest();
 
@@ -30,44 +31,25 @@ function DAOgetAllCourtyards() {
             fillCourtyardTable(courtyardTableBody, response);
 
             response.forEach(element => {
-                createCourtyardWidgets(element);
-            });
 
-            if ($('#c3chart_Occupation').length) {
-                var chart = c3.generate({
-                    bindto: "#c3chart_Occupation",
-                    data: {
-                        columns: [
-
-                        ],
-                        type: 'donut',
-                        onclick: function (d, i) { console.log("onclick", d, i); },
-                        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-                        onmouseout: function (d, i) { console.log("onmouseout", d, i); },
-
-                        colors: {
-                            Disponível: '#F5F5F5'
-                        }
-                    },
-                    donut: {
-                        title: "Tipos de Clientes"
+                var xhttp2 = new XMLHttpRequest();
+            
+                xhttp2.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var dados = JSON.parse(this.responseText);
+                        setCourtyardWidgets(courtyardWidgets,element);
+                        setCourtyardChart(element, dados);
+                        console.log(element);
+                        console.log(dados);
                     }
-
-                });
-
-                setTimeout(function () {
-                    chart.load({
-                        columns: [
-                            ['Afiliados', 30],
-                            ['Mensalistas', 120],
-                            ['Horistas', 30],
-                            ['Disponível', 30],
-                            ['Autorizados', 120]
-                        ]
-                    });
-                }, 1500);
-
-            }
+                };
+            
+                var url = `http://localhost:3000/countDocumentsFromCourtyards/${element.id_patio}`;
+                xhttp2.open("GET", url, true);
+                xhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp2.send();
+                
+            });
 
         }
     };
@@ -76,16 +58,6 @@ function DAOgetAllCourtyards() {
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
-
-}
-
-function createCourtyardWidgets(element) {
-
-    document.getElementById("widget_ID").innerHTML = element.id_patio;
-    document.getElementById("widget_Name").innerHTML = element.nome;
-    document.getElementById("widget_Percent").innerHTML = (element.onCourtyard * 100 / element.qtd) + "%";
-    document.getElementById("widget_onCourtyard").innerHTML = element.onCourtyard;
-    document.getElementById("widget_outCourtyard").innerHTML = element.outCourtyard;
 
 }
 

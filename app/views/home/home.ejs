@@ -38,7 +38,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h5 class="mb-0">Lista de Afiliados Cadastrados
-                                    <button id="btnPreRegisterAffiliate"
+                                    <button id="btnPreRegisterAffiliate" onclick="a();"
                                         class="btn btn-rounded btn-success floatingRightButton" data-toggle="modal"
                                         data-target="#registerAffiliateModal" data-backdrop="static">Adicionar
                                     </button>
@@ -192,7 +192,7 @@
     <script src="js/htmlSections/header.js"></script>
 
     <!-- Graffio JS que contém o BusinessJS-->
-    <script src="js/gerencial/register/affiliate.js"></script>
+    <script src="js/home.js"></script>
 
     <!-- Graffio JS que contém a Autenticação-->
     <script src="js/system/authenticationLogout.js"></script>
@@ -216,8 +216,6 @@
 
         document.getElementById("loggedUserNome").innerHTML = loggedUserNome;
         document.getElementById("loggedUserCargo").innerHTML = loggedUserCargo;
-
-        DAOgetAllAffiliates();
 
     }
 
