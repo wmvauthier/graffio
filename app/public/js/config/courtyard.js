@@ -29,6 +29,7 @@ function DAOgetAllCourtyards(courtyardWidgets) {
 
             var response = JSON.parse(this.responseText);
             fillCourtyardTable(courtyardTableBody, response);
+            var booleanFirstElement = true;
 
             response.forEach(element => {
 
@@ -37,10 +38,11 @@ function DAOgetAllCourtyards(courtyardWidgets) {
                 xhttp2.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         var dados = JSON.parse(this.responseText);
-                        setCourtyardWidgets(courtyardWidgets, element, dados);
+                        setCourtyardWidgets(courtyardWidgets, element, dados, booleanFirstElement);
                         setCourtyardChart(element, dados);
                         console.log(element);
                         console.log(dados);
+                        booleanFirstElement = false;
                     }
                 };
 

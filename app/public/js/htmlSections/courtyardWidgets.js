@@ -1,6 +1,14 @@
-function setCourtyardWidgets(courtyardWidgets, courtyard, dados) {
+function setCourtyardWidgets(courtyardWidgets, courtyard, dados, firstCourtyard) {
 
     var div = document.createElement("div");
+    
+    if (firstCourtyard == true) {
+        div.classList.add("carousel-item");
+        div.classList.add("active");
+    } else {
+        div.classList.add("carousel-item");
+    }
+
     var total = objectSum(dados);
     var docsOnCourtyard = objectSum(dados) - dados.Disponível;
 
@@ -103,7 +111,11 @@ function setCourtyardChart(courtyard, dados) {
             bindto: `#c3chart_Occupation${courtyard.id_patio}`,
             data: {
                 columns: [
-
+                    ['Afiliados', dados.Afiliados],
+                    ['Mensalistas', dados.Mensalistas],
+                    ['Horistas', dados.Horistas],
+                    ['Disponível', dados.Disponível],
+                    ['Autorizados', dados.Autorizados]
                 ],
                 type: 'donut',
                 onclick: function (d, i) { console.log("onclick", d, i); },
@@ -119,18 +131,6 @@ function setCourtyardChart(courtyard, dados) {
             }
 
         });
-
-        setTimeout(function () {
-            chart.load({
-                columns: [
-                    ['Afiliados', dados.Afiliados],
-                    ['Mensalistas', dados.Mensalistas],
-                    ['Horistas', dados.Horistas],
-                    ['Disponível', dados.Disponível],
-                    ['Autorizados', dados.Autorizados]
-                ]
-            });
-        }, 1500);
 
     }
 
