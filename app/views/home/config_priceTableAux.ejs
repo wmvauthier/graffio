@@ -92,11 +92,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="valor" class="col-form-label">Valor</label>
-                                        <input id="valor" type="number" step="0.01" class="form-control">
+                                        <input id="valor" type="number" class="form-control validationInput_Value">
                                     </div>
                                     <div class="form-group">
                                         <label for="valorPerda" class="col-form-label">Perda do Ticket</label>
-                                        <input id="valorPerda" type="number" step="0.01" class="form-control">
+                                        <input id="valorPerda" type="number" class="form-control validationInput_Value">
                                     </div>
                                     <div class="form-group">
                                         <label for="tolerancia" class="col-form-label">Tolerância</label>
@@ -140,11 +140,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="valorUpd" class="col-form-label">Valor</label>
-                                        <input id="valorUpd" type="number" step="0.01" class="form-control">
+                                        <input id="valorUpd" type="number" class="form-control validationInput_Value">
                                     </div>
                                     <div class="form-group">
                                         <label for="valorPerdaUpd" class="col-form-label">Perda do Ticket</label>
-                                        <input id="valorPerdaUpd" type="number" step="0.01" class="form-control">
+                                        <input id="valorPerdaUpd" type="number" class="form-control validationInput_Value">
                                     </div>
                                     <div class="form-group">
                                         <label for="toleranciaUpd" class="col-form-label">Tolerância</label>
@@ -211,6 +211,10 @@
     <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
     <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+
+    <!-- Graffio JS que contém os Input Validations-->
+    <script src="js/system/validationInput.js"></script>
+    <script src="js/jquery.mask.js"></script>
 
     <!-- Graffio JS que contém os HTML Sections-->
     <script src="js/htmlSections/dashboardHeader.js"></script>

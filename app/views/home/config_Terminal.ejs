@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Graffio</title>
@@ -33,14 +32,26 @@
 
                 <div id="mainDashboardHeader"></div>
 
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div id="terminalWidgets" class="carousel-inner">
+                    </div>
+                </div>
+
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                        </ol>
+                    </nav>
+                </div>
+
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="mb-0">Lista de Afiliados Cadastrados
-                                    <button id="btnPreRegisterAffiliate"
+                                <h5 class="mb-0">Lista de Terminais Cadastrados
+                                    <button id="btnPreRegisterTerminal"
                                         class="btn btn-rounded btn-success floatingRightButton" data-toggle="modal"
-                                        data-target="#registerAffiliateModal" data-backdrop="static">Adicionar
+                                        data-target="#registerTerminalModal" data-backdrop="static">Adicionar
                                     </button>
                                 </h5>
                             </div>
@@ -52,12 +63,15 @@
                                         <thead class="cf">
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Nome</th>
-                                                <th>CNPJ</th>
+                                                <th>Descrição</th>
+                                                <th>IP</th>
+                                                <th>Pátio</th>
+                                                <th>Função</th>
+                                                <th>IP da Cancela</th>
                                                 <th>Ações</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="affiliateTableBody"></tbody>
+                                        <tbody id="terminalTableBody"></tbody>
                                     </table>
                                 </div>
                             </div>
@@ -69,65 +83,47 @@
 
             <div class="container">
 
-                <!-- Modal para Edição de Usuários -->
-                <div class="modal fade" id="updateAffiliateModal" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Insira as Novas Informações do Afiliado</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form id="updateAffiliateForm">
-                                    <div class="form-group">
-                                        <label for="id" class="col-form-label">ID</label>
-                                        <input id="id_affiliateUpd" disabled type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="nomeUpd" class="col-form-label">Nome</label>
-                                        <input id="nomeUpd" type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="cnpjUpd" class="col-form-label">CNPJ</label>
-                                        <input id="cnpjUpd" type="text" class="form-control validationInput_CNPJ">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button id="btnDAOUpdateAffiliate" type="button"
-                                    class="btn btn-rounded btn-success">Alterar</button>
-                                <button type="button" class="btn btn-rounded btn-danger"
-                                    data-dismiss="modal">Cancelar</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
                 <!-- Modal para Inserção de Usuários -->
-                <div class="modal fade" id="registerAffiliateModal" role="dialog">
+                <div class="modal fade" id="registerTerminalModal" role="dialog">
                     <div class="modal-dialog">
 
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Insira as Informações do Novo Afiliado</h4>
+                                <h4 class="modal-title">Insira as Informações do Novo Terminal</h4>
                             </div>
                             <div class="modal-body">
-                                <form id="registerAffiliateForm">
+                                <form id="registerTerminalForm">
                                     <div class="form-group">
-                                        <label for="nome" class="col-form-label">Nome</label>
-                                        <input id="nome" type="text" class="form-control">
+                                        <label for="descricao" class="col-form-label">Descrição</label>
+                                        <input id="descricao" type="text" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="cnpj" class="col-form-label">CNPJ</label>
-                                        <input id="cnpj" type="text" class="form-control validationInput_CNPJ">
+                                        <label for="ip" class="col-form-label">IP</label>
+                                        <input id="ip" type="text" class="form-control validationInput_IP">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ip_cancela" class="col-form-label">IP da Cancela</label>
+                                        <input id="ip_cancela" type="text" class="form-control validationInput_IP">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="patio" class="col-form-label">Pátio</label>
+                                        <select id="patio" class="form-control">
+                                            <option disabled selected>Selecione o Pátio desejado</option>
+                                            <option>1</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="funcao" class="col-form-label">Função do Terminal</label>
+                                        <select id="funcao" class="form-control">
+                                            <option disabled selected>Função do Terminal</option>
+                                            <option>Terminal Gama</option>
+                                        </select>
                                     </div>
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button id="btnDAORegisterAffiliate" type="button"
+                                <button id="btnDAORegisterTerminal" type="button"
                                     class="btn btn-rounded btn-success">Registrar</button>
                                 <button type="button" class="btn btn-rounded btn-danger"
                                     data-dismiss="modal">Cancelar</button>
@@ -137,19 +133,73 @@
                     </div>
                 </div>
 
+                <!-- Modal para Edição de Usuários -->
+                <div class="modal fade" id="updateTerminalModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Insira as Novas Informações do Terminal</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form id="updateTerminalForm">
+                                    <div class="form-group">
+                                        <label for="id_terminalUpd" class="col-form-label">ID</label>
+                                        <input id="id_terminalUpd" disabled type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="descricaoUpd" class="col-form-label">Descrição</label>
+                                        <input id="descricaoUpd" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ipUpd" class="col-form-label">IP</label>
+                                        <input id="ipUpd" type="text" class="form-control validationInput_IP">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ip_cancelaUpd" class="col-form-label">IP da Cancela</label>
+                                        <input id="ip_cancelaUpd" type="text" class="form-control validationInput_IP">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="patioUpd" class="col-form-label">Pátio</label>
+                                        <select id="patioUpd" class="form-control">
+                                            <option disabled selected>Selecione o Pátio desejado</option>
+                                            <option>1</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="funcaoUpd" class="col-form-label">Função do Terminal</label>
+                                        <select id="funcaoUpd" class="form-control">
+                                            <option disabled selected>Função do Terminal</option>
+                                            <option>Terminal Gama</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="btnDAOUpdateTerminal" type="button"
+                                    class="btn btn-rounded btn-success">Alterar</button>
+                                <button type="button" class="btn btn-rounded btn-danger"
+                                    data-dismiss="modal">Cancelar</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
                 <!-- Modal para Exclusão de Usuários -->
-                <div class="modal fade" id="deleteAffiliateModal" role="dialog">
+                <div class="modal fade" id="deleteTerminalModal" role="dialog">
                     <div class="modal-dialog">
 
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-body">
-                                <h4>Você deseja mesmo excluir este Afiliado?</h4>
+                                <h4>Você deseja mesmo excluir este Terminal?</h4>
                                 <h5 id="nomeDel" class="centeredX"></h5>
-                                <input id="id_affiliateDel" class="invisible" />
+                                <input id="id_terminalDel" class="invisible" />
                             </div>
                             <div class="modal-footer">
-                                <button id="btnDAODeleteAffiliate" type="button"
+                                <button id="btnDAODeleteTerminal" type="button"
                                     class="btn btn-rounded btn-success">Sim</button>
                                 <button type="button" class="btn btn-rounded btn-danger"
                                     data-dismiss="modal">Não</button>
@@ -186,6 +236,10 @@
     <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
     <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
 
+    <script src="../assets/vendor/charts/c3charts/c3.min.js"></script>
+    <script src="../assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
+    <script src="../assets/vendor/charts/c3charts/C3chartjs.js"></script>
+
     <!-- Graffio JS que contém os Input Validations-->
     <script src="js/system/validationInput.js"></script>
     <script src="js/jquery.mask.js"></script>
@@ -193,10 +247,11 @@
     <!-- Graffio JS que contém os HTML Sections-->
     <script src="js/htmlSections/dashboardHeader.js"></script>
     <script src="js/htmlSections/dashboardSidebar.js"></script>
+    <script src="js/htmlSections/terminalWidgets.js"></script>
     <script src="js/htmlSections/header.js"></script>
 
     <!-- Graffio JS que contém o BusinessJS-->
-    <script src="js/gerencial/register/affiliate.js"></script>
+    <script src="js/config/terminal.js"></script>
 
     <!-- Graffio JS que contém a Autenticação-->
     <script src="js/system/authenticationLogout.js"></script>
@@ -213,15 +268,17 @@
 
         var mainDashboard = document.getElementById("mainDashboard");
         var mainDashboardHeader = document.getElementById("mainDashboardHeader");
+        var terminalWidgets = document.getElementById('terminalWidgets');
 
         setDashboardHeader(mainDashboard);
         setDashboardSidebar(mainDashboard);
-        setPageHeader(mainDashboardHeader, "Cadastro de Afiliados");
+
+        setPageHeader(mainDashboardHeader, "Configuração de Terminais");
 
         document.getElementById("loggedUserNome").innerHTML = loggedUserNome;
         document.getElementById("loggedUserCargo").innerHTML = loggedUserCargo;
 
-        DAOgetAllAffiliates();
+        DAOgetAllTerminals(terminalWidgets);
 
     }
 

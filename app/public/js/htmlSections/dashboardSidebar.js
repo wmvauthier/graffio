@@ -55,7 +55,12 @@ function setDashboardSidebar(mainDashBoard) {
                                                 </li>
                                                 <li class="nav-item ">
                                                     <a class="nav-link" href="./config_Courtyard">
-                                                    <i class="fa fa-fw fa-car"></i>Pátios 
+                                                        <i class="fa fa-fw fa-car"></i>Pátios 
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item ">
+                                                    <a class="nav-link" href="./config_Terminal">
+                                                        <i class="fa fa-fw fa-desktop"></i>Terminais 
                                                     </a>
                                                 </li>
                                             </ul>

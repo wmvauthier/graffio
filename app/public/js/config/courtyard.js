@@ -1,7 +1,3 @@
-var courtyardTableBody = document.getElementById("courtyardTableBody");
-var nome = document.getElementById('nome').value;
-var qtd = document.getElementById('qtd').value;
-var tabela_preco = document.getElementById('tabela_preco').value;
 var courtyardWidgets = document.getElementById('courtyardWidgets').value;
 
 document.getElementById("btnPreRegisterCourtyard").addEventListener("click", function () {
@@ -40,8 +36,6 @@ function DAOgetAllCourtyards(courtyardWidgets) {
                         var dados = JSON.parse(this.responseText);
                         setCourtyardWidgets(courtyardWidgets, element, dados, booleanFirstElement);
                         setCourtyardChart(element, dados);
-                        console.log(element);
-                        console.log(dados);
                         booleanFirstElement = false;
                     }
                 };
