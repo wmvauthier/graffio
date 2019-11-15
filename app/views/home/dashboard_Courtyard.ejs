@@ -32,7 +32,10 @@
 
                 <div id="mainDashboardHeader"></div>
 
-                <div id="courtyardWidgets"></div>
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div id="courtyardWidgets" class="carousel-inner">
+                    </div>
+                </div>
 
                 <div class="page-breadcrumb">
                     <nav aria-label="breadcrumb">
@@ -63,6 +66,7 @@
                                                 <th>Nome</th>
                                                 <th>Vagas</th>
                                                 <th>Tabela de Preço</th>
+                                                <th>Ocupação</th>
                                                 <th>Ações</th>
                                             </tr>
                                         </thead>
@@ -216,11 +220,11 @@
     <!-- Graffio JS que contém os HTML Sections-->
     <script src="js/htmlSections/dashboardHeader.js"></script>
     <script src="js/htmlSections/dashboardSidebar.js"></script>
-    <script src="js/htmlSections/courtyardWidgets.js"></script>
+    <script src="js/htmlSections/dashboardCourtyardWidgets.js"></script>
     <script src="js/htmlSections/header.js"></script>
 
     <!-- Graffio JS que contém o BusinessJS-->
-    <script src="js/config/courtyard.js"></script>
+    <script src="js/dashboards/dashboard_Courtyard.js"></script>
 
     <!-- Graffio JS que contém a Autenticação-->
     <script src="js/system/authenticationLogout.js"></script>
@@ -242,7 +246,7 @@
         setDashboardHeader(mainDashboard);
         setDashboardSidebar(mainDashboard);
 
-        setPageHeader(mainDashboardHeader, "Configuração de Pátios");
+        setPageHeader(mainDashboardHeader, "Dashboard de Pátios");
 
         document.getElementById("loggedUserNome").innerHTML = loggedUserNome;
         document.getElementById("loggedUserCargo").innerHTML = loggedUserCargo;

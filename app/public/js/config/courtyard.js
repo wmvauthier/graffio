@@ -21,33 +21,37 @@ function DAOgetAllCourtyards(courtyardWidgets) {
     var xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function () {
+        
         if (this.readyState == 4 && this.status == 200) {
 
             var response = JSON.parse(this.responseText);
             fillCourtyardTable(courtyardTableBody, response);
-            var booleanFirstElement = true;
+            
+            var totalPatios = 0;
+            var totalOnCourtyard = 0;
+            var totalOutCourtyard = 0;
+            var totalVagas = 0;
+            var totalData = {};
 
             response.forEach(element => {
 
-                var xhttp2 = new XMLHttpRequest();
-
-                xhttp2.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        var dados = JSON.parse(this.responseText);
-                        setCourtyardWidgets(courtyardWidgets, element, dados, booleanFirstElement);
-                        setCourtyardChart(element, dados);
-                        booleanFirstElement = false;
-                    }
-                };
-
-                var url = `http://localhost:3000/countDocumentsFromCourtyards/${element.id_patio}`;
-                xhttp2.open("GET", url, true);
-                xhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp2.send();
+                totalPatios++;
+                totalOnCourtyard += parseFloat(element.onCourtyard);
+                totalOutCourtyard += parseFloat(element.outCourtyard);
+                totalVagas = totalOnCourtyard + totalOutCourtyard;
+                totalData = {
+                    "totalPatios": totalPatios,
+                    "totalOnCourtyard": totalOnCourtyard,
+                    "totalOutCourtyard": totalOutCourtyard,
+                    "totalVagas": totalVagas
+                }
 
             });
 
+            setCourtyardWidgets(courtyardWidgets, totalData);
+
         }
+
     };
 
     var url = "http://localhost:3000/courtyard";
@@ -197,14 +201,12 @@ function createCourtyardToCourtyardTable(table, courtyard) {
     var td3 = document.createElement("td");
     var td4 = document.createElement("td");
     var td5 = document.createElement("td");
-    var td6 = document.createElement("td");
 
     td1.innerHTML = courtyard.id_patio;
     td2.innerHTML = courtyard.nome;
     td3.innerHTML = courtyard.qtd;
     td4.innerHTML = courtyard.tabela_preco;
-    td5.innerHTML = courtyard.nome;
-    td6.innerHTML = `<button class="btn btn-rounded btn-warning" dataID="${courtyard.id_patio}" 
+    td5.innerHTML = `<button class="btn btn-rounded btn-warning" dataID="${courtyard.id_patio}" 
                         data-toggle="modal" data-target="#updateCourtyardModal"
                         data-backdrop="static" onclick="preUpdateCourtyard(this)">
                         Editar</button>
@@ -217,17 +219,15 @@ function createCourtyardToCourtyardTable(table, courtyard) {
     td2.setAttribute("data-title", "Nome");
     td3.setAttribute("data-title", "Vagas");
     td4.setAttribute("data-title", "Tab. Preço");
-    td5.setAttribute("data-title", "Ocupação");
-    td6.setAttribute("data-title", "Ações");
+    td5.setAttribute("data-title", "Ações");
 
-    td6.style = "text-align: center;"
+    td5.style = "text-align: center;"
 
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
     tr.appendChild(td4);
     tr.appendChild(td5);
-    tr.appendChild(td6);
 
     table.appendChild(tr);
 
