@@ -174,6 +174,8 @@ function fillPriceTableTable(table, data) {
 //Insere Usuário na Lista de Usuários
 function createPriceTableToPriceTableTable(table, priceTable) {
 
+    var priceTableAux = httpGet(`http://localhost:3000/priceTableAux/${priceTable.tabela_aux}`);
+
     var tr = document.createElement("tr");
     var td1 = document.createElement("td");
     var td2 = document.createElement("td");
@@ -186,7 +188,8 @@ function createPriceTableToPriceTableTable(table, priceTable) {
     td2.innerHTML = priceTable.nome;
     td3.innerHTML = priceTable.periodo;
     td4.innerHTML = priceTable.valor;
-    td5.innerHTML = priceTable.tabela_aux;
+    td5.innerHTML = priceTableAux.nome;
+    td5.value = priceTable.tabela_aux;
     td6.innerHTML = `<button class="btn btn-rounded btn-warning" dataID="${priceTable.id_tabela_preco}" 
                         data-toggle="modal" data-target="#updatePriceTableModal"
                         data-backdrop="static" onclick="preUpdatePriceTable(this)">

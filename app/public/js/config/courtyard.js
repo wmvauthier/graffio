@@ -1,4 +1,4 @@
-var courtyardWidgets = document.getElementById('courtyardWidgets').value;
+var courtyardWidgets = document.getElementById('courtyardWidgets');
 
 document.getElementById("btnPreRegisterCourtyard").addEventListener("click", function () {
     preRegisterCourtyard();
@@ -16,9 +16,10 @@ document.getElementById("btnDAORegisterCourtyard").addEventListener("click", fun
     DAOregisterCourtyard();
 });
 
-function DAOgetAllCourtyards(courtyardWidgets) {
+function DAOgetAllCourtyards() {
 
     var xhttp = new XMLHttpRequest();
+    courtyardWidgets.innerHTML = '';
 
     xhttp.onreadystatechange = function () {
         
@@ -72,8 +73,8 @@ function DAOregisterCourtyard() {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var response = JSON.parse(this.responseText);
-            console.log(response);
             createCourtyardToCourtyardTable(courtyardTableBody, response);
+            DAOgetAllCourtyards();
             cleanRegisterCourtyardForm();
             $('#registerCourtyardModal').modal('hide');
         }
@@ -195,6 +196,8 @@ function fillCourtyardTable(table, data) {
 //Insere Usuário na Lista de Usuários
 function createCourtyardToCourtyardTable(table, courtyard) {
 
+    var priceTable = httpGet(`http://localhost:3000/priceTable/${courtyard.tabela_preco}`);
+
     var tr = document.createElement("tr");
     var td1 = document.createElement("td");
     var td2 = document.createElement("td");
@@ -205,7 +208,8 @@ function createCourtyardToCourtyardTable(table, courtyard) {
     td1.innerHTML = courtyard.id_patio;
     td2.innerHTML = courtyard.nome;
     td3.innerHTML = courtyard.qtd;
-    td4.innerHTML = courtyard.tabela_preco;
+    td4.innerHTML = priceTable.nome;
+    td4.value = courtyard.tabela_preco;
     td5.innerHTML = `<button class="btn btn-rounded btn-warning" dataID="${courtyard.id_patio}" 
                         data-toggle="modal" data-target="#updateCourtyardModal"
                         data-backdrop="static" onclick="preUpdateCourtyard(this)">

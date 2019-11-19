@@ -101,7 +101,6 @@
                                         <label for="tabela_preco" class="col-form-label">Tabela de Preco</label>
                                         <select id="tabela_preco" class="form-control">
                                             <option disabled selected>Selecione a Tabela de Preco</option>
-                                            <option>1</option>
                                         </select>
                                     </div>
                                 </form>
@@ -144,7 +143,6 @@
                                         <label for="tabela_precoUpd" class="col-form-label">Tabela de Preco</label>
                                         <select id="tabela_precoUpd" class="form-control">
                                             <option disabled selected>Selecione a Tabela de Preco</option>
-                                            <option>1</option>
                                         </select>
                                     </div>
                                 </form>
@@ -194,21 +192,6 @@
     <script src="../assets/vendor/slimscroll/jquery.slimscroll.js"></script>
     <script src="../assets/vendor/multi-select/js/jquery.multi-select.js"></script>
     <script src="../assets/libs/js/main-js.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="../assets/vendor/datatables/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-    <script src="../assets/vendor/datatables/js/buttons.bootstrap4.min.js"></script>
-    <script src="../assets/vendor/datatables/js/data-table.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.colVis.min.js"></script>
-    <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
-    <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
-    <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
-
     <script src="../assets/vendor/charts/c3charts/c3.min.js"></script>
     <script src="../assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
     <script src="../assets/vendor/charts/c3charts/C3chartjs.js"></script>
@@ -224,6 +207,10 @@
 
     <!-- Graffio JS que contém a Autenticação-->
     <script src="js/system/authenticationLogout.js"></script>
+
+    <!-- Graffio JS que contém os Métodos de Requisição-->
+    <script src="js/system/httpRequisitions.js"></script>
+
 
 </body>
 
@@ -246,6 +233,21 @@
 
         document.getElementById("loggedUserNome").innerHTML = loggedUserNome;
         document.getElementById("loggedUserCargo").innerHTML = loggedUserCargo;
+
+        var select = document.getElementById('tabela_precoUpd');
+        var select2 = document.getElementById('tabela_preco');
+        var priceTables = httpGet("http://localhost:3000/priceTable");
+        
+        priceTables.forEach(element => {
+            var item = document.createElement('option');
+            var item2 = document.createElement('option');
+            item.innerHTML = element.nome;
+            item2.innerHTML = element.nome;
+            item.value = element.id_tabela_preco;
+            item2.value = element.id_tabela_preco;
+            select.appendChild(item);
+            select2.appendChild(item2);
+        });
 
         DAOgetAllCourtyards(courtyardWidgets);
 
