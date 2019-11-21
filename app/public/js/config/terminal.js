@@ -50,7 +50,7 @@ function DAOgetAllTerminals(terminalWidgets) {
         }
     };
 
-    var url = "http://localhost:3000/terminal";
+    var url = `http://${IP_DO_SERVIDOR}:3000/terminal`;
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -77,7 +77,7 @@ function DAOregisterTerminal() {
         }
     };
 
-    var url = "http://localhost:3000/terminal";
+    var url = `http://${IP_DO_SERVIDOR}:3000/terminal`;
     xhttp.open("POST", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`descricao=${descricao}&ip=${ip}&patio=${patio}&funcao=${funcao}&ip_cancela=${ip_cancela}`);
@@ -104,7 +104,7 @@ function DAOupdateTerminal() {
         }
     };
 
-    var url = `http://localhost:3000/terminal/${id}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/terminal/${id}`;
     xhttp.open("PUT", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`id_terminal=${id}&descricao=${descricao}&ip=${ip}&patio=${patio}&funcao=${funcao}&ip_cancela=${ip_cancela}`);
@@ -125,7 +125,7 @@ function DAOdeleteTerminal() {
         }
     };
 
-    var url = `http://localhost:3000/terminal/${id}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/terminal/${id}`;
     xhttp.open("DELETE", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -155,7 +155,7 @@ function preUpdateTerminal(id) {
         }
     };
 
-    var url = `http://localhost:3000/terminal/${data}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/terminal/${data}`;
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -177,7 +177,7 @@ function preDeleteTerminal(id) {
         }
     };
 
-    var url = `http://localhost:3000/terminal/${data}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/terminal/${data}`;
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();

@@ -32,7 +32,7 @@ function DAOgetAllPriceTableAuxs() {
         }
     };
 
-    var url = "http://localhost:3000/priceTableAux";
+    var url = `http://${IP_DO_SERVIDOR}:3000/priceTableAux`;
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -58,7 +58,7 @@ function DAOregisterPriceTableAux() {
         }
     };
 
-    var url = "http://localhost:3000/priceTableAux";
+    var url = `http://${IP_DO_SERVIDOR}:3000/priceTableAux`;
     xhttp.open("POST", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`nome=${nome}&periodo=${periodo}&valor=${valor}&valorPerda=${valorPerda}&tolerancia=${tolerancia}`);
@@ -85,7 +85,7 @@ function DAOupdatePriceTableAux() {
         }
     };
 
-    var url = `http://localhost:3000/priceTableAux/${id}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/priceTableAux/${id}`;
     xhttp.open("PUT", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`id_tabela_preco_aux=${id}&nome=${nome}&periodo=${periodo}&valor=${valor}&valorPerda=${valorPerda}&tolerancia=${tolerancia}`);
@@ -105,7 +105,7 @@ function DAOdeletePriceTableAux() {
         }
     };
 
-    var url = `http://localhost:3000/priceTableAux/${id}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/priceTableAux/${id}`;
     xhttp.open("DELETE", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -135,7 +135,7 @@ function preUpdatePriceTableAux(id) {
         }
     };
 
-    var url = `http://localhost:3000/priceTableAux/${data}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/priceTableAux/${data}`;
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -157,7 +157,7 @@ function preDeletePriceTableAux(id) {
         }
     };
 
-    var url = `http://localhost:3000/priceTableAux/${data}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/priceTableAux/${data}`;
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();

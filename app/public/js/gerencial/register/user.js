@@ -32,7 +32,7 @@ function DAOgetAllUsers() {
         }
     };
 
-    var url = "http://localhost:3000/user";
+    var url = `http://${IP_DO_SERVIDOR}:3000/user`;
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -59,7 +59,7 @@ function DAOregisterUser() {
         }
     };
 
-    var url = "http://localhost:3000/user";
+    var url = `http://${IP_DO_SERVIDOR}:3000/user`;
     xhttp.open("POST", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`nome=${nome}&cargo=${cargo}&user_login=${user_login}&user_senha=${user_senha}&nivel_acesso=${nivel_acesso}`);
@@ -86,7 +86,7 @@ function DAOupdateUser() {
         }
     };
 
-    var url = `http://localhost:3000/user/${id}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/user/${id}`;
     xhttp.open("PUT", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`id_user=${id}&nome=${nome}&cargo=${cargo}&user_login=${user_login}&user_senha=${user_senha}&nivel_acesso=${nivel_acesso}`);
@@ -116,7 +116,7 @@ function preUpdateUser(id) {
         }
     };
 
-    var url = `http://localhost:3000/user/${data}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/user/${data}`;
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -138,7 +138,7 @@ function preDeleteUser(id) {
         }
     };
 
-    var url = `http://localhost:3000/user/${data}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/user/${data}`;
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -160,7 +160,7 @@ function DAOdeleteUser() {
         }
     };
 
-    var url = `http://localhost:3000/user/${id}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/user/${id}`;
     xhttp.open("DELETE", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();

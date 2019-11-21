@@ -211,6 +211,8 @@
     <!-- Graffio JS que contém os Métodos de Requisição-->
     <script src="js/system/httpRequisitions.js"></script>
 
+    <!-- Graffio JS que contém os Métodos de Requisição-->
+    <script src="js/system/serverConfig.js"></script>
 
 </body>
 
@@ -236,7 +238,7 @@
 
         var select = document.getElementById('tabela_precoUpd');
         var select2 = document.getElementById('tabela_preco');
-        var priceTables = httpGet("http://localhost:3000/priceTable");
+        var priceTables = httpGet(`http://${IP_DO_SERVIDOR}:3000/priceTable`);
         
         priceTables.forEach(element => {
             var item = document.createElement('option');

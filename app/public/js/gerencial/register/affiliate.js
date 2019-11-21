@@ -29,7 +29,7 @@ function DAOgetAllAffiliates() {
         }
     };
 
-    var url = "http://localhost:3000/affiliate";
+    var url = `http://${IP_DO_SERVIDOR}:3000/affiliate`;
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -52,7 +52,7 @@ function DAOregisterAffiliate() {
         }
     };
 
-    var url = "http://localhost:3000/affiliate";
+    var url = `http://${IP_DO_SERVIDOR}:3000/affiliate`;
     xhttp.open("POST", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`nome=${nome}&cnpj=${cnpj}`);
@@ -76,7 +76,7 @@ function DAOupdateAffiliate() {
         }
     };
 
-    var url = `http://localhost:3000/affiliate/${id}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/affiliate/${id}`;
     xhttp.open("PUT", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`id_afiliado=${id}&nome=${nome}&cnpj=${cnpj}`);
@@ -103,7 +103,7 @@ function preUpdateAffiliate(id) {
         }
     };
 
-    var url = `http://localhost:3000/affiliate/${data}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/affiliate/${data}`;
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -125,7 +125,7 @@ function preDeleteAffiliate(id) {
         }
     };
 
-    var url = `http://localhost:3000/affiliate/${data}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/affiliate/${data}`;
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -146,7 +146,7 @@ function DAOdeleteAffiliate() {
         }
     };
 
-    var url = `http://localhost:3000/affiliate/${id}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/affiliate/${id}`;
     xhttp.open("DELETE", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();

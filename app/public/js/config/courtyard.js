@@ -21,44 +21,32 @@ function DAOgetAllCourtyards() {
     var xhttp = new XMLHttpRequest();
     courtyardWidgets.innerHTML = '';
 
-    xhttp.onreadystatechange = function () {
-        
-        if (this.readyState == 4 && this.status == 200) {
+    var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/courtyard`);
 
-            var response = JSON.parse(this.responseText);
-            fillCourtyardTable(courtyardTableBody, response);
-            
-            var totalPatios = 0;
-            var totalOnCourtyard = 0;
-            var totalOutCourtyard = 0;
-            var totalVagas = 0;
-            var totalData = {};
+    fillCourtyardTable(courtyardTableBody, response);
+    
+    var totalPatios = 0;
+    var totalOnCourtyard = 0;
+    var totalOutCourtyard = 0;
+    var totalVagas = 0;
+    var totalData = {};
 
-            response.forEach(element => {
+    response.forEach(element => {
 
-                totalPatios++;
-                totalOnCourtyard += parseFloat(element.onCourtyard);
-                totalOutCourtyard += parseFloat(element.outCourtyard);
-                totalVagas = totalOnCourtyard + totalOutCourtyard;
-                totalData = {
-                    "totalPatios": totalPatios,
-                    "totalOnCourtyard": totalOnCourtyard,
-                    "totalOutCourtyard": totalOutCourtyard,
-                    "totalVagas": totalVagas
-                }
-
-            });
-
-            setCourtyardWidgets(courtyardWidgets, totalData);
-
+        totalPatios++;
+        totalOnCourtyard += parseFloat(element.onCourtyard);
+        totalOutCourtyard += parseFloat(element.outCourtyard);
+        totalVagas = totalOnCourtyard + totalOutCourtyard;
+        totalData = {
+            "totalPatios": totalPatios,
+            "totalOnCourtyard": totalOnCourtyard,
+            "totalOutCourtyard": totalOutCourtyard,
+            "totalVagas": totalVagas
         }
 
-    };
+    });
 
-    var url = "http://localhost:3000/courtyard";
-    xhttp.open("GET", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    setCourtyardWidgets(courtyardWidgets, totalData);
 
 }
 
@@ -80,7 +68,7 @@ function DAOregisterCourtyard() {
         }
     };
 
-    var url = "http://localhost:3000/courtyard";
+    var url = `http://${IP_DO_SERVIDOR}:3000/courtyard`;
     xhttp.open("POST", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`nome=${nome}&qtd=${qtd}&tabela_preco=${tabela_preco}`);
@@ -105,7 +93,7 @@ function DAOupdateCourtyard() {
         }
     };
 
-    var url = `http://localhost:3000/courtyard/${id}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/courtyard/${id}`;
     xhttp.open("PUT", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`id_patio=${id}&nome=${nome}&qtd=${qtd}&tabela_preco=${tabela_preco}`);
@@ -126,7 +114,7 @@ function DAOdeleteCourtyard() {
         }
     };
 
-    var url = `http://localhost:3000/courtyard/${id}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/courtyard/${id}`;
     xhttp.open("DELETE", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -154,7 +142,7 @@ function preUpdateCourtyard(id) {
         }
     };
 
-    var url = `http://localhost:3000/courtyard/${data}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/courtyard/${data}`;
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -176,7 +164,7 @@ function preDeleteCourtyard(id) {
         }
     };
 
-    var url = `http://localhost:3000/courtyard/${data}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/courtyard/${data}`;
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -196,7 +184,7 @@ function fillCourtyardTable(table, data) {
 //Insere Usuário na Lista de Usuários
 function createCourtyardToCourtyardTable(table, courtyard) {
 
-    var priceTable = httpGet(`http://localhost:3000/priceTable/${courtyard.tabela_preco}`);
+    var priceTable = httpGet(`http://${IP_DO_SERVIDOR}:3000/priceTable/${courtyard.tabela_preco}`);
 
     var tr = document.createElement("tr");
     var td1 = document.createElement("td");

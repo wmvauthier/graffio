@@ -31,7 +31,7 @@ function DAOgetAllPriceTables() {
         }
     };
 
-    var url = "http://localhost:3000/priceTable";
+    var url = `http://${IP_DO_SERVIDOR}:3000/priceTable`;
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -56,7 +56,7 @@ function DAOregisterPriceTable() {
         }
     };
 
-    var url = "http://localhost:3000/priceTable";
+    var url = `http://${IP_DO_SERVIDOR}:3000/priceTable`;
     xhttp.open("POST", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`nome=${nome}&periodo=${periodo}&valor=${valor}&tabela_aux=${tabela_aux}`);
@@ -82,7 +82,7 @@ function DAOupdatePriceTable() {
         }
     };
 
-    var url = `http://localhost:3000/priceTable/${id}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/priceTable/${id}`;
     xhttp.open("PUT", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`id_tabela_preco=${id}&nome=${nome}&periodo=${periodo}&valor=${valor}&tabela_aux=${tabela_aux}`);
@@ -102,7 +102,7 @@ function DAOdeletePriceTable() {
         }
     };
 
-    var url = `http://localhost:3000/priceTable/${id}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/priceTable/${id}`;
     xhttp.open("DELETE", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -131,7 +131,7 @@ function preUpdatePriceTable(id) {
         }
     };
 
-    var url = `http://localhost:3000/priceTable/${data}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/priceTable/${data}`;
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -153,7 +153,7 @@ function preDeletePriceTable(id) {
         }
     };
 
-    var url = `http://localhost:3000/priceTable/${data}`;
+    var url = `http://${IP_DO_SERVIDOR}:3000/priceTable/${data}`;
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
@@ -174,7 +174,7 @@ function fillPriceTableTable(table, data) {
 //Insere Usuário na Lista de Usuários
 function createPriceTableToPriceTableTable(table, priceTable) {
 
-    var priceTableAux = httpGet(`http://localhost:3000/priceTableAux/${priceTable.tabela_aux}`);
+    var priceTableAux = httpGet(`http://${IP_DO_SERVIDOR}:3000/priceTableAux/${priceTable.tabela_aux}`);
 
     var tr = document.createElement("tr");
     var td1 = document.createElement("td");

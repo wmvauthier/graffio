@@ -21,7 +21,7 @@ function DAOgetAllCourtyards(courtyardWidgets) {
                     }
                 };
 
-                var url = `http://localhost:3000/countDocumentsFromCourtyards/${element.id_patio}`;
+                var url = `http://${IP_DO_SERVIDOR}:3000/countDocumentsFromCourtyards/${element.id_patio}`;
                 xhttp2.open("GET", url, true);
                 xhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhttp2.send();
@@ -31,7 +31,7 @@ function DAOgetAllCourtyards(courtyardWidgets) {
         }
     };
 
-    var url = "http://localhost:3000/courtyard";
+    var url = `http://${IP_DO_SERVIDOR}:3000/courtyard`;
     xhttp.open("GET", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send();
