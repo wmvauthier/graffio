@@ -18,13 +18,12 @@ document.getElementById("btnDAORegisterCourtyard").addEventListener("click", fun
 
 function DAOgetAllCourtyards() {
 
-    var xhttp = new XMLHttpRequest();
     courtyardWidgets.innerHTML = '';
 
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/courtyard`);
 
     fillCourtyardTable(courtyardTableBody, response);
-    
+
     var totalPatios = 0;
     var totalOnCourtyard = 0;
     var totalOutCourtyard = 0;
@@ -128,46 +127,28 @@ function preRegisterCourtyard() {
 function preUpdateCourtyard(id) {
 
     cleanUpdateCourtyardForm();
+
     var data = id.getAttribute("dataID");
-    var xhttp = new XMLHttpRequest();
+    var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/courtyard/${data}`);
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            document.getElementById('id_patioUpd').value = response.id_patio;
-            document.getElementById('nomeUpd').value = response.nome;
-            document.getElementById('qtdUpd').value = response.qtd;
-            document.getElementById('tabela_precoUpd').value = response.tabela_preco;
-            $('#updateCourtyardModal').modal('show');
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/courtyard/${data}`;
-    xhttp.open("GET", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    document.getElementById('id_patioUpd').value = response.id_patio;
+    document.getElementById('nomeUpd').value = response.nome;
+    document.getElementById('qtdUpd').value = response.qtd;
+    document.getElementById('tabela_precoUpd').value = response.tabela_preco;
+    $('#updateCourtyardModal').modal('show');
 
 }
 
 function preDeleteCourtyard(id) {
 
     cleanUpdateCourtyardForm();
+
     var data = id.getAttribute("dataID");
-    var xhttp = new XMLHttpRequest();
+    var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/courtyard/${data}`);
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            document.getElementById('nomeDel').innerHTML = response.nome;
-            document.getElementById('id_courtyardDel').value = response.id_patio;
-            $('#deleteCourtyardModal').modal('show');
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/courtyard/${data}`;
-    xhttp.open("GET", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    document.getElementById('nomeDel').innerHTML = response.nome;
+    document.getElementById('id_courtyardDel').value = response.id_patio;
+    $('#deleteCourtyardModal').modal('show');
 
 }
 

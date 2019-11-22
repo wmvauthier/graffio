@@ -18,42 +18,8 @@ document.getElementById("btnDAORegisterTerminal").addEventListener("click", func
 
 function DAOgetAllTerminals(terminalWidgets) {
 
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-
-            var response = JSON.parse(this.responseText);
-            fillTerminalTable(terminalTableBody, response);
-            var booleanFirstElement = true;
-
-            // response.forEach(element => {
-
-            //     var xhttp2 = new XMLHttpRequest();
-
-            //     xhttp2.onreadystatechange = function () {
-            //         if (this.readyState == 4 && this.status == 200) {
-            //             var dados = JSON.parse(this.responseText);
-            //             //setterminalWidgets(terminalWidgets, element, dados, booleanFirstElement);
-            //             //setterminalChart(element, dados);
-            //             booleanFirstElement = false;
-            //         }
-            //     };
-
-            //     var url = `http://localhost:3000/countDocumentsFromTerminals/${element.id_terminal}`;
-            //     xhttp2.open("GET", url, true);
-            //     xhttp2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            //     xhttp2.send();
-
-            // });
-
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/terminal`;
-    xhttp.open("GET", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/terminal`);
+    fillTerminalTable(terminalTableBody, response);
 
 }
 
@@ -139,48 +105,30 @@ function preRegisterTerminal() {
 function preUpdateTerminal(id) {
 
     cleanUpdateTerminalForm();
+
     var data = id.getAttribute("dataID");
-    var xhttp = new XMLHttpRequest();
+    var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/terminal/${data}`);
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            document.getElementById('id_terminalUpd').value = response.id_terminal;
-            document.getElementById('descricaoUpd').value = response.descricao;
-            document.getElementById('ipUpd').value = response.ip;
-            document.getElementById('patioUpd').value = response.patio;
-            document.getElementById('funcaoUpd').value = response.funcao;
-            document.getElementById('ip_cancelaUpd').value = response.ip_cancela;
-            $('#updateTerminalModal').modal('show');
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/terminal/${data}`;
-    xhttp.open("GET", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    document.getElementById('id_terminalUpd').value = response.id_terminal;
+    document.getElementById('descricaoUpd').value = response.descricao;
+    document.getElementById('ipUpd').value = response.ip;
+    document.getElementById('patioUpd').value = response.patio;
+    document.getElementById('funcaoUpd').value = response.funcao;
+    document.getElementById('ip_cancelaUpd').value = response.ip_cancela;
+    $('#updateTerminalModal').modal('show');
 
 }
 
 function preDeleteTerminal(id) {
 
     cleanUpdateTerminalForm();
+    
     var data = id.getAttribute("dataID");
-    var xhttp = new XMLHttpRequest();
+    var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/terminal/${data}`);
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            document.getElementById('nomeDel').innerHTML = response.descricao;
-            document.getElementById('id_terminalDel').value = response.id_terminal;
-            $('#deleteTerminalModal').modal('show');
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/terminal/${data}`;
-    xhttp.open("GET", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    document.getElementById('nomeDel').innerHTML = response.descricao;
+    document.getElementById('id_terminalDel').value = response.id_terminal;
+    $('#deleteTerminalModal').modal('show');
 
 }
 

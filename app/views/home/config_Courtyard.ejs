@@ -239,7 +239,7 @@
         var select = document.getElementById('tabela_precoUpd');
         var select2 = document.getElementById('tabela_preco');
         var priceTables = httpGet(`http://${IP_DO_SERVIDOR}:3000/priceTable`);
-        
+
         priceTables.forEach(element => {
             var item = document.createElement('option');
             var item2 = document.createElement('option');

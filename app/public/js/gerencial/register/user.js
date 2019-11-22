@@ -23,19 +23,8 @@ document.getElementById("btnDAORegisterUser").addEventListener("click", function
 
 function DAOgetAllUsers() {
 
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            fillUserTable(userTableBody, response);
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/user`;
-    xhttp.open("GET", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/user`);
+    fillUserTable(userTableBody, response);
 
 }
 
@@ -52,7 +41,6 @@ function DAOregisterUser() {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var response = JSON.parse(this.responseText);
-            console.log(response);
             createUserToUserTable(userTableBody, response);
             cleanRegisterUserForm();
             $('#registerUserModal').modal('hide');
@@ -101,25 +89,15 @@ function preUpdateUser(id) {
 
     cleanUpdateUserForm();
     var data = id.getAttribute("dataID");
-    var xhttp = new XMLHttpRequest();
+    var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/user/${data}`);
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            document.getElementById('id_userUpd').value = response.id_user;
-            document.getElementById('nomeUpd').value = response.nome;
-            document.getElementById('cargoUpd').value = response.cargo;
-            document.getElementById('user_loginUpd').value = response.user_login;
-            document.getElementById('user_senhaUpd').value = response.user_senha;
-            document.getElementById('nivel_acessoUpd').value = response.nivel_acesso;
-            $('#updateUserModal').modal('show');
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/user/${data}`;
-    xhttp.open("GET", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    document.getElementById('id_userUpd').value = response.id_user;
+    document.getElementById('nomeUpd').value = response.nome;
+    document.getElementById('cargoUpd').value = response.cargo;
+    document.getElementById('user_loginUpd').value = response.user_login;
+    document.getElementById('user_senhaUpd').value = response.user_senha;
+    document.getElementById('nivel_acessoUpd').value = response.nivel_acesso;
+    $('#updateUserModal').modal('show');
 
 }
 
@@ -127,21 +105,11 @@ function preDeleteUser(id) {
 
     cleanUpdateUserForm();
     var data = id.getAttribute("dataID");
-    var xhttp = new XMLHttpRequest();
+    var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/user/${data}`);
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            document.getElementById('nomeDel').innerHTML = response.nome;
-            document.getElementById('id_userDel').value = response.id_user;
-            $('#deleteUserModal').modal('show');
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/user/${data}`;
-    xhttp.open("GET", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    document.getElementById('nomeDel').innerHTML = response.nome;
+    document.getElementById('id_userDel').value = response.id_user;
+    $('#deleteUserModal').modal('show');
 
 }
 
@@ -191,8 +159,8 @@ function createUserToUserTable(table, user) {
 
     td1.innerHTML = user.id_user;
     td2.innerHTML = user.nome;
-    td3.innerHTML = user.cargo;
-    td4.innerHTML = user.user_login;
+    td3.innerHTML = user.user_login;
+    td4.innerHTML = user.cargo;
     td5.innerHTML = user.nivel_acesso;
     td6.innerHTML = `<button class="btn btn-rounded btn-warning" dataID="${user.id_user}" 
                         data-toggle="modal" data-target="#updateUserModal"

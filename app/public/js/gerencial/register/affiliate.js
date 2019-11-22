@@ -20,19 +20,8 @@ document.getElementById("btnDAORegisterAffiliate").addEventListener("click", fun
 
 function DAOgetAllAffiliates() {
 
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            fillAffiliateTable(affiliateTableBody, response);
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/affiliate`;
-    xhttp.open("GET", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/affiliate`);
+    fillAffiliateTable(affiliateTableBody, response);
 
 }
 
@@ -90,45 +79,28 @@ function preRegisterAffiliate() {
 function preUpdateAffiliate(id) {
 
     cleanUpdateAffiliateForm();
+
     var data = id.getAttribute("dataID");
-    var xhttp = new XMLHttpRequest();
+    var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/affiliate/${data}`);
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            document.getElementById('id_affiliateUpd').value = response.id_afiliado;
-            document.getElementById('nomeUpd').value = response.nome;
-            document.getElementById('cnpjUpd').value = response.cnpj;
-            $('#updateAffiliateModal').modal('show');
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/affiliate/${data}`;
-    xhttp.open("GET", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    document.getElementById('id_affiliateUpd').value = response.id_afiliado;
+    document.getElementById('nomeUpd').value = response.nome;
+    document.getElementById('cnpjUpd').value = response.cnpj;
+    $('#updateAffiliateModal').modal('show');
 
 }
 
 function preDeleteAffiliate(id) {
 
     cleanUpdateAffiliateForm();
+
     var data = id.getAttribute("dataID");
-    var xhttp = new XMLHttpRequest();
+    var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/affiliate/${data}`);
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            document.getElementById('nomeDel').innerHTML = response.nome;
-            document.getElementById('id_affiliateDel').value = response.id_afiliado;
-            $('#deleteAffiliateModal').modal('show');
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/affiliate/${data}`;
-    xhttp.open("GET", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    var response = JSON.parse(this.responseText);
+    document.getElementById('nomeDel').innerHTML = response.nome;
+    document.getElementById('id_affiliateDel').value = response.id_afiliado;
+    $('#deleteAffiliateModal').modal('show');
 
 }
 

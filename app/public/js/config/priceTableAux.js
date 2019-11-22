@@ -23,19 +23,8 @@ document.getElementById("btnDAORegisterPriceTableAux").addEventListener("click",
 
 function DAOgetAllPriceTableAuxs() {
 
-    var xhttp = new XMLHttpRequest();
-
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            fillPriceTableAuxTable(priceTableAuxTableBody, response);
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/priceTableAux`;
-    xhttp.open("GET", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/priceTableAux`);
+    fillPriceTableAuxTable(priceTableAuxTableBody, response);
 
 }
 
@@ -119,48 +108,30 @@ function preRegisterPriceTableAux() {
 function preUpdatePriceTableAux(id) {
 
     cleanUpdatePriceTableAuxForm();
+
     var data = id.getAttribute("dataID");
-    var xhttp = new XMLHttpRequest();
+    var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/priceTableAux/${data}`);
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            document.getElementById('id_tabela_preco_auxUpd').value = response.id_tabela_preco_aux;
-            document.getElementById('nomeUpd').value = response.nome;
-            document.getElementById('periodoUpd').value = response.periodo;
-            document.getElementById('valorUpd').value = response.valor;
-            document.getElementById('valorPerdaUpd').value = response.valorPerda;
-            document.getElementById('toleranciaUpd').value = response.tolerancia;
-            $('#updatePriceTableAuxModal').modal('show');
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/priceTableAux/${data}`;
-    xhttp.open("GET", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    document.getElementById('id_tabela_preco_auxUpd').value = response.id_tabela_preco_aux;
+    document.getElementById('nomeUpd').value = response.nome;
+    document.getElementById('periodoUpd').value = response.periodo;
+    document.getElementById('valorUpd').value = response.valor;
+    document.getElementById('valorPerdaUpd').value = response.valorPerda;
+    document.getElementById('toleranciaUpd').value = response.tolerancia;
+    $('#updatePriceTableAuxModal').modal('show');
 
 }
 
 function preDeletePriceTableAux(id) {
 
     cleanUpdatePriceTableAuxForm();
+
     var data = id.getAttribute("dataID");
-    var xhttp = new XMLHttpRequest();
+    var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/priceTableAux/${data}`);
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            document.getElementById('nomeDel').innerHTML = response.nome;
-            document.getElementById('id_priceTableAuxDel').value = response.id_tabela_preco_aux;
-            $('#deletePriceTableAuxModal').modal('show');
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/priceTableAux/${data}`;
-    xhttp.open("GET", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    document.getElementById('nomeDel').innerHTML = response.nome;
+    document.getElementById('id_priceTableAuxDel').value = response.id_tabela_preco_aux;
+    $('#deletePriceTableAuxModal').modal('show');
 
 }
 

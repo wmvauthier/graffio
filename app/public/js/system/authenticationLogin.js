@@ -16,7 +16,7 @@ function logout(token) {
         }
     };
 
-    var url = "http://localhost:3000/logout";
+    var url = `http://${IP_DO_SERVIDOR}:3000/logout`;
     xhttp.open("POST", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`token=${token}`);
@@ -50,7 +50,7 @@ formLogin.addEventListener('submit', function (evt) {
         }
     };
 
-    var url = "http://localhost:3000/login";
+    var url = `http://${IP_DO_SERVIDOR}:3000/login`;
     xhttp.open("POST", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`user_login=${login}&user_senha=${senha}`);
