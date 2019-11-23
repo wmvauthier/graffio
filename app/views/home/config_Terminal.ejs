@@ -110,7 +110,6 @@
                                         <label for="patio" class="col-form-label">Pátio</label>
                                         <select id="patio" class="form-control">
                                             <option disabled selected>Selecione o Pátio desejado</option>
-                                            <option>1</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -164,7 +163,6 @@
                                         <label for="patioUpd" class="col-form-label">Pátio</label>
                                         <select id="patioUpd" class="form-control">
                                             <option disabled selected>Selecione o Pátio desejado</option>
-                                            <option>1</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -269,6 +267,21 @@
 
         document.getElementById("loggedUserNome").innerHTML = loggedUserNome;
         document.getElementById("loggedUserCargo").innerHTML = loggedUserCargo;
+
+        var select = document.getElementById('patioUpd');
+        var select2 = document.getElementById('patio');
+        var courtyards = httpGet(`http://${IP_DO_SERVIDOR}:3000/courtyard`);
+
+        courtyards.forEach(element => {
+            var item = document.createElement('option');
+            var item2 = document.createElement('option');
+            item.innerHTML = element.nome;
+            item2.innerHTML = element.nome;
+            item.value = element.id_patio;
+            item2.value = element.id_patio;
+            select.appendChild(item);
+            select2.appendChild(item2);
+        });
 
         DAOgetAllTerminals(terminalWidgets);
 

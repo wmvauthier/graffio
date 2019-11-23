@@ -64,6 +64,7 @@ function DAOupdateTerminal() {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var response = JSON.parse(this.responseText);
+            console.log(response);
             DAOgetAllTerminals();
             cleanUpdateTerminalForm();
             $('#updateTerminalModal').modal('hide');
@@ -145,6 +146,8 @@ function fillTerminalTable(table, data) {
 //Insere Usuário na Lista de Usuários
 function createTerminalToTerminalTable(table, terminal) {
 
+    var courtyard = httpGet(`http://${IP_DO_SERVIDOR}:3000/courtyard/${terminal.patio}`);
+console.log(terminal);
     var tr = document.createElement("tr");
     var td1 = document.createElement("td");
     var td2 = document.createElement("td");
@@ -157,7 +160,8 @@ function createTerminalToTerminalTable(table, terminal) {
     td1.innerHTML = terminal.id_terminal;
     td2.innerHTML = terminal.descricao;
     td3.innerHTML = terminal.ip;
-    td4.innerHTML = terminal.patio;
+    td4.innerHTML = courtyard.nome;
+    td4.value = terminal.patio;
     td5.innerHTML = terminal.funcao;
     td6.innerHTML = terminal.ip_cancela;
     td7.innerHTML = `<button class="btn btn-rounded btn-warning" dataID="${terminal.id_terminal}" 
