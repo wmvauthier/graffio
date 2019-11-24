@@ -97,7 +97,6 @@ function preDeleteAffiliate(id) {
     var data = id.getAttribute("dataID");
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/affiliate/${data}`);
 
-    var response = JSON.parse(this.responseText);
     document.getElementById('nomeDel').innerHTML = response.nome;
     document.getElementById('id_affiliateDel').value = response.id_afiliado;
     $('#deleteAffiliateModal').modal('show');
@@ -106,22 +105,10 @@ function preDeleteAffiliate(id) {
 
 function DAOdeleteAffiliate() {
 
-    var xhttp = new XMLHttpRequest();
-
     var id = document.getElementById('id_affiliateDel').value;
-
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            DAOgetAllAffiliates();
-            $('#deleteAffiliateModal').modal('hide');
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/affiliate/${id}`;
-    xhttp.open("DELETE", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    httpDelete(`http://${IP_DO_SERVIDOR}:3000/affiliate/${id}`);
+    DAOgetAllAffiliates();
+    $('#deleteAffiliateModal').modal('hide');
 
 }
 

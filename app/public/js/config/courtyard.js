@@ -101,22 +101,10 @@ function DAOupdateCourtyard() {
 
 function DAOdeleteCourtyard() {
 
-    var xhttp = new XMLHttpRequest();
-
     var id = document.getElementById('id_courtyardDel').value;
-
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            DAOgetAllCourtyards();
-            $('#deleteCourtyardModal').modal('hide');
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/courtyard/${id}`;
-    xhttp.open("DELETE", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    httpDelete(`http://${IP_DO_SERVIDOR}:3000/courtyard/${id}`);
+    DAOgetAllCourtyards();
+    $('#deleteCourtyardModal').modal('hide');
 
 }
 

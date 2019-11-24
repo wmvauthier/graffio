@@ -80,21 +80,10 @@ function DAOupdatePriceTable() {
 
 function DAOdeletePriceTable() {
 
-    var xhttp = new XMLHttpRequest();
-
     var id = document.getElementById('id_priceTableDel').value;
-
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            DAOgetAllPriceTables();
-            $('#deletePriceTableModal').modal('hide');
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/priceTable/${id}`;
-    xhttp.open("DELETE", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    httpDelete(`http://${IP_DO_SERVIDOR}:3000/priceTable/${id}`);
+    DAOgetAllPriceTables();
+    $('#deletePriceTableModal').modal('hide');
 
 }
 

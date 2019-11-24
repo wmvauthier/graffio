@@ -115,23 +115,10 @@ function preDeleteUser(id) {
 
 function DAOdeleteUser() {
 
-    var xhttp = new XMLHttpRequest();
-
     var id = document.getElementById('id_userDel').value;
-    console.log(id);
-
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            DAOgetAllUsers();
-            $('#deleteUserModal').modal('hide');
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/user/${id}`;
-    xhttp.open("DELETE", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    httpDelete(`http://${IP_DO_SERVIDOR}:3000/user/${id}`);
+    DAOgetAllUsers();
+    $('#deleteUserModal').modal('hide');
 
 }
 

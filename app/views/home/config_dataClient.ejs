@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Graffio</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="../assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/libs/css/style.css">
+    <link rel="stylesheet" href="../assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/no-more-tables.css">
+
+</head>
+
+<body>
+
+    <div class="dashboard-main-wrapper">
+
+        <div id="mainDashboard"></div>
+
+        <div class="dashboard-wrapper">
+
+            <div class="container-fluid dashboard-content ">
+
+                <div id="mainDashboardHeader"></div>
+
+                <div class="page-breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                        </ol>
+                    </nav>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <form>
+
+                                                <div class="form-group">
+                                                    <label for="nome_fantasia" class="col-form-label">Nome
+                                                        Fantasia</label>
+                                                    <input id="nome_fantasia" type="text" class="form-control" autocomplete="off">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="razao_social">Razão Social</label>
+                                                    <input id="razao_social" type="text" class="form-control" autocomplete="off">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="endereco" class="col-form-label">Endereço</label>
+                                                    <input id="endereco" type="text" class="form-control" autocomplete="off">
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                        <div class="form-group">
+                                                            <label for="cnpj" class="col-form-label">CNPJ</label>
+                                                            <input id="cnpj" type="text" class="form-control" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                        <div class="form-group">
+                                                            <label for="inscricao_municipal"
+                                                                class="col-form-label">Inscrição Municipal</label>
+                                                            <input id="inscricao_municipal" type="text" class="form-control" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                        <div class="form-group">
+                                                            <label for="telefone" class="col-form-label">Contato</label>
+                                                            <input id="telefone" type="text" class="form-control" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                        <div class="form-group">
+                                                            <label for="website" class="col-form-label">Website</label>
+                                                            <input id="website" type="text" class="form-control" autocomplete="off">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="email" class="col-form-label">Email</label>
+                                                    <input id="email" type="email" class="form-control" autocomplete="off">
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Optional JavaScript -->
+        <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+        <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="../assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+        <script src="../assets/vendor/multi-select/js/jquery.multi-select.js"></script>
+        <script src="../assets/libs/js/main-js.js"></script>
+
+        <!-- Graffio JS que contém os HTML Sections-->
+        <script src="js/htmlSections/dashboardHeader.js"></script>
+        <script src="js/htmlSections/dashboardSidebar.js"></script>
+        <script src="js/htmlSections/header.js"></script>
+
+        <!-- Graffio JS que contém o BusinessJS-->
+        <script src="js/config/client.js"></script>
+
+        <!-- Graffio JS que contém a Autenticação-->
+        <script src="js/system/authenticationLogout.js"></script>
+
+</body>
+
+<script>
+
+    window.onload = function () {
+
+        var loggedUserNome = localStorage.getItem("loggedUserNome");
+        var loggedUserCargo = localStorage.getItem("loggedUserCargo");
+        var token = localStorage.getItem("token");
+
+        var mainDashboard = document.getElementById("mainDashboard");
+        var mainDashboardHeader = document.getElementById("mainDashboardHeader");
+
+        setDashboardHeader(mainDashboard);
+        setDashboardSidebar(mainDashboard);
+        setPageHeader(mainDashboardHeader, "Dados do Cliente");
+
+        document.getElementById("loggedUserNome").innerHTML = loggedUserNome;
+        document.getElementById("loggedUserCargo").innerHTML = loggedUserCargo;
+
+    }
+
+</script>
+
+</html>

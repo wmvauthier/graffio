@@ -80,22 +80,10 @@ function DAOupdateTerminal() {
 
 function DAOdeleteTerminal() {
 
-    var xhttp = new XMLHttpRequest();
-
     var id = document.getElementById('id_terminalDel').value;
-
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            DAOgetAllTerminals();
-            $('#deleteTerminalModal').modal('hide');
-        }
-    };
-
-    var url = `http://${IP_DO_SERVIDOR}:3000/terminal/${id}`;
-    xhttp.open("DELETE", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
+    httpDelete(`http://${IP_DO_SERVIDOR}:3000/terminal/${id}`);
+    DAOgetAllTerminals();
+    $('#deleteTerminalModal').modal('hide');
 
 }
 
@@ -123,7 +111,7 @@ function preUpdateTerminal(id) {
 function preDeleteTerminal(id) {
 
     cleanUpdateTerminalForm();
-    
+
     var data = id.getAttribute("dataID");
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/terminal/${data}`);
 
@@ -147,7 +135,7 @@ function fillTerminalTable(table, data) {
 function createTerminalToTerminalTable(table, terminal) {
 
     var courtyard = httpGet(`http://${IP_DO_SERVIDOR}:3000/courtyard/${terminal.patio}`);
-console.log(terminal);
+
     var tr = document.createElement("tr");
     var td1 = document.createElement("td");
     var td2 = document.createElement("td");
