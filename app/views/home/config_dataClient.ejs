@@ -43,58 +43,86 @@
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <form>
-
-                                                <div class="form-group">
-                                                    <label for="nome_fantasia" class="col-form-label">Nome
-                                                        Fantasia</label>
-                                                    <input id="nome_fantasia" type="text" class="form-control" autocomplete="off">
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="razao_social">Razão Social</label>
-                                                    <input id="razao_social" type="text" class="form-control" autocomplete="off">
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="endereco" class="col-form-label">Endereço</label>
-                                                    <input id="endereco" type="text" class="form-control" autocomplete="off">
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                                        <div class="form-group">
-                                                            <label for="cnpj" class="col-form-label">CNPJ</label>
-                                                            <input id="cnpj" type="text" class="form-control" autocomplete="off">
-                                                        </div>
+                                            <form id="updateDataClientForm">
+                                                <div class="card-body border-bottom">
+                                                    <h3>Dados da Empresa</h3>
+                                                    <div class="form-group">
+                                                        <label for="nome_fantasia" class="col-form-label">Nome
+                                                            Fantasia</label>
+                                                        <input id="nome_fantasia" type="text" class="form-control"
+                                                            autocomplete="off">
                                                     </div>
-                                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                                        <div class="form-group">
-                                                            <label for="inscricao_municipal"
-                                                                class="col-form-label">Inscrição Municipal</label>
-                                                            <input id="inscricao_municipal" type="text" class="form-control" autocomplete="off">
-                                                        </div>
+
+                                                    <div class="form-group">
+                                                        <label for="razao_social">Razão Social</label>
+                                                        <input id="razao_social" type="text" class="form-control"
+                                                            autocomplete="off">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="endereco" class="col-form-label">Endereço</label>
+                                                        <input id="endereco" type="text" class="form-control"
+                                                            autocomplete="off">
                                                     </div>
                                                 </div>
 
-                                                <div class="row">
-                                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                                        <div class="form-group">
-                                                            <label for="telefone" class="col-form-label">Contato</label>
-                                                            <input id="telefone" type="text" class="form-control" autocomplete="off">
+                                                <div class="card-body border-bottom">
+                                                    <h3>Dados Fiscais</h3>
+                                                    <div class="row">
+                                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                            <div class="form-group">
+                                                                <label for="cnpj" class="col-form-label">CNPJ</label>
+                                                                <input id="cnpj" type="text"
+                                                                    class="form-control validationInput_CNPJ"
+                                                                    autocomplete="off">
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                                        <div class="form-group">
-                                                            <label for="website" class="col-form-label">Website</label>
-                                                            <input id="website" type="text" class="form-control" autocomplete="off">
+                                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                            <div class="form-group">
+                                                                <label for="inscricao_municipal"
+                                                                    class="col-form-label">Inscrição Municipal</label>
+                                                                <input id="inscricao_municipal" type="text"
+                                                                    class="form-control" autocomplete="off">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <label for="email" class="col-form-label">Email</label>
-                                                    <input id="email" type="email" class="form-control" autocomplete="off">
+                                                <div class="card-body border-bottom">
+                                                    <h3>Dados para Contato</h3>
+                                                    <div class="row">
+                                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                            <div class="form-group">
+                                                                <label for="telefone"
+                                                                    class="col-form-label">Telefone</label>
+                                                                <input id="telefone" type="text"
+                                                                    class="form-control validationInput_Cellphone"
+                                                                    autocomplete="off">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                            <div class="form-group">
+                                                                <label for="website"
+                                                                    class="col-form-label">Website</label>
+                                                                <input id="website" type="text" class="form-control"
+                                                                    autocomplete="off">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="email" class="col-form-label">Email</label>
+                                                        <input id="email" type="email" class="form-control"
+                                                            autocomplete="off">
+                                                    </div>
+
+                                                    <div class="centered">
+                                                        <button type="button" class="btn btn-rounded btn-success"
+                                                            id="btnDAOUpdateDataClient">Alterar</button>
+                                                        <button type="button" class="btn btn-rounded btn-danger"
+                                                            id="btnResetForm">Limpar</button>
+                                                    </div>
+
                                                 </div>
 
                                             </form>
@@ -117,16 +145,26 @@
         <script src="../assets/vendor/multi-select/js/jquery.multi-select.js"></script>
         <script src="../assets/libs/js/main-js.js"></script>
 
+        <!-- Graffio JS que contém os Input Validations-->
+        <script src="js/system/validationInput.js"></script>
+        <script src="js/jquery.mask.js"></script>
+
         <!-- Graffio JS que contém os HTML Sections-->
         <script src="js/htmlSections/dashboardHeader.js"></script>
         <script src="js/htmlSections/dashboardSidebar.js"></script>
         <script src="js/htmlSections/header.js"></script>
 
         <!-- Graffio JS que contém o BusinessJS-->
-        <script src="js/config/client.js"></script>
+        <script src="js/config/dataClient.js"></script>
 
         <!-- Graffio JS que contém a Autenticação-->
         <script src="js/system/authenticationLogout.js"></script>
+
+        <!-- Graffio JS que contém os Métodos de Requisição-->
+        <script src="js/system/httpRequisitions.js"></script>
+
+        <!-- Graffio JS que contém os Métodos de Requisição-->
+        <script src="js/system/serverConfig.js"></script>
 
 </body>
 
@@ -147,6 +185,8 @@
 
         document.getElementById("loggedUserNome").innerHTML = loggedUserNome;
         document.getElementById("loggedUserCargo").innerHTML = loggedUserCargo;
+
+        DAOgetDataClient();
 
     }
 

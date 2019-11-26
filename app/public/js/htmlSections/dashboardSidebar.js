@@ -44,29 +44,48 @@ function setDashboardSidebar(mainDashBoard) {
                                                 </li>
                                                 <li class="nav-item ">
                                                     <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                                                        data-target="#submenu-parking" aria-controls="submenu-parking"><i
+                                                            class="fa fa-fw fa-taxi"></i>Estacionamento <span
+                                                            class="badge badge-success">6</span></a>
+                                                    <div id="submenu-parking" class="collapse submenu">
+                                                        <ul class="nav flex-column">
+                                                            <li class="nav-item ">
+                                                                <a class="nav-link" href="./config_dataclient">
+                                                                    Dados do Cliente 
+                                                                </a>
+                                                            </li>
+                                                            <li class="nav-item ">
+                                                                <a class="nav-link" href="./config_Courtyard">
+                                                                    Pátios 
+                                                                </a>
+                                                            </li>
+                                                            <li class="nav-item ">
+                                                                <a class="nav-link" href="./config_Terminal">
+                                                                    Terminais 
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item ">
+                                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
                                                         data-target="#submenu-payment" aria-controls="submenu-payment"><i
                                                             class="fa fa-fw fa-dollar-sign"></i>Formas de Pagamento <span
                                                             class="badge badge-success">6</span></a>
                                                     <div id="submenu-payment" class="collapse submenu">
                                                         <ul class="nav flex-column">
                                                             <li class="nav-item">
-                                                                <a class="nav-link" href="./config_priceTable">Tabelas de Preço</a>
+                                                                <a class="nav-link" href="./config_priceTable">
+                                                                    Tabelas de Preço
+                                                                </a>
                                                             </li>
                                                             <li class="nav-item">
-                                                                <a class="nav-link" href="./config_priceTableAux">Tabelas de Preço Auxiliares</a>
+                                                                <a class="nav-link" href="./config_priceTableAux">
+                                                                    Tabelas Auxiliares
+                                                                </a>
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                </li>
-                                                <li class="nav-item ">
-                                                    <a class="nav-link" href="./config_Courtyard">
-                                                        <i class="fa fa-fw fa-car"></i>Pátios 
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item ">
-                                                    <a class="nav-link" href="./config_Terminal">
-                                                        <i class="fa fa-fw fa-desktop"></i>Terminais 
-                                                    </a>
                                                 </li>
                                             </ul>
                                         </div>
