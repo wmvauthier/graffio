@@ -1,13 +1,24 @@
 {
   "name": "graffio",
   "version": "1.0.0",
-  "description": "",
+  "description": "Módulo Gráfico para o Sistema Gramatta",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devlinkcne/graffio.git"
+  },
+  "keywords": [
+    "graffio"
+  ],
   "author": "Wesley",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devlinkcne/graffio/issues"
+  },
+  "homepage": "https://github.com/devlinkcne/graffio#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
     "consign": "^0.1.2",
