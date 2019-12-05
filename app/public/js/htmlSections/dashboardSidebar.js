@@ -31,13 +31,18 @@ function setDashboardSidebar(mainDashBoard) {
                                                     <div id="submenu-register" class="collapse submenu">
                                                         <ul class="nav flex-column">
                                                             <li class="nav-item">
-                                                                <a class="nav-link" href="./register_Affiliate">Afiliados</a>
+                                                                <a class="nav-link" href="./gerencial_Affiliate">Afiliados</a>
                                                             </li>
                                                             <li class="nav-item">
-                                                                <a class="nav-link" href="./register_User">Usuários</a>
+                                                                <a class="nav-link" href="./gerencial_User">Usuários</a>
                                                             </li>
                                                         </ul>
                                                     </div>
+                                                </li>
+                                                <li class="nav-item ">
+                                                    <a class="nav-link" href="./gerencial_Movement">
+                                                        <i class="fa fa-fw fa-chart-line"></i>Movimento 
+                                                    </a>
                                                 </li>
                                                 <li class="nav-divider">
                                                     Configurações
