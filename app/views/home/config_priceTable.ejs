@@ -140,7 +140,8 @@
                                         <input id="valorUpd" type="number" class="form-control validationInput_Value">
                                     </div>
                                     <div class="form-group">
-                                        <label for="tabela_auxUpd" class="col-form-label">Tabela de Preço Auxiliar</label>
+                                        <label for="tabela_auxUpd" class="col-form-label">Tabela de Preço
+                                            Auxiliar</label>
                                         <select id="tabela_auxUpd" class="form-control">
                                             <option disabled selected>Selecione a Tabela de Preco Auxiliar</option>
                                         </select>
@@ -186,17 +187,18 @@
 
     </div>
 
+    <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+
     <!-- Optional JavaScript -->
-        <!-- Optional JavaScript -->
-        <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
-        <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
-        <script src="../assets/vendor/slimscroll/jquery.slimscroll.js"></script>
-        <script src="../assets/vendor/multi-select/js/jquery.multi-select.js"></script>
-        <script src="../assets/libs/js/main-js.js"></script>
-        <script src="../assets/vendor/charts/c3charts/c3.min.js"></script>
-        <script src="../assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
-        <script src="../assets/vendor/charts/c3charts/C3chartjs.js"></script>
-        
+    <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="../assets/vendor/multi-select/js/jquery.multi-select.js"></script>
+    <script src="../assets/libs/js/main-js.js"></script>
+    <script src="../assets/vendor/charts/c3charts/c3.min.js"></script>
+    <script src="../assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
+    <script src="../assets/vendor/charts/c3charts/C3chartjs.js"></script>
+
     <!-- Graffio JS que contém os Input Validations-->
     <script src="js/system/validationInput.js"></script>
     <script src="js/jquery.mask.js"></script>
@@ -217,6 +219,8 @@
 
     <!-- Graffio JS que contém os Métodos de Requisição-->
     <script src="js/system/serverConfig.js"></script>
+
+    <script>if (window.module) module = window.module;</script>
 
 </body>
 
@@ -241,7 +245,7 @@
         var select = document.getElementById('tabela_auxUpd');
         var select2 = document.getElementById('tabela_aux');
         var priceTableAuxs = httpGet(`http://${IP_DO_SERVIDOR}:3000/priceTableAux`);
-        
+
         priceTableAuxs.forEach(element => {
             var item = document.createElement('option');
             var item2 = document.createElement('option');
