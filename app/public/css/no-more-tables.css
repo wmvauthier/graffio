@@ -8,7 +8,7 @@
 	.no-more-tables th, 
 	.no-more-tables td, 
 	.no-more-tables tr { 
-		display: block; 
+		display: block;
 	}
  
 	/* Hide table headers (but not display: none;, for accessibility) */

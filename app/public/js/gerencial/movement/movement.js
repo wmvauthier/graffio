@@ -1,25 +1,8 @@
 var documentTableBody = document.getElementById("documentTableBody");
 
-document.getElementById("btnPreRegisterAffiliate").addEventListener("click", function () {
-    preRegisterAffiliate();
-});
-
-document.getElementById("btnDAODeleteAffiliate").addEventListener("click", function () {
-    DAOdeleteAffiliate();
-});
-
-document.getElementById("btnDAOUpdateAffiliate").addEventListener("click", function () {
-    DAOupdateAffiliate();
-});
-
-document.getElementById("btnDAORegisterAffiliate").addEventListener("click", function () {
-    DAOregisterAffiliate();
-});
-
 function DAOgetAllDocuments() {
 
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/document`);
-    console.log(response);
     fillDocumentTable(documentTableBody, response);
 
 }
@@ -48,16 +31,6 @@ function createDocumentToDocumentTable(table, doc) {
     var td7 = document.createElement("td");
     var td8 = document.createElement("td");
     var td9 = document.createElement("td");
-
-    // <th>ID</th>
-    // <th>Tipo</th>
-    // <th>Identificador</th>
-    // <th>Entrada</th>
-    // <th>Terminal</th>
-    // <th>Saída</th>
-    // <th>Terminal</th>
-    // <th>Pátio</th>
-    // <th>Status</th>
 
     td1.innerHTML = doc.id_document;
     td2.innerHTML = doc.document_type;

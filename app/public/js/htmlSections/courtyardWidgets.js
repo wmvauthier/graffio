@@ -27,7 +27,7 @@ function setCourtyardWidgets(courtyardWidgets, dados) {
                         <div class="card-body">
                             <div class="d-inline-block">
                                 <h5 class="text-muted">Ocupação Atual</h5>
-                                <h2 class="mb-0">${(dados.totalOnCourtyard * 100) / dados.totalVagas + "%"}</h2>
+                                <h2 class="mb-0">${((dados.totalOnCourtyard * 100) / dados.totalVagas).toFixed(0) + "%"}</h2>
                             </div>
                             <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
                                 <i class="fa fa-percent fa-fw fa-sm text-brand"></i>

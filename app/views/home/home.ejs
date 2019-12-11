@@ -34,83 +34,14 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
+
                             <div class="card-header">
-                                <h5 class="mb-0">Filtros</br></h5>
-
-                                <button class="btn btn-rounded btn-success" data-toggle="collapse"
-                                    data-target="#clientType">Tipos de Cliente</button>
-                                <button class="btn btn-rounded btn-success" data-toggle="collapse"
-                                    data-target="#terminal">Terminal</button>
-                                <button class="btn btn-rounded btn-success" data-toggle="collapse"
-                                    data-target="#courtyard">Pátio</button>
-                                <button class="btn btn-rounded btn-success" data-toggle="collapse"
-                                    data-target="#docStatus">Estado do Documento</button>
-
-                                <div id="clientType" class="collapse">
-                                    <div class="row">
-                                        <div class="col-3 col-sm-3 col-lg-3 pt-1">
-                                            <label class="text-sm-right">Afiliados</label>
-                                            <div class="switch-button switch-button-success">
-                                                <input type="checkbox" checked="" name="switch16" id="switch16"><span>
-                                                    <label for="switch16"></label></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-3 col-sm-3 col-lg-3 pt-1">
-                                            <label class="text-sm-right">Autorizados</label>
-                                            <div class="switch-button switch-button-success">
-                                                <input type="checkbox" checked="" name="switch16" id="switch16"><span>
-                                                    <label for="switch16"></label></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-3 col-sm-3 col-lg-3 pt-1">
-                                            <label class="text-sm-right">Mensalistas</label>
-                                            <div class="switch-button switch-button-success">
-                                                <input type="checkbox" checked="" name="switch16" id="switch16"><span>
-                                                    <label for="switch16"></label></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-3 col-sm-3 col-lg-3 pt-1">
-                                            <label class="text-sm-right">Horistas</label>
-                                            <div class="switch-button switch-button-success">
-                                                <input type="checkbox" checked="" name="switch16" id="switch16"><span>
-                                                    <label for="switch16"></label></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="terminal" class="collapse">
-                                    <div id="terminalArea" class="row"></div>
-                                </div>
-
-                                <div id="courtyard" class="collapse">
-                                    <div id="courtyardArea" class="row"></div>
-                                </div>
-
-                                <div id="docStatus" class="collapse">
-                                    <div class="row">
-                                        <div class="col-6 col-sm-6 col-lg-6 pt-1">
-                                            <label class="text-sm-right">Dentro do Pátio</label>
-                                            <div class="switch-button switch-button-success">
-                                                <input type="checkbox" checked="" name="switch16" id="switch16"><span>
-                                                    <label for="switch16"></label></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 col-sm-6 col-lg-6 pt-1">
-                                            <label class="text-sm-right">Fora do Pátio</label>
-                                            <div class="switch-button switch-button-success">
-                                                <input type="checkbox" checked="" name="switch16" id="switch16"><span>
-                                                    <label for="switch16"></label></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                <h5 class="mb-0">Lista de Documentos no Movimento</br></h5>
                             </div>
+
                             <div class="card-body">
                                 <div class="no-more-tables">
-                                    <table id="no-more-tables"
-                                        class="table table-striped table-bordered table-condensed cf"
+                                    <table id="no-more-tables" class="table table-striped table-bordered"
                                         style="width:100%">
                                         <thead class="cf">
                                             <tr>
@@ -145,16 +76,19 @@
     <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="../assets/vendor/slimscroll/jquery.slimscroll.js"></script>
-    <script src="../assets/vendor/multi-select/js/jquery.multi-select.js"></script>
-    <script src="../assets/libs/js/main-js.js"></script>
-    <script src="../assets/vendor/charts/c3charts/c3.min.js"></script>
-    <script src="../assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
-    <script src="../assets/vendor/charts/c3charts/C3chartjs.js"></script>
+    <script src="../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../assets/vendor/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../assets/vendor/datatables/js/dataTables.buttons.min.js"></script>
+    <script src="../assets/vendor/datatables/js/buttons.bootstrap4.min.js"></script>
+    <script src="../assets/vendor/datatables/js/data-table.js"></script>
 
     <!-- Graffio JS que contém os HTML Sections-->
     <script src="js/htmlSections/dashboardHeader.js"></script>
     <script src="js/htmlSections/dashboardSidebar.js"></script>
     <script src="js/htmlSections/header.js"></script>
+
+    <!-- Graffio JS que contém o DataTable-->
+    <script src="js/system/dataTable.js"></script>
 
     <!-- Graffio JS que contém o BusinessJS-->
     <script src="js/gerencial/movement/movement.js"></script>
@@ -190,36 +124,8 @@
         document.getElementById("loggedUserNome").innerHTML = loggedUserNome;
         document.getElementById("loggedUserCargo").innerHTML = loggedUserCargo;
 
-        var courtyards = httpGet(`http://${IP_DO_SERVIDOR}:3000/courtyard`);
-        var terminals = httpGet(`http://${IP_DO_SERVIDOR}:3000/terminal`);
-        var courtyardArea = document.getElementById("courtyardArea");
-        var terminalArea = document.getElementById("terminalArea");
-
-        courtyards.forEach(element => {
-            var n = 12 / courtyards.length;
-            var item = document.createElement('div');
-            item.innerHTML = `<label class="text-sm-right">${element.nome}</label>
-                                            <div class="switch-button switch-button-success">
-                                                <input type="checkbox" checked="" name="switchCourtyard${element.id_patio}" id="switchCourtyard${element.id_patio}"><span>
-                                                    <label for="switchCourtyard${element.id_patio}"></label></span>
-                                            </div>`;
-            item.classList = `col-${n} col-sm-${n} col-lg-${n} pt-1`;
-            courtyardArea.appendChild(item);
-        });
-
-        terminals.forEach(element => {
-            var n = 12 / terminals.length;
-            var item = document.createElement('div');
-            item.innerHTML = `<label class="text-sm-right">${element.descricao}</label>
-                                            <div class="switch-button switch-button-success">
-                                                <input type="checkbox" checked="" name="switchTerminal${element.id_patio}" id="switchTerminal${element.id_patio}"><span>
-                                                    <label for="switchTerminal${element.id_patio}"></label></span>
-                                            </div>`;
-            item.classList = `col-${n} col-sm-${n} col-lg-${n} pt-1`;
-            terminalArea.appendChild(item);
-        });
-
         DAOgetAllDocuments();
+        dataTable();
 
     }
 
