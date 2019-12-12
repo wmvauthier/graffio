@@ -148,10 +148,10 @@ function createPriceTableAuxToPriceTableAuxTable(table, priceTableAux) {
 
     td1.innerHTML = priceTableAux.id_tabela_preco_aux;
     td2.innerHTML = priceTableAux.nome;
-    td3.innerHTML = priceTableAux.periodo;
-    td4.innerHTML = priceTableAux.valor;
-    td5.innerHTML = priceTableAux.valorPerda;
-    td6.innerHTML = priceTableAux.tolerancia;
+    td3.innerHTML = priceTableAux.periodo + "min";
+    td4.innerHTML = "R$" + priceTableAux.valor;
+    td5.innerHTML = "R$" + priceTableAux.valorPerda;
+    td6.innerHTML = priceTableAux.tolerancia + "min";
     td7.innerHTML = `<button class="btn btn-rounded btn-warning" dataID="${priceTableAux.id_tabela_preco_aux}" 
                         data-toggle="modal" data-target="#updatePriceTableAuxModal"
                         data-backdrop="static" onclick="preUpdatePriceTableAux(this)">

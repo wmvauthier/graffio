@@ -144,8 +144,8 @@ function createPriceTableToPriceTableTable(table, priceTable) {
 
     td1.innerHTML = priceTable.id_tabela_preco;
     td2.innerHTML = priceTable.nome;
-    td3.innerHTML = priceTable.periodo;
-    td4.innerHTML = priceTable.valor;
+    td3.innerHTML = priceTable.periodo + "min";
+    td4.innerHTML = "R$" + priceTable.valor;
     td5.innerHTML = priceTableAux.nome;
     td5.value = priceTable.tabela_aux;
     td6.innerHTML = `<button class="btn btn-rounded btn-warning" dataID="${priceTable.id_tabela_preco}" 
