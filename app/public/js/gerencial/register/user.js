@@ -30,27 +30,20 @@ function DAOgetAllUsers() {
 
 function DAOregisterUser() {
 
-    var xhttp = new XMLHttpRequest();
-
     var nome = $('#nome').val();
     var cargo = $('#cargo').val();
     var user_login = $('#user_login').val();
     var user_senha = $('#user_senha').val();
     var nivel_acesso = $('#nivel_acesso').val();
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            createUserToUserTable(userTableBody, response);
-            cleanRegisterUserForm();
-            $('#registerUserModal').modal('hide');
-        }
-    };
-
     var url = `http://${IP_DO_SERVIDOR}:3000/user`;
-    xhttp.open("POST", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(`nome=${nome}&cargo=${cargo}&user_login=${user_login}&user_senha=${user_senha}&nivel_acesso=${nivel_acesso}`);
+    var data = `nome=${nome}&cargo=${cargo}&user_login=${user_login}&user_senha=${user_senha}&nivel_acesso=${nivel_acesso}`;
+
+    var response = httpPost(url, data);
+
+    createUserToUserTable(userTableBody, response);
+    cleanRegisterUserForm();
+    $('#registerUserModal').modal('hide');
 
 }
 

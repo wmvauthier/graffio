@@ -25,27 +25,20 @@ function DAOgetAllTerminals(terminalWidgets) {
 
 function DAOregisterTerminal() {
 
-    var xhttp = new XMLHttpRequest();
-
     var descricao = $('#descricao').val();
     var ip = $('#ip').val();
     var patio = $('#patio').val();
     var funcao = $('#funcao').val();
     var ip_cancela = $('#ip_cancela').val();
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            createTerminalToTerminalTable(terminalTableBody, response);
-            cleanRegisterTerminalForm();
-            $('#registerTerminalModal').modal('hide');
-        }
-    };
-
     var url = `http://${IP_DO_SERVIDOR}:3000/terminal`;
-    xhttp.open("POST", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(`descricao=${descricao}&ip=${ip}&patio=${patio}&funcao=${funcao}&ip_cancela=${ip_cancela}`);
+    var data = `descricao=${descricao}&ip=${ip}&patio=${patio}&funcao=${funcao}&ip_cancela=${ip_cancela}`;
+
+    var response = httpPost(url, data);
+
+    createTerminalToTerminalTable(terminalTableBody, response);
+    cleanRegisterTerminalForm();
+    $('#registerTerminalModal').modal('hide');
 
 }
 

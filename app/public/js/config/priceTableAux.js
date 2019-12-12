@@ -30,27 +30,20 @@ function DAOgetAllPriceTableAuxs() {
 
 function DAOregisterPriceTableAux() {
 
-    var xhttp = new XMLHttpRequest();
-
     var nome = $('#nome').val();
     var periodo = $('#periodo').val();
     var valor = $('#valor').val();
     var valorPerda = $('#valorPerda').val();
     var tolerancia = $('#tolerancia').val();
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            createPriceTableAuxToPriceTableAuxTable(priceTableAuxTableBody, response);
-            cleanRegisterPriceTableAuxForm();
-            $('#registerPriceTableAuxModal').modal('hide');
-        }
-    };
-
     var url = `http://${IP_DO_SERVIDOR}:3000/priceTableAux`;
-    xhttp.open("POST", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(`nome=${nome}&periodo=${periodo}&valor=${valor}&valorPerda=${valorPerda}&tolerancia=${tolerancia}`);
+    var data = `nome=${nome}&periodo=${periodo}&valor=${valor}&valorPerda=${valorPerda}&tolerancia=${tolerancia}`;
+
+    var response = httpPost(url, data);
+
+    createPriceTableAuxToPriceTableAuxTable(priceTableAuxTableBody, response);
+    cleanRegisterPriceTableAuxForm();
+    $('#registerPriceTableAuxModal').modal('hide');
 
 }
 

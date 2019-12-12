@@ -5,6 +5,14 @@ function httpGet(theUrl) {
     return JSON.parse(xmlHttp.responseText);
 }
 
+function httpPost(theUrl,data) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", theUrl, false); // false for synchronous request
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlHttp.send(data);
+    return JSON.parse(xmlHttp.responseText);
+}
+
 function httpPut(theUrl,data) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("PUT", theUrl, false); // false for synchronous request

@@ -27,24 +27,17 @@ function DAOgetAllAffiliates() {
 
 function DAOregisterAffiliate() {
 
-    var xhttp = new XMLHttpRequest();
-
     var nome = $('#nome').val();
     var cnpj = $('#cnpj').val();
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            createAffiliateToAffiliateTable(affiliateTableBody, response);
-            cleanRegisterAffiliateForm();
-            $('#registerAffiliateModal').modal('hide');
-        }
-    };
-
     var url = `http://${IP_DO_SERVIDOR}:3000/affiliate`;
-    xhttp.open("POST", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(`nome=${nome}&cnpj=${cnpj}`);
+    var data = `nome=${nome}&cnpj=${cnpj}`;
+
+    var response = httpPost(url, data);
+
+    createAffiliateToAffiliateTable(affiliateTableBody, response);
+    cleanRegisterAffiliateForm();
+    $('#registerAffiliateModal').modal('hide');
 
 }
 

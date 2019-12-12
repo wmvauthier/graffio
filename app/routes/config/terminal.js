@@ -1,7 +1,7 @@
 module.exports = function(application){
 	
 	application.get('/config_Terminal', function(req, res){
-		application.app.controllers.config.terminal.terminal(application, req, res);
+		res.render('home/config_Terminal.ejs');
 	});
 
 }

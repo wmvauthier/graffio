@@ -51,26 +51,19 @@ function DAOgetAllCourtyards() {
 
 function DAOregisterCourtyard() {
 
-    var xhttp = new XMLHttpRequest();
-
     var nome = $('#nome').val();
     var qtd = $('#qtd').val();
     var tabela_preco = $('#tabela_preco').val();
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            createCourtyardToCourtyardTable(courtyardTableBody, response);
-            DAOgetAllCourtyards();
-            cleanRegisterCourtyardForm();
-            $('#registerCourtyardModal').modal('hide');
-        }
-    };
-
     var url = `http://${IP_DO_SERVIDOR}:3000/courtyard`;
-    xhttp.open("POST", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(`nome=${nome}&qtd=${qtd}&tabela_preco=${tabela_preco}`);
+    var data = `nome=${nome}&qtd=${qtd}&tabela_preco=${tabela_preco}`;
+
+    var response = httpPost(url, data);
+
+    createCourtyardToCourtyardTable(courtyardTableBody, response);
+    DAOgetAllCourtyards();
+    cleanRegisterCourtyardForm();
+    $('#registerCourtyardModal').modal('hide');
 
 }
 

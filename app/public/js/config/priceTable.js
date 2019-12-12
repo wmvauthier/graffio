@@ -29,26 +29,19 @@ function DAOgetAllPriceTables() {
 
 function DAOregisterPriceTable() {
 
-    var xhttp = new XMLHttpRequest();
-
     var nome = $('#nome').val();
     var periodo = $('#periodo').val();
     var valor = $('#valor').val();
     var tabela_aux = $('#tabela_aux').val();
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            createPriceTableToPriceTableTable(priceTableTableBody, response);
-            cleanRegisterPriceTableForm();
-            $('#registerPriceTableModal').modal('hide');
-        }
-    };
-
     var url = `http://${IP_DO_SERVIDOR}:3000/priceTable`;
-    xhttp.open("POST", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(`nome=${nome}&periodo=${periodo}&valor=${valor}&tabela_aux=${tabela_aux}`);
+    var data = `nome=${nome}&periodo=${periodo}&valor=${valor}&tabela_aux=${tabela_aux}`;
+
+    var response = httpPost(url, data);
+
+    createPriceTableToPriceTableTable(priceTableTableBody, response);
+    cleanRegisterPriceTableForm();
+    $('#registerPriceTableModal').modal('hide');
 
 }
 
