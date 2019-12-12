@@ -2,19 +2,19 @@ var affiliateTableBody = $("#affiliateTableBody")[0];
 var nome = $('#nome').val();
 var cnpj = $('#cnpj').val();
 
-$("#btnPreRegisterAffiliate").click( function () {
+$("#btnPreRegisterAffiliate").click(function () {
     preRegisterAffiliate();
 });
 
-$("#btnDAODeleteAffiliate").click( function () {
+$("#btnDAODeleteAffiliate").click(function () {
     DAOdeleteAffiliate();
 });
 
-$("#btnDAOUpdateAffiliate").click( function () {
+$("#btnDAOUpdateAffiliate").click(function () {
     DAOupdateAffiliate();
 });
 
-$("#btnDAORegisterAffiliate").click( function () {
+$("#btnDAORegisterAffiliate").click(function () {
     DAOregisterAffiliate();
 });
 
@@ -50,24 +50,18 @@ function DAOregisterAffiliate() {
 
 function DAOupdateAffiliate() {
 
-    var xhttp = new XMLHttpRequest();
-
     var id = $('#id_affiliateUpd').val();
     var nome = $('#nomeUpd').val();
     var cnpj = $('#cnpjUpd').val();
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            DAOgetAllAffiliates();
-            cleanUpdateAffiliateForm();
-            $('#updateAffiliateModal').modal('hide');
-        }
-    };
-
     var url = `http://${IP_DO_SERVIDOR}:3000/affiliate/${id}`;
-    xhttp.open("PUT", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(`id_afiliado=${id}&nome=${nome}&cnpj=${cnpj}`);
+    var data = `id_afiliado=${id}&nome=${nome}&cnpj=${cnpj}`;
+
+    httpPut(url, data);
+
+    DAOgetAllAffiliates();
+    cleanUpdateAffiliateForm();
+    $('#updateAffiliateModal').modal('hide');
 
 }
 

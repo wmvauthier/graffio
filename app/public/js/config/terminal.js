@@ -1,18 +1,18 @@
 var terminalWidgets = $('#terminalWidgets').val();
 
-$("#btnPreRegisterTerminal").click( function () {
+$("#btnPreRegisterTerminal").click(function () {
     preRegisterTerminal();
 });
 
-$("#btnDAODeleteTerminal").click( function () {
+$("#btnDAODeleteTerminal").click(function () {
     DAOdeleteTerminal();
 });
 
-$("#btnDAOUpdateTerminal").click( function () {
+$("#btnDAOUpdateTerminal").click(function () {
     DAOupdateTerminal();
 });
 
-$("#btnDAORegisterTerminal").click( function () {
+$("#btnDAORegisterTerminal").click(function () {
     DAOregisterTerminal();
 });
 
@@ -51,8 +51,6 @@ function DAOregisterTerminal() {
 
 function DAOupdateTerminal() {
 
-    var xhttp = new XMLHttpRequest();
-
     var id = $('#id_terminalUpd').val();
     var descricao = $('#descricaoUpd').val();
     var ip = $('#ipUpd').val();
@@ -60,18 +58,14 @@ function DAOupdateTerminal() {
     var funcao = $('#funcaoUpd').val();
     var ip_cancela = $('#ip_cancelaUpd').val();
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            DAOgetAllTerminals();
-            cleanUpdateTerminalForm();
-            $('#updateTerminalModal').modal('hide');
-        }
-    };
-
     var url = `http://${IP_DO_SERVIDOR}:3000/terminal/${id}`;
-    xhttp.open("PUT", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(`id_terminal=${id}&descricao=${descricao}&ip=${ip}&patio=${patio}&funcao=${funcao}&ip_cancela=${ip_cancela}`);
+    var data = `id_terminal=${id}&descricao=${descricao}&ip=${ip}&patio=${patio}&funcao=${funcao}&ip_cancela=${ip_cancela}`;
+
+    httpPut(url, data);
+
+    DAOgetAllTerminals();
+    cleanUpdateTerminalForm();
+    $('#updateTerminalModal').modal('hide');
 
 }
 

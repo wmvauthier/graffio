@@ -1,18 +1,18 @@
 var courtyardWidgets = $('#courtyardWidgets')[0];
 
-$("#btnPreRegisterCourtyard").click( function () {
+$("#btnPreRegisterCourtyard").click(function () {
     preRegisterCourtyard();
 });
 
-$("#btnDAODeleteCourtyard").click( function () {
+$("#btnDAODeleteCourtyard").click(function () {
     DAOdeleteCourtyard();
 });
 
-$("#btnDAOUpdateCourtyard").click( function () {
+$("#btnDAOUpdateCourtyard").click(function () {
     DAOupdateCourtyard();
 });
 
-$("#btnDAORegisterCourtyard").click( function () {
+$("#btnDAORegisterCourtyard").click(function () {
     DAOregisterCourtyard();
 });
 
@@ -76,25 +76,19 @@ function DAOregisterCourtyard() {
 
 function DAOupdateCourtyard() {
 
-    var xhttp = new XMLHttpRequest();
-
     var id = $('#id_patioUpd').val();
     var nome = $('#nomeUpd').val();
     var qtd = $('#qtdUpd').val();
     var tabela_preco = $('#tabela_precoUpd').val();
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            DAOgetAllCourtyards();
-            cleanUpdateCourtyardForm();
-            $('#updateCourtyardModal').modal('hide');
-        }
-    };
-
     var url = `http://${IP_DO_SERVIDOR}:3000/courtyard/${id}`;
-    xhttp.open("PUT", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(`id_patio=${id}&nome=${nome}&qtd=${qtd}&tabela_preco=${tabela_preco}`);
+    var data = `id_patio=${id}&nome=${nome}&qtd=${qtd}&tabela_preco=${tabela_preco}`;
+
+    httpPut(url, data);
+
+    DAOgetAllCourtyards();
+    cleanUpdateCourtyardForm();
+    $('#updateCourtyardModal').modal('hide');
 
 }
 

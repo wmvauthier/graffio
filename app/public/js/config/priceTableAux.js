@@ -56,8 +56,6 @@ function DAOregisterPriceTableAux() {
 
 function DAOupdatePriceTableAux() {
 
-    var xhttp = new XMLHttpRequest();
-
     var id = $('#id_tabela_preco_auxUpd').val();
     var nome = $('#nomeUpd').val();
     var periodo = $('#periodoUpd').val();
@@ -65,18 +63,14 @@ function DAOupdatePriceTableAux() {
     var valorPerda = $('#valorPerdaUpd').val();
     var tolerancia = $('#toleranciaUpd').val();
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            DAOgetAllPriceTableAuxs();
-            cleanUpdatePriceTableAuxForm();
-            $('#updatePriceTableAuxModal').modal('hide');
-        }
-    };
-
     var url = `http://${IP_DO_SERVIDOR}:3000/priceTableAux/${id}`;
-    xhttp.open("PUT", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(`id_tabela_preco_aux=${id}&nome=${nome}&periodo=${periodo}&valor=${valor}&valorPerda=${valorPerda}&tolerancia=${tolerancia}`);
+    var data = `id_tabela_preco_aux=${id}&nome=${nome}&periodo=${periodo}&valor=${valor}&valorPerda=${valorPerda}&tolerancia=${tolerancia}`;
+
+    httpPut(url, data);
+
+    DAOgetAllPriceTableAuxs();
+    cleanUpdatePriceTableAuxForm();
+    $('#updatePriceTableAuxModal').modal('hide');
 
 }
 

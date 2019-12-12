@@ -1,9 +1,9 @@
 
-$("#btnResetForm").click( function () {
+$("#btnResetForm").click(function () {
     $("#updateDataClientForm")[0].reset();
 });
 
-$("#btnDAOUpdateDataClient").click( function () {
+$("#btnDAOUpdateDataClient").click(function () {
     DAOupdateDataClient();
 });
 
@@ -24,8 +24,6 @@ function DAOgetDataClient() {
 
 function DAOupdateDataClient() {
 
-    var xhttp = new XMLHttpRequest();
-
     var id = '1';
     var nome_fantasia = $("#nome_fantasia").val();
     var razao_social = $("#razao_social").val();
@@ -36,17 +34,8 @@ function DAOupdateDataClient() {
     var website = $("#website").val();
     var email = $("#email").val();
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            $("#updateDataClientForm")[0].reset();
-            DAOgetDataClient();
-        }
-    };
-
     var url = `http://${IP_DO_SERVIDOR}:3000/configParking/${id}`;
-    xhttp.open("PUT", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(`id_parking=${id}
+    var data = `id_parking=${id}
                 &nome_fantasia=${nome_fantasia}
                 &razao_social=${razao_social}
                 &endereco=${endereco}
@@ -54,6 +43,10 @@ function DAOupdateDataClient() {
                 &inscricao_municipal=${inscricao_municipal}
                 &telefone=${telefone}
                 &website=${website}
-                &email=${email}`);
+                &email=${email}`;
+
+    httpPut(url, data);
+    $("#updateDataClientForm")[0].reset();
+    DAOgetDataClient();
 
 }

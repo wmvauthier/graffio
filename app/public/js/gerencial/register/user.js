@@ -56,8 +56,6 @@ function DAOregisterUser() {
 
 function DAOupdateUser() {
 
-    var xhttp = new XMLHttpRequest();
-
     var id = $('#id_userUpd').val();
     var nome = $('#nomeUpd').val();
     var cargo = $('#cargoUpd').val();
@@ -65,18 +63,14 @@ function DAOupdateUser() {
     var user_senha = $('#user_senhaUpd').val();
     var nivel_acesso = $('#nivel_acessoUpd').val();
 
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            DAOgetAllUsers();
-            cleanUpdateUserForm();
-            $('#updateUserModal').modal('hide');
-        }
-    };
-
     var url = `http://${IP_DO_SERVIDOR}:3000/user/${id}`;
-    xhttp.open("PUT", url, true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send(`id_user=${id}&nome=${nome}&cargo=${cargo}&user_login=${user_login}&user_senha=${user_senha}&nivel_acesso=${nivel_acesso}`);
+    var data = `id_user=${id}&nome=${nome}&cargo=${cargo}&user_login=${user_login}&user_senha=${user_senha}&nivel_acesso=${nivel_acesso}`;
+
+    httpPut(url, data);
+
+    DAOgetAllUsers();
+    cleanUpdateUserForm();
+    $('#updateUserModal').modal('hide');
 
 }
 
