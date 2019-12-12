@@ -1,18 +1,18 @@
-var terminalWidgets = document.getElementById('terminalWidgets').value;
+var terminalWidgets = $('#terminalWidgets').val();
 
-document.getElementById("btnPreRegisterTerminal").addEventListener("click", function () {
+$("#btnPreRegisterTerminal").click( function () {
     preRegisterTerminal();
 });
 
-document.getElementById("btnDAODeleteTerminal").addEventListener("click", function () {
+$("#btnDAODeleteTerminal").click( function () {
     DAOdeleteTerminal();
 });
 
-document.getElementById("btnDAOUpdateTerminal").addEventListener("click", function () {
+$("#btnDAOUpdateTerminal").click( function () {
     DAOupdateTerminal();
 });
 
-document.getElementById("btnDAORegisterTerminal").addEventListener("click", function () {
+$("#btnDAORegisterTerminal").click( function () {
     DAOregisterTerminal();
 });
 
@@ -27,16 +27,15 @@ function DAOregisterTerminal() {
 
     var xhttp = new XMLHttpRequest();
 
-    var descricao = document.getElementById('descricao').value;
-    var ip = document.getElementById('ip').value;
-    var patio = document.getElementById('patio').value;
-    var funcao = document.getElementById('funcao').value;
-    var ip_cancela = document.getElementById('ip_cancela').value;
+    var descricao = $('#descricao').val();
+    var ip = $('#ip').val();
+    var patio = $('#patio').val();
+    var funcao = $('#funcao').val();
+    var ip_cancela = $('#ip_cancela').val();
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var response = JSON.parse(this.responseText);
-            console.log(response);
             createTerminalToTerminalTable(terminalTableBody, response);
             cleanRegisterTerminalForm();
             $('#registerTerminalModal').modal('hide');
@@ -54,17 +53,15 @@ function DAOupdateTerminal() {
 
     var xhttp = new XMLHttpRequest();
 
-    var id = document.getElementById('id_terminalUpd').value;
-    var descricao = document.getElementById('descricaoUpd').value;
-    var ip = document.getElementById('ipUpd').value;
-    var patio = document.getElementById('patioUpd').value;
-    var funcao = document.getElementById('funcaoUpd').value;
-    var ip_cancela = document.getElementById('ip_cancelaUpd').value;
+    var id = $('#id_terminalUpd').val();
+    var descricao = $('#descricaoUpd').val();
+    var ip = $('#ipUpd').val();
+    var patio = $('#patioUpd').val();
+    var funcao = $('#funcaoUpd').val();
+    var ip_cancela = $('#ip_cancelaUpd').val();
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
-            console.log(response);
             DAOgetAllTerminals();
             cleanUpdateTerminalForm();
             $('#updateTerminalModal').modal('hide');
@@ -80,7 +77,7 @@ function DAOupdateTerminal() {
 
 function DAOdeleteTerminal() {
 
-    var id = document.getElementById('id_terminalDel').value;
+    var id = $('#id_terminalDel').val();
     httpDelete(`http://${IP_DO_SERVIDOR}:3000/terminal/${id}`);
     DAOgetAllTerminals();
     $('#deleteTerminalModal').modal('hide');
@@ -98,12 +95,12 @@ function preUpdateTerminal(id) {
     var data = id.getAttribute("dataID");
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/terminal/${data}`);
 
-    document.getElementById('id_terminalUpd').value = response.id_terminal;
-    document.getElementById('descricaoUpd').value = response.descricao;
-    document.getElementById('ipUpd').value = response.ip;
-    document.getElementById('patioUpd').value = response.patio;
-    document.getElementById('funcaoUpd').value = response.funcao;
-    document.getElementById('ip_cancelaUpd').value = response.ip_cancela;
+    $('#id_terminalUpd').val(response.id_terminal);
+    $('#descricaoUpd').val(response.descricao);
+    $('#ipUpd').val(response.ip);
+    $('#patioUpd').val(response.patio);
+    $('#funcaoUpd').val(response.funcao);
+    $('#ip_cancelaUpd').val(response.ip_cancela);
     $('#updateTerminalModal').modal('show');
 
 }
@@ -115,8 +112,8 @@ function preDeleteTerminal(id) {
     var data = id.getAttribute("dataID");
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/terminal/${data}`);
 
-    document.getElementById('nomeDel').innerHTML = response.descricao;
-    document.getElementById('id_terminalDel').value = response.id_terminal;
+    $('#nomeDel').html(response.descricao);
+    $('#id_terminalDel').val(response.id_terminal);
     $('#deleteTerminalModal').modal('show');
 
 }
@@ -184,17 +181,17 @@ function createTerminalToTerminalTable(table, terminal) {
 }
 
 function cleanRegisterTerminalForm() {
-    document.getElementById('descricao').value = "";
-    document.getElementById('ip').value = "";
-    document.getElementById('patio').value = "";
-    document.getElementById('funcao').value = "";
-    document.getElementById('ip_cancela').value = "";
+    $('#descricao').val("");
+    $('#ip').val("");
+    $('#patio').val("");
+    $('#funcao').val("");
+    $('#ip_cancela').val("");
 }
 
 function cleanUpdateTerminalForm() {
-    document.getElementById('descricaoUpd').value = "";
-    document.getElementById('ipUpd').value = "";
-    document.getElementById('patioUpd').value = "";
-    document.getElementById('funcaoUpd').value = "";
-    document.getElementById('ip_cancelaUpd').value = "";
+    $('#descricaoUpd').val("");
+    $('#ipUpd').val("");
+    $('#patioUpd').val("");
+    $('#funcaoUpd').val("");
+    $('#ip_cancelaUpd').val("");
 }

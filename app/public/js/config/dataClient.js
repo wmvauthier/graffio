@@ -1,9 +1,9 @@
 
-document.getElementById("btnResetForm").addEventListener("click", function () {
-    document.getElementById("updateDataClientForm").reset();
+$("#btnResetForm").click( function () {
+    $("#updateDataClientForm")[0].reset();
 });
 
-document.getElementById("btnDAOUpdateDataClient").addEventListener("click", function () {
+$("#btnDAOUpdateDataClient").click( function () {
     DAOupdateDataClient();
 });
 
@@ -11,14 +11,14 @@ function DAOgetDataClient() {
 
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/configParking`);
 
-    document.getElementById("nome_fantasia").value = response.nome_fantasia;
-    document.getElementById("razao_social").value = response.razao_social;
-    document.getElementById("endereco").value = response.endereco;
-    document.getElementById("cnpj").value = response.cnpj;
-    document.getElementById("inscricao_municipal").value = response.inscricao_municipal;
-    document.getElementById("telefone").value = response.telefone;
-    document.getElementById("website").value = response.website;
-    document.getElementById("email").value = response.email;
+    $("#nome_fantasia").val(response.nome_fantasia);
+    $("#razao_social").val(response.razao_social);
+    $("#endereco").val(response.endereco);
+    $("#cnpj").val(response.cnpj);
+    $("#inscricao_municipal").val(response.inscricao_municipal);
+    $("#telefone").val(response.telefone);
+    $("#website").val(response.website);
+    $("#email").val(response.email);
 
 }
 
@@ -27,18 +27,18 @@ function DAOupdateDataClient() {
     var xhttp = new XMLHttpRequest();
 
     var id = '1';
-    var nome_fantasia = document.getElementById("nome_fantasia").value;
-    var razao_social = document.getElementById("razao_social").value;
-    var endereco = document.getElementById("endereco").value;
-    var cnpj = document.getElementById("cnpj").value;
-    var inscricao_municipal = document.getElementById("inscricao_municipal").value;
-    var telefone = document.getElementById("telefone").value;
-    var website = document.getElementById("website").value;
-    var email = document.getElementById("email").value;
+    var nome_fantasia = $("#nome_fantasia").val();
+    var razao_social = $("#razao_social").val();
+    var endereco = $("#endereco").val();
+    var cnpj = $("#cnpj").val();
+    var inscricao_municipal = $("#inscricao_municipal").val();
+    var telefone = $("#telefone").val();
+    var website = $("#website").val();
+    var email = $("#email").val();
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("updateDataClientForm").reset();
+            $("#updateDataClientForm")[0].reset();
             DAOgetDataClient();
         }
     };

@@ -1,4 +1,5 @@
 function dataTable() {
+    
     $('#no-more-tables').dataTable({
         "language": {
             "lengthMenu": "Mostrar _MENU_ resultados por página",
@@ -15,4 +16,7 @@ function dataTable() {
             }
         }
     });
+
+    $("th")[0].click();
+
 }

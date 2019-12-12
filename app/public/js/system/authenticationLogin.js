@@ -1,8 +1,8 @@
-var alertFormLogin = document.getElementById("alertFormLogin");
-var formLogin = document.getElementById("formLogin");
+var alertFormLogin = $("#alertFormLogin");
+var formLogin = $("#formLogin");
 
 window.onload = function () {
-    alertFormLogin.style.display = "none";
+    $("#alertFormLogin").css("display", "none");
 }
 
 function logout(token) {
@@ -20,27 +20,26 @@ function logout(token) {
     xhttp.open("POST", url, true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`token=${token}`);
-    
+
 }
 
-formLogin.addEventListener('submit', function (evt) {
+formLogin.submit(function (evt) {
 
     evt.preventDefault();
     var xhttp = new XMLHttpRequest();
 
-    var login = document.getElementById('username').value;
-    var senha = document.getElementById('password').value;
+    var login = $('#username').val();
+    var senha = $('#password').val();
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var response = JSON.parse(this.responseText);
             if (response.msg) {
-                var c = alertFormLogin.childNodes;
-                c[1].textContent = response.msg;
-                c[3].textContent = response.hint;
-                alertFormLogin.style.display = "block";
+                var c = $("#alertFormLogin").children();
+                c[0].textContent = response.msg;
+                c[2].textContent = response.hint;
+                $("#alertFormLogin").css("display", "block");
             } else {
-                console.log(response);
                 var user = response.user;
                 localStorage.setItem("loggedUserNome", user.nome);
                 localStorage.setItem("loggedUserCargo", user.cargo);

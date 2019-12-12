@@ -128,7 +128,7 @@ function setDashboardHeader(mainDashBoard) {
                             <h5 id="loggedUserNome" class="mb-0 text-white nav-user-name"></h5>
                             <span id="loggedUserCargo" class="status"></span><span class="ml-2"></span>
                         </div>
-                        <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Perfil</a>
+                        <a class="dropdown-item" href="#" onclick="setProfile('${token}');"><i class="fas fa-user mr-2"></i>Perfil</a>
                         <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Configurações</a>
                         <a class="dropdown-item" href="#" onclick="logout('${token}');"><i class="fas fa-power-off mr-2"></i>Sair</a>
                     </div>
@@ -137,6 +137,57 @@ function setDashboardHeader(mainDashBoard) {
         </div>
     </nav>
     </div>
+
+    <!-- Modal para Edição de Usuários -->
+    <div class="modal fade" id="updateNavUserModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Insira as Novas Informações do Usuário</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="updateNavUserForm">
+                        <div class="form-group">
+                            <label for="id" class="col-form-label">ID</label>
+                            <input id="id_navUserUpd" disabled type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="nome" class="col-form-label">Nome</label>
+                            <input id="navNomeUpd" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="cargo" class="col-form-label">Cargo</label>
+                            <input id="navCargoUpd" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="user_login" class="col-form-label">Login</label>
+                            <input id="navUser_loginUpd" type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="user_senha" class="col-form-label">Senha</label>
+                            <input id="navUser_senhaUpd" type="password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="nivel_acesso" class="col-form-label">Nível de Acesso</label>
+                            <select id="navNivel_acessoUpd" class="form-control">
+                                <option disabled selected>Selecione o Nível de Acesso</option>
+                                <option>Link</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnDAOUpdateNavUser"  type="button" class="btn btn-rounded btn-success">Alterar</button>
+                    <button type="button" class="btn btn-rounded btn-danger"
+                        data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 `;
 
     mainDashBoard.appendChild(div);

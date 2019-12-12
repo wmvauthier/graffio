@@ -1,10 +1,3 @@
-var alertFormLogin = document.getElementById("alertFormLogin");
-var formLogin = document.getElementById("formLogin");
-
-window.onload = function () {
-    alertFormLogin.style.display = "none";
-}
-
 function logout(token) {
 
     var xhttp = new XMLHttpRequest();

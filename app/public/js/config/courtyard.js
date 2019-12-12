@@ -1,24 +1,24 @@
-var courtyardWidgets = document.getElementById('courtyardWidgets');
+var courtyardWidgets = $('#courtyardWidgets')[0];
 
-document.getElementById("btnPreRegisterCourtyard").addEventListener("click", function () {
+$("#btnPreRegisterCourtyard").click( function () {
     preRegisterCourtyard();
 });
 
-document.getElementById("btnDAODeleteCourtyard").addEventListener("click", function () {
+$("#btnDAODeleteCourtyard").click( function () {
     DAOdeleteCourtyard();
 });
 
-document.getElementById("btnDAOUpdateCourtyard").addEventListener("click", function () {
+$("#btnDAOUpdateCourtyard").click( function () {
     DAOupdateCourtyard();
 });
 
-document.getElementById("btnDAORegisterCourtyard").addEventListener("click", function () {
+$("#btnDAORegisterCourtyard").click( function () {
     DAOregisterCourtyard();
 });
 
 function DAOgetAllCourtyards() {
 
-    courtyardWidgets.innerHTML = '';
+    $('#courtyardWidgets').html('');
 
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/courtyard`);
 
@@ -53,9 +53,9 @@ function DAOregisterCourtyard() {
 
     var xhttp = new XMLHttpRequest();
 
-    var nome = document.getElementById('nome').value;
-    var qtd = document.getElementById('qtd').value;
-    var tabela_preco = document.getElementById('tabela_preco').value;
+    var nome = $('#nome').val();
+    var qtd = $('#qtd').val();
+    var tabela_preco = $('#tabela_preco').val();
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -78,14 +78,13 @@ function DAOupdateCourtyard() {
 
     var xhttp = new XMLHttpRequest();
 
-    var id = document.getElementById('id_patioUpd').value;
-    var nome = document.getElementById('nomeUpd').value;
-    var qtd = document.getElementById('qtdUpd').value;
-    var tabela_preco = document.getElementById('tabela_precoUpd').value;
+    var id = $('#id_patioUpd').val();
+    var nome = $('#nomeUpd').val();
+    var qtd = $('#qtdUpd').val();
+    var tabela_preco = $('#tabela_precoUpd').val();
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
             DAOgetAllCourtyards();
             cleanUpdateCourtyardForm();
             $('#updateCourtyardModal').modal('hide');
@@ -101,7 +100,7 @@ function DAOupdateCourtyard() {
 
 function DAOdeleteCourtyard() {
 
-    var id = document.getElementById('id_courtyardDel').value;
+    var id = $('#id_courtyardDel').val();
     httpDelete(`http://${IP_DO_SERVIDOR}:3000/courtyard/${id}`);
     DAOgetAllCourtyards();
     $('#deleteCourtyardModal').modal('hide');
@@ -119,10 +118,10 @@ function preUpdateCourtyard(id) {
     var data = id.getAttribute("dataID");
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/courtyard/${data}`);
 
-    document.getElementById('id_patioUpd').value = response.id_patio;
-    document.getElementById('nomeUpd').value = response.nome;
-    document.getElementById('qtdUpd').value = response.qtd;
-    document.getElementById('tabela_precoUpd').value = response.tabela_preco;
+    $('#id_patioUpd').val(response.id_patio);
+    $('#nomeUpd').val(response.nome);
+    $('#qtdUpd').val(response.qtd);
+    $('#tabela_precoUpd').val(response.tabela_preco);
     $('#updateCourtyardModal').modal('show');
 
 }
@@ -134,8 +133,8 @@ function preDeleteCourtyard(id) {
     var data = id.getAttribute("dataID");
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/courtyard/${data}`);
 
-    document.getElementById('nomeDel').innerHTML = response.nome;
-    document.getElementById('id_courtyardDel').value = response.id_patio;
+    $('#nomeDel').html(response.nome);
+    $('#id_courtyardDel').val(response.id_patio);
     $('#deleteCourtyardModal').modal('show');
 
 }
@@ -195,13 +194,13 @@ function createCourtyardToCourtyardTable(table, courtyard) {
 }
 
 function cleanRegisterCourtyardForm() {
-    document.getElementById('nome').value = "";
-    document.getElementById('qtd').value = "";
-    document.getElementById('tabela_preco').value = "";
+    $('#nome').val("");
+    $('#qtd').val("");
+    $('#tabela_preco').val("");
 }
 
 function cleanUpdateCourtyardForm() {
-    document.getElementById('nomeUpd').value = "";
-    document.getElementById('qtdUpd').value = "";
-    document.getElementById('tabela_precoUpd').value = "";
+    $('#nomeUpd').val("");
+    $('#qtdUpd').val("");
+    $('#tabela_precoUpd').val("");
 }

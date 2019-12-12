@@ -1,20 +1,20 @@
-var affiliateTableBody = document.getElementById("affiliateTableBody");
-var nome = document.getElementById('nome').value;
-var cnpj = document.getElementById('cnpj').value;
+var affiliateTableBody = $("#affiliateTableBody")[0];
+var nome = $('#nome').val();
+var cnpj = $('#cnpj').val();
 
-document.getElementById("btnPreRegisterAffiliate").addEventListener("click", function () {
+$("#btnPreRegisterAffiliate").click( function () {
     preRegisterAffiliate();
 });
 
-document.getElementById("btnDAODeleteAffiliate").addEventListener("click", function () {
+$("#btnDAODeleteAffiliate").click( function () {
     DAOdeleteAffiliate();
 });
 
-document.getElementById("btnDAOUpdateAffiliate").addEventListener("click", function () {
+$("#btnDAOUpdateAffiliate").click( function () {
     DAOupdateAffiliate();
 });
 
-document.getElementById("btnDAORegisterAffiliate").addEventListener("click", function () {
+$("#btnDAORegisterAffiliate").click( function () {
     DAOregisterAffiliate();
 });
 
@@ -29,8 +29,8 @@ function DAOregisterAffiliate() {
 
     var xhttp = new XMLHttpRequest();
 
-    var nome = document.getElementById('nome').value;
-    var cnpj = document.getElementById('cnpj').value;
+    var nome = $('#nome').val();
+    var cnpj = $('#cnpj').val();
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -52,13 +52,12 @@ function DAOupdateAffiliate() {
 
     var xhttp = new XMLHttpRequest();
 
-    var id = document.getElementById('id_affiliateUpd').value;
-    var nome = document.getElementById('nomeUpd').value;
-    var cnpj = document.getElementById('cnpjUpd').value;
+    var id = $('#id_affiliateUpd').val();
+    var nome = $('#nomeUpd').val();
+    var cnpj = $('#cnpjUpd').val();
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
             DAOgetAllAffiliates();
             cleanUpdateAffiliateForm();
             $('#updateAffiliateModal').modal('hide');
@@ -83,9 +82,9 @@ function preUpdateAffiliate(id) {
     var data = id.getAttribute("dataID");
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/affiliate/${data}`);
 
-    document.getElementById('id_affiliateUpd').value = response.id_afiliado;
-    document.getElementById('nomeUpd').value = response.nome;
-    document.getElementById('cnpjUpd').value = response.cnpj;
+    $('#id_affiliateUpd').val(response.id_afiliado);
+    $('#nomeUpd').val(response.nome);
+    $('#cnpjUpd').val(response.cnpj);
     $('#updateAffiliateModal').modal('show');
 
 }
@@ -97,15 +96,15 @@ function preDeleteAffiliate(id) {
     var data = id.getAttribute("dataID");
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/affiliate/${data}`);
 
-    document.getElementById('nomeDel').innerHTML = response.nome;
-    document.getElementById('id_affiliateDel').value = response.id_afiliado;
+    $('#nomeDel').html(response.nome);
+    $('#id_affiliateDel').val(response.id_afiliado);
     $('#deleteAffiliateModal').modal('show');
 
 }
 
 function DAOdeleteAffiliate() {
 
-    var id = document.getElementById('id_affiliateDel').value;
+    var id = $('#id_affiliateDel').val();
     httpDelete(`http://${IP_DO_SERVIDOR}:3000/affiliate/${id}`);
     DAOgetAllAffiliates();
     $('#deleteAffiliateModal').modal('hide');
@@ -161,11 +160,11 @@ function createAffiliateToAffiliateTable(table, affiliate) {
 }
 
 function cleanRegisterAffiliateForm() {
-    document.getElementById('nome').value = "";
-    document.getElementById('cnpj').value = "";
+    $('#nome').val("");
+    $('#cnpj').val("");
 }
 
 function cleanUpdateAffiliateForm() {
-    document.getElementById('nomeUpd').value = "";
-    document.getElementById('cnpjUpd').value = "";
+    $('nomeUpd').val("");
+    $('cnpjUpd').val("");
 }

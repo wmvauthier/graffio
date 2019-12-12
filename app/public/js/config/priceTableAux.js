@@ -1,23 +1,23 @@
-var priceTableAuxTableBody = document.getElementById("priceTableAuxTableBody");
-var nome = document.getElementById('nome').value;
-var periodo = document.getElementById('periodo').value;
-var valor = document.getElementById('valor').value;
-var valorPerda = document.getElementById('valorPerda').value;
-var tolerancia = document.getElementById('tolerancia').value;
+var priceTableAuxTableBody = $("#priceTableAuxTableBody")[0];
+var nome = $('#nome').val();
+var periodo = $('#periodo').val();
+var valor = $('#valor').val();
+var valorPerda = $('#valorPerda').val();
+var tolerancia = $('#tolerancia').val();
 
-document.getElementById("btnPreRegisterPriceTableAux").addEventListener("click", function () {
+$("#btnPreRegisterPriceTableAux").click(function () {
     preRegisterPriceTableAux();
 });
 
-document.getElementById("btnDAODeletePriceTableAux").addEventListener("click", function () {
+$("#btnDAODeletePriceTableAux").click(function () {
     DAOdeletePriceTableAux();
 });
 
-document.getElementById("btnDAOUpdatePriceTableAux").addEventListener("click", function () {
+$("#btnDAOUpdatePriceTableAux").click(function () {
     DAOupdatePriceTableAux();
 });
 
-document.getElementById("btnDAORegisterPriceTableAux").addEventListener("click", function () {
+$("#btnDAORegisterPriceTableAux").click(function () {
     DAOregisterPriceTableAux();
 });
 
@@ -32,11 +32,11 @@ function DAOregisterPriceTableAux() {
 
     var xhttp = new XMLHttpRequest();
 
-    var nome = document.getElementById('nome').value;
-    var periodo = document.getElementById('periodo').value;
-    var valor = document.getElementById('valor').value;
-    var valorPerda = document.getElementById('valorPerda').value;
-    var tolerancia = document.getElementById('tolerancia').value;
+    var nome = $('#nome').val();
+    var periodo = $('#periodo').val();
+    var valor = $('#valor').val();
+    var valorPerda = $('#valorPerda').val();
+    var tolerancia = $('#tolerancia').val();
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -58,16 +58,15 @@ function DAOupdatePriceTableAux() {
 
     var xhttp = new XMLHttpRequest();
 
-    var id = document.getElementById('id_tabela_preco_auxUpd').value;
-    var nome = document.getElementById('nomeUpd').value;
-    var periodo = document.getElementById('periodoUpd').value;
-    var valor = document.getElementById('valorUpd').value;
-    var valorPerda = document.getElementById('valorPerdaUpd').value;
-    var tolerancia = document.getElementById('toleranciaUpd').value;
+    var id = $('#id_tabela_preco_auxUpd').val();
+    var nome = $('#nomeUpd').val();
+    var periodo = $('#periodoUpd').val();
+    var valor = $('#valorUpd').val();
+    var valorPerda = $('#valorPerdaUpd').val();
+    var tolerancia = $('#toleranciaUpd').val();
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
             DAOgetAllPriceTableAuxs();
             cleanUpdatePriceTableAuxForm();
             $('#updatePriceTableAuxModal').modal('hide');
@@ -83,7 +82,7 @@ function DAOupdatePriceTableAux() {
 
 function DAOdeletePriceTableAux() {
 
-    var id = document.getElementById('id_priceTableAuxDel').value;
+    var id = $('#id_priceTableAuxDel').val();
     httpDelete(`http://${IP_DO_SERVIDOR}:3000/priceTableAux/${id}`);
     DAOgetAllPriceTableAuxs();
     $('#deletePriceTableAuxModal').modal('hide');
@@ -101,12 +100,12 @@ function preUpdatePriceTableAux(id) {
     var data = id.getAttribute("dataID");
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/priceTableAux/${data}`);
 
-    document.getElementById('id_tabela_preco_auxUpd').value = response.id_tabela_preco_aux;
-    document.getElementById('nomeUpd').value = response.nome;
-    document.getElementById('periodoUpd').value = response.periodo;
-    document.getElementById('valorUpd').value = response.valor;
-    document.getElementById('valorPerdaUpd').value = response.valorPerda;
-    document.getElementById('toleranciaUpd').value = response.tolerancia;
+    $('#id_tabela_preco_auxUpd').val(response.id_tabela_preco_aux);
+    $('#nomeUpd').val(response.nome);
+    $('#periodoUpd').val(response.periodo);
+    $('#valorUpd').val(response.valor);
+    $('#valorPerdaUpd').val(response.valorPerda);
+    $('#toleranciaUpd').val(response.tolerancia);
     $('#updatePriceTableAuxModal').modal('show');
 
 }
@@ -118,8 +117,8 @@ function preDeletePriceTableAux(id) {
     var data = id.getAttribute("dataID");
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/priceTableAux/${data}`);
 
-    document.getElementById('nomeDel').innerHTML = response.nome;
-    document.getElementById('id_priceTableAuxDel').value = response.id_tabela_preco_aux;
+    $('#nomeDel').html(response.nome);
+    $('#id_priceTableAuxDel').val(response.id_tabela_preco_aux);
     $('#deletePriceTableAuxModal').modal('show');
 
 }
@@ -185,18 +184,18 @@ function createPriceTableAuxToPriceTableAuxTable(table, priceTableAux) {
 }
 
 function cleanRegisterPriceTableAuxForm() {
-    document.getElementById('nome').value = "";
-    document.getElementById('periodo').value = "";
-    document.getElementById('valor').value = "";
-    document.getElementById('valorPerda').value = "";
-    document.getElementById('tolerancia').value = "";
+    $('#nome').val("");
+    $('#periodo').val("");
+    $('#valor').val("");
+    $('#valorPerda').val("");
+    $('#tolerancia').val("");
 }
 
 function cleanUpdatePriceTableAuxForm() {
-    document.getElementById('id_tabela_preco_auxUpd').value = "";
-    document.getElementById('nomeUpd').value = "";
-    document.getElementById('periodoUpd').value = "";
-    document.getElementById('valorUpd').value = "";
-    document.getElementById('valorPerdaUpd').value = "";
-    document.getElementById('toleranciaUpd').value = "";
+    $('#id_tabela_preco_auxUpd').val("");
+    $('#nomeUpd').val("");
+    $('#periodoUpd').val("");
+    $('#valorUpd').val("");
+    $('#valorPerdaUpd').val("");
+    $('#toleranciaUpd').val("");
 }

@@ -37,7 +37,8 @@
                         <div class="card">
                             <div class="card-header">
                                 <h5 class="mb-0">Lista de Usuários Cadastrados
-                                    <button id="btnPreRegisterUser" class="btn btn-rounded btn-success floatingRightButton" data-toggle="modal"
+                                    <button id="btnPreRegisterUser"
+                                        class="btn btn-rounded btn-success floatingRightButton" data-toggle="modal"
                                         data-target="#registerUserModal" data-backdrop="static">Adicionar
                                     </button>
                                 </h5>
@@ -110,7 +111,8 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button id="btnDAOUpdateUser"  type="button" class="btn btn-rounded btn-success">Alterar</button>
+                                <button id="btnDAOUpdateUser" type="button"
+                                    class="btn btn-rounded btn-success">Alterar</button>
                                 <button type="button" class="btn btn-rounded btn-danger"
                                     data-dismiss="modal">Cancelar</button>
                             </div>
@@ -156,7 +158,8 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button id="btnDAORegisterUser"  type="button" class="btn btn-rounded btn-success">Registrar</button>
+                                <button id="btnDAORegisterUser" type="button"
+                                    class="btn btn-rounded btn-success">Registrar</button>
                                 <button type="button" class="btn btn-rounded btn-danger"
                                     data-dismiss="modal">Cancelar</button>
                             </div>
@@ -167,24 +170,25 @@
 
                 <!-- Modal para Exclusão de Usuários -->
                 <div class="modal fade" id="deleteUserModal" role="dialog">
-                        <div class="modal-dialog">
-    
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <h4>Você deseja mesmo excluir este Usuário?</h4>
-                                    <h5 id="nomeDel" class="centeredX"></h5>
-                                    <input id="id_userDel" class="invisible"/>
-                                </div>
-                                <div class="modal-footer">
-                                    <button id="btnDAODeleteUser"  type="button" class="btn btn-rounded btn-success">Sim</button>
-                                    <button type="button" class="btn btn-rounded btn-danger"
-                                        data-dismiss="modal">Não</button>
-                                </div>
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <h4>Você deseja mesmo excluir este Usuário?</h4>
+                                <h5 id="nomeDel" class="centeredX"></h5>
+                                <input id="id_userDel" class="invisible" />
                             </div>
-    
+                            <div class="modal-footer">
+                                <button id="btnDAODeleteUser" type="button"
+                                    class="btn btn-rounded btn-success">Sim</button>
+                                <button type="button" class="btn btn-rounded btn-danger"
+                                    data-dismiss="modal">Não</button>
+                            </div>
                         </div>
+
                     </div>
+                </div>
 
             </div>
 
@@ -210,16 +214,20 @@
     <script src="js/htmlSections/dashboardSidebar.js"></script>
     <script src="js/htmlSections/header.js"></script>
 
-    <!-- Graffio JS que contém o BusinessJS-->
+    <!-- Graffio JS que contém o BusinessJS -->
     <script src="js/gerencial/register/user.js"></script>
 
-    <!-- Graffio JS que contém a Autenticação-->
+    <!-- Graffio JS que contém a Autenticação -->
     <script src="js/system/authenticationLogout.js"></script>
 
-    <!-- Graffio JS que contém os Métodos de Requisição-->
+    <!-- Graffio JS que contém os Métodos de Requisição -->
     <script src="js/system/httpRequisitions.js"></script>
 
-    <!-- Graffio JS que contém os Métodos de Requisição-->
+    <!-- Graffio JS que contém functions das HTML Sections -->
+    <script src="js/system/navbar.js"></script>
+    <script src="js/system/htmlSections.js"></script>
+
+    <!-- Graffio JS que contém a Configuração do Servidor -->
     <script src="js/system/serverConfig.js"></script>
 
     <script>if (window.module) module = window.module;</script>
@@ -229,23 +237,9 @@
 <script>
 
     window.onload = function () {
-
-        var loggedUserNome = localStorage.getItem("loggedUserNome");
-        var loggedUserCargo = localStorage.getItem("loggedUserCargo");
-        var token = localStorage.getItem("token");
-
-        var mainDashboard = document.getElementById("mainDashboard");
-        var mainDashboardHeader = document.getElementById("mainDashboardHeader");
-
-        setDashboardHeader(mainDashboard);
-        setDashboardSidebar(mainDashboard);
+        renderPage();
         setPageHeader(mainDashboardHeader, "Cadastro de Usuários");
-
-        document.getElementById("loggedUserNome").innerHTML = loggedUserNome;
-        document.getElementById("loggedUserCargo").innerHTML = loggedUserCargo;
-
         DAOgetAllUsers();
-
     }
 
 </script>

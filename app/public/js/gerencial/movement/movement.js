@@ -1,4 +1,4 @@
-var documentTableBody = document.getElementById("documentTableBody");
+var documentTableBody = $("#documentTableBody")[0];
 
 function DAOgetAllDocuments() {
 
@@ -11,8 +11,8 @@ function fillDocumentTable(table, data) {
 
     table.innerHTML = "";
 
-    data.forEach(function (affiliate) {
-        createDocumentToDocumentTable(table, affiliate);
+    data.forEach(function (document) {
+        createDocumentToDocumentTable(table, document);
     });
 
 

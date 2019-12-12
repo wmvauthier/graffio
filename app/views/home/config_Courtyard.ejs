@@ -213,7 +213,11 @@
     <!-- Graffio JS que contém os Métodos de Requisição-->
     <script src="js/system/httpRequisitions.js"></script>
 
-    <!-- Graffio JS que contém os Métodos de Requisição-->
+    <!-- Graffio JS que contém functions das HTML Sections -->
+    <script src="js/system/navbar.js"></script>
+    <script src="js/system/htmlSections.js"></script>
+
+    <!-- Graffio JS que contém a Configuração do Servidor-->
     <script src="js/system/serverConfig.js"></script>
 
     <script>if (window.module) module = window.module;</script>
@@ -224,21 +228,8 @@
 
     window.onload = function () {
 
-        var loggedUserNome = localStorage.getItem("loggedUserNome");
-        var loggedUserCargo = localStorage.getItem("loggedUserCargo");
-        var token = localStorage.getItem("token");
-
-        var mainDashboard = document.getElementById("mainDashboard");
-        var mainDashboardHeader = document.getElementById("mainDashboardHeader");
-        var courtyardWidgets = document.getElementById('courtyardWidgets');
-
-        setDashboardHeader(mainDashboard);
-        setDashboardSidebar(mainDashboard);
-
+        renderPage();
         setPageHeader(mainDashboardHeader, "Configuração de Pátios");
-
-        document.getElementById("loggedUserNome").innerHTML = loggedUserNome;
-        document.getElementById("loggedUserCargo").innerHTML = loggedUserCargo;
 
         var select = document.getElementById('tabela_precoUpd');
         var select2 = document.getElementById('tabela_preco');

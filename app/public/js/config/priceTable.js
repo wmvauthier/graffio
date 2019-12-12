@@ -1,22 +1,22 @@
-var priceTableTableBody = document.getElementById("priceTableTableBody");
-var nome = document.getElementById('nome').value;
-var periodo = document.getElementById('periodo').value;
-var valor = document.getElementById('valor').value;
-var tabela_aux = document.getElementById('tabela_aux').value;
+var priceTableTableBody = $("#priceTableTableBody")[0];
+var nome = $('#nome').val();
+var periodo = $('#periodo').val();
+var valor = $('#valor').val();
+var tabela_aux = $('#tabela_aux').val();
 
-document.getElementById("btnPreRegisterPriceTable").addEventListener("click", function () {
+$("#btnPreRegisterPriceTable").click(function () {
     preRegisterPriceTable();
 });
 
-document.getElementById("btnDAODeletePriceTable").addEventListener("click", function () {
+$("#btnDAODeletePriceTable").click(function () {
     DAOdeletePriceTable();
 });
 
-document.getElementById("btnDAOUpdatePriceTable").addEventListener("click", function () {
+$("#btnDAOUpdatePriceTable").click(function () {
     DAOupdatePriceTable();
 });
 
-document.getElementById("btnDAORegisterPriceTable").addEventListener("click", function () {
+$("#btnDAORegisterPriceTable").click(function () {
     DAOregisterPriceTable();
 });
 
@@ -31,10 +31,10 @@ function DAOregisterPriceTable() {
 
     var xhttp = new XMLHttpRequest();
 
-    var nome = document.getElementById('nome').value;
-    var periodo = document.getElementById('periodo').value;
-    var valor = document.getElementById('valor').value;
-    var tabela_aux = document.getElementById('tabela_aux').value;
+    var nome = $('#nome').val();
+    var periodo = $('#periodo').val();
+    var valor = $('#valor').val();
+    var tabela_aux = $('#tabela_aux').val();
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -56,15 +56,14 @@ function DAOupdatePriceTable() {
 
     var xhttp = new XMLHttpRequest();
 
-    var id = document.getElementById('id_tabela_precoUpd').value;
-    var nome = document.getElementById('nomeUpd').value;
-    var periodo = document.getElementById('periodoUpd').value;
-    var valor = document.getElementById('valorUpd').value;
-    var tabela_aux = document.getElementById('tabela_auxUpd').value;
+    var id = $('#id_tabela_precoUpd').val();
+    var nome = $('#nomeUpd').val();
+    var periodo = $('#periodoUpd').val();
+    var valor = $('#valorUpd').val();
+    var tabela_aux = $('#tabela_auxUpd').val();
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
             DAOgetAllPriceTables();
             cleanUpdatePriceTableForm();
             $('#updatePriceTableModal').modal('hide');
@@ -80,7 +79,7 @@ function DAOupdatePriceTable() {
 
 function DAOdeletePriceTable() {
 
-    var id = document.getElementById('id_priceTableDel').value;
+    var id = $('#id_priceTableDel').val();
     httpDelete(`http://${IP_DO_SERVIDOR}:3000/priceTable/${id}`);
     DAOgetAllPriceTables();
     $('#deletePriceTableModal').modal('hide');
@@ -98,11 +97,11 @@ function preUpdatePriceTable(id) {
     var data = id.getAttribute("dataID");
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/priceTable/${data}`);
 
-    document.getElementById('id_tabela_precoUpd').value = response.id_tabela_preco;
-    document.getElementById('nomeUpd').value = response.nome;
-    document.getElementById('periodoUpd').value = response.periodo;
-    document.getElementById('valorUpd').value = response.valor;
-    document.getElementById('tabela_auxUpd').value = response.tabela_aux;
+    $('#id_tabela_precoUpd').val(response.id_tabela_preco);
+    $('#nomeUpd').val(response.nome);
+    $('#periodoUpd').val(response.periodo);
+    $('#valorUpd').val(response.valor);
+    $('#tabela_auxUpd').val(response.tabela_aux);
     $('#updatePriceTableModal').modal('show');
 
 }
@@ -113,8 +112,8 @@ function preDeletePriceTable(id) {
     var data = id.getAttribute("dataID");
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/priceTable/${data}`);
 
-    document.getElementById('nomeDel').innerHTML = response.nome;
-    document.getElementById('id_priceTableDel').value = response.id_tabela_preco;
+    $('#nomeDel').html(response.nome);
+    $('#id_priceTableDel').val(response.id_tabela_preco);
     $('#deletePriceTableModal').modal('show');
 
 }
@@ -179,16 +178,16 @@ function createPriceTableToPriceTableTable(table, priceTable) {
 }
 
 function cleanRegisterPriceTableForm() {
-    document.getElementById('nome').value = "";
-    document.getElementById('periodo').value = "";
-    document.getElementById('valor').value = "";
-    document.getElementById('tabela_aux').value = "";
+    $('nome').val("");
+    $('periodo').val("");
+    $('valor').val("");
+    $('tabela_aux').val("");
 }
 
 function cleanUpdatePriceTableForm() {
-    document.getElementById('id_tabela_precoUpd').value = "";
-    document.getElementById('nomeUpd').value = "";
-    document.getElementById('periodoUpd').value = "";
-    document.getElementById('valorUpd').value = "";
-    document.getElementById('tabela_auxUpd').value = "";
+    $('id_tabela_precoUpd').val("");
+    $('nomeUpd').val("");
+    $('periodoUpd').val("");
+    $('valorUpd').val("");
+    $('tabela_auxUpd').val("");
 }

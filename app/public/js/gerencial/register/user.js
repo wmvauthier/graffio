@@ -1,23 +1,23 @@
-var userTableBody = document.getElementById("userTableBody");
-var nome = document.getElementById('nome').value;
-var cargo = document.getElementById('cargo').value;
-var user_login = document.getElementById('user_login').value;
-var user_senha = document.getElementById('user_senha').value;
-var nivel_acesso = document.getElementById('nivel_acesso').value;
+var userTableBody = $("#userTableBody")[0];
+var nome = $('#nome').val();
+var cargo = $('#cargo').val();
+var user_login = $('#user_login').val();
+var user_senha = $('#user_senha').val();
+var nivel_acesso = $('#nivel_acesso').val();
 
-document.getElementById("btnPreRegisterUser").addEventListener("click", function () {
+$("#btnPreRegisterUser").click(function () {
     preRegisterUser();
 });
 
-document.getElementById("btnDAODeleteUser").addEventListener("click", function () {
+$("#btnDAODeleteUser").click(function () {
     DAOdeleteUser();
 });
 
-document.getElementById("btnDAOUpdateUser").addEventListener("click", function () {
+$("#btnDAOUpdateUser").click(function () {
     DAOupdateUser();
 });
 
-document.getElementById("btnDAORegisterUser").addEventListener("click", function () {
+$("#btnDAORegisterUser").click(function () {
     DAOregisterUser();
 });
 
@@ -32,11 +32,11 @@ function DAOregisterUser() {
 
     var xhttp = new XMLHttpRequest();
 
-    var nome = document.getElementById('nome').value;
-    var cargo = document.getElementById('cargo').value;
-    var user_login = document.getElementById('user_login').value;
-    var user_senha = document.getElementById('user_senha').value;
-    var nivel_acesso = document.getElementById('nivel_acesso').value;
+    var nome = $('#nome').val();
+    var cargo = $('#cargo').val();
+    var user_login = $('#user_login').val();
+    var user_senha = $('#user_senha').val();
+    var nivel_acesso = $('#nivel_acesso').val();
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -58,16 +58,15 @@ function DAOupdateUser() {
 
     var xhttp = new XMLHttpRequest();
 
-    var id = document.getElementById('id_userUpd').value;
-    var nome = document.getElementById('nomeUpd').value;
-    var cargo = document.getElementById('cargoUpd').value;
-    var user_login = document.getElementById('user_loginUpd').value;
-    var user_senha = document.getElementById('user_senhaUpd').value;
-    var nivel_acesso = document.getElementById('nivel_acessoUpd').value;
+    var id = $('#id_userUpd').val();
+    var nome = $('#nomeUpd').val();
+    var cargo = $('#cargoUpd').val();
+    var user_login = $('#user_loginUpd').val();
+    var user_senha = $('#user_senhaUpd').val();
+    var nivel_acesso = $('#nivel_acessoUpd').val();
 
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            var response = JSON.parse(this.responseText);
             DAOgetAllUsers();
             cleanUpdateUserForm();
             $('#updateUserModal').modal('hide');
@@ -91,12 +90,12 @@ function preUpdateUser(id) {
     var data = id.getAttribute("dataID");
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/user/${data}`);
 
-    document.getElementById('id_userUpd').value = response.id_user;
-    document.getElementById('nomeUpd').value = response.nome;
-    document.getElementById('cargoUpd').value = response.cargo;
-    document.getElementById('user_loginUpd').value = response.user_login;
-    document.getElementById('user_senhaUpd').value = response.user_senha;
-    document.getElementById('nivel_acessoUpd').value = response.nivel_acesso;
+    $('#id_userUpd').val(response.id_user);
+    $('#nomeUpd').val(response.nome);
+    $('#cargoUpd').val(response.cargo);
+    $('#user_loginUpd').val(response.user_login);
+    $('#user_senhaUpd').val(response.user_senha);
+    $('#nivel_acessoUpd').val(response.nivel_acesso);
     $('#updateUserModal').modal('show');
 
 }
@@ -107,15 +106,15 @@ function preDeleteUser(id) {
     var data = id.getAttribute("dataID");
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/user/${data}`);
 
-    document.getElementById('nomeDel').innerHTML = response.nome;
-    document.getElementById('id_userDel').value = response.id_user;
+    $('#nomeDel').html(response.nome);
+    $('#id_userDel').val(response.id_user);
     $('#deleteUserModal').modal('show');
 
 }
 
 function DAOdeleteUser() {
 
-    var id = document.getElementById('id_userDel').value;
+    var id = $('#id_userDel').val();
     httpDelete(`http://${IP_DO_SERVIDOR}:3000/user/${id}`);
     DAOgetAllUsers();
     $('#deleteUserModal').modal('hide');
@@ -179,17 +178,17 @@ function createUserToUserTable(table, user) {
 }
 
 function cleanRegisterUserForm() {
-    document.getElementById('nome').value = "";
-    document.getElementById('cargo').value = "";
-    document.getElementById('user_login').value = "";
-    document.getElementById('user_senha').value = "";
-    document.getElementById('nivel_acesso').value = "";
+    $('#nome').val("");
+    $('#cargo').val("");
+    $('#user_login').val("");
+    $('#user_senha').val("");
+    $('#nivel_acesso').val("");
 }
 
 function cleanUpdateUserForm() {
-    document.getElementById('nomeUpd').value = "";
-    document.getElementById('cargoUpd').value = "";
-    document.getElementById('user_loginUpd').value = "";
-    document.getElementById('user_senhaUpd').value = "";
-    document.getElementById('nivel_acessoUpd').value = "";
+    $('#nomeUpd').val("");
+    $('#cargoUpd').val("");
+    $('#user_loginUpd').val("");
+    $('#user_senhaUpd').val("");
+    $('#nivel_acessoUpd').val("");
 }
