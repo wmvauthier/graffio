@@ -10,59 +10,60 @@ function setMovementWidgets(hour, val, perc) {
             <h5 class="card-header">Entradas das Últimas Horas</h5>
             <div class="card-body p-0">
                 <ul class="traffic-sales list-group list-group-flush">
-                    <li class="traffic-sales-content list-group-item "><span
-                            class="traffic-sales-name">${hour[1]}</span><span
-                            class="traffic-sales-amount">${val[1]}<span
-                                class="icon-circle-small icon-box-xs text-success ml-4 bg-success-light"><i
-                                    class="fa fa-fw fa-arrow-up"></i></span><span
-                                class="ml-1 text-success">${perc[1].value}%</span></span>
+                    <li class="traffic-sales-content list-group-item"><span
+                        class="traffic-sales-name">${hour[1]}<span
+                            class="traffic-sales-amount ">${val[1]}<span
+                                class="icon-circle-small icon-box-xs text-${perc[1].colorInsideIcon} ml-4 bg-${perc[1].colorIcon}"><i
+                                    class="fa fa-fw fa-${perc[1].icon}"></i></span><span
+                                class="ml-1 text-${perc[1].textColor}">${perc[1].value}%</span></span>
+                        </span>
                     </li>
                     <li class="traffic-sales-content list-group-item"><span
                             class="traffic-sales-name">${hour[2]}<span
-                                class="traffic-sales-amount">${val[2]}<span
-                                    class="icon-circle-small icon-box-xs text-success ml-4 bg-success-light"><i
-                                        class="fa fa-fw fa-arrow-up"></i></span><span
-                                    class="ml-1 text-success">${perc[2].value}%</span></span>
+                                class="traffic-sales-amount ">${val[2]}<span
+                                    class="icon-circle-small icon-box-xs text-${perc[2].colorInsideIcon} ml-4 bg-${perc[2].colorIcon}"><i
+                                        class="fa fa-fw fa-${perc[2].icon}"></i></span><span
+                                    class="ml-1 text-${perc[2].textColor}">${perc[2].value}%</span></span>
                         </span>
                     </li>
                     <li class="traffic-sales-content list-group-item"><span
                             class="traffic-sales-name">${hour[3]}<span
                                 class="traffic-sales-amount ">${val[3]}<span
-                                    class="icon-circle-small icon-box-xs text-success ml-4 bg-success-light"><i
-                                        class="fa fa-fw fa-arrow-up"></i></span><span
-                                    class="ml-1 text-success">${perc[3].value}%</span></span>
+                                    class="icon-circle-small icon-box-xs text-${perc[3].colorInsideIcon} ml-4 bg-${perc[3].colorIcon}"><i
+                                        class="fa fa-fw fa-${perc[3].icon}"></i></span><span
+                                    class="ml-1 text-${perc[3].textColor}">${perc[3].value}%</span></span>
                         </span>
                     </li>
                     <li class="traffic-sales-content list-group-item"><span
                             class="traffic-sales-name">${hour[4]}<span
                                 class="traffic-sales-amount ">${val[4]}<span
-                                    class="icon-circle-small icon-box-xs text-danger ml-4 bg-danger-light"><i
-                                        class="fa fa-fw fa-arrow-down"></i></span><span
-                                    class="ml-1 text-danger">${perc[4].value}%</span></span>
+                                    class="icon-circle-small icon-box-xs text-${perc[4].colorInsideIcon} ml-4 bg-${perc[4].colorIcon}"><i
+                                        class="fa fa-fw fa-${perc[4].icon}"></i></span><span
+                                    class="ml-1 text-${perc[4].textColor}">${perc[4].value}%</span></span>
                         </span>
                     </li>
                     <li class="traffic-sales-content list-group-item"><span
                             class="traffic-sales-name">${hour[5]}<span
                                 class="traffic-sales-amount ">${val[5]}<span
-                                    class="icon-circle-small icon-box-xs text-danger ml-4 bg-danger-light"><i
-                                        class="fa fa-fw fa-arrow-down"></i></span><span
-                                    class="ml-1 text-danger">${perc[5].value}%</span></span>
+                                    class="icon-circle-small icon-box-xs text-${perc[5].colorInsideIcon} ml-4 bg-${perc[5].colorIcon}"><i
+                                        class="fa fa-fw fa-${perc[5].icon}"></i></span><span
+                                    class="ml-1 text-${perc[5].textColor}">${perc[5].value}%</span></span>
                         </span>
                     </li>
                     <li class="traffic-sales-content list-group-item"><span
                             class="traffic-sales-name">${hour[6]}<span
                                 class="traffic-sales-amount ">${val[6]}<span
-                                    class="icon-circle-small icon-box-xs text-danger ml-4 bg-danger-light"><i
-                                        class="fa fa-fw fa-arrow-down"></i></span><span
-                                    class="ml-1 text-danger">${perc[6].value}%</span></span>
+                                    class="icon-circle-small icon-box-xs text-${perc[6].colorInsideIcon} ml-4 bg-${perc[6].colorIcon}"><i
+                                        class="fa fa-fw fa-${perc[6].icon}"></i></span><span
+                                    class="ml-1 text-${perc[6].textColor}">${perc[6].value}%</span></span>
                         </span>
                     </li>
                     <li class="traffic-sales-content list-group-item "><span
                             class="traffic-sales-name">${hour[7]}<span
                                 class="traffic-sales-amount">${val[7]}<span
-                                    class="icon-circle-small icon-box-xs text-white ml-4 bg-black"><i
-                                        class="fa fa-fw fa-arrow-down"></i></span><span
-                                    class="ml-1 text-danger">${perc[7].value}%</span></span>
+                                    class="icon-circle-small icon-box-xs text-${perc[7].colorInsideIcon} ml-4 bg-${perc[7].colorIcon}"><i
+                                        class="fa fa-fw fa-${perc[7].icon}"></i></span><span
+                                    class="ml-1 text-${perc[7].textColor}">${perc[7].value}%</span></span>
                         </span>
                     </li>
                 </ul>

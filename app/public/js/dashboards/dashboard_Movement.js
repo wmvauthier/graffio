@@ -48,27 +48,41 @@ function DAOgetAllMovement(movementWidgets) {
         if ((last7HoursValues[i] == last7HoursValues[i + 1])) {
             percentageValues[i] = {
                 "value": (0).toFixed(0),
-                "icon": "a",
-                "color-icon": "a",
-                "color": "a",
-                "totalVagas": "a"
+                "icon": "minus",
+                "colorIcon": "dark",
+                "colorInsideIcon": "white",
+                "textColor": "black"
             }
         } else if (last7HoursValues[i + 1] == 0) {
             percentageValues[i] = {
                 "value": (last7HoursValues[i] * 100).toFixed(0),
-                "icon": "a",
-                "color-icon": "a",
-                "color": "a",
-                "totalVagas": "a"
+                "icon": "arrow-up",
+                "colorIcon": "success-light",
+                "colorInsideIcon": "success",
+                "textColor": "success"
             }
         } else {
-            percentageValues[i] = {
-                "value": (((last7HoursValues[i] - last7HoursValues[i + 1]) / last7HoursValues[i + 1]) * 100).toFixed(0),
-                "icon": "a",
-                "color-icon": "a",
-                "color": "a",
-                "totalVagas": "a"
+
+            var result = (((last7HoursValues[i] - last7HoursValues[i + 1]) / last7HoursValues[i + 1]) * 100).toFixed(0);
+
+            if (result > 0) {
+                percentageValues[i] = {
+                    "value": result,
+                    "icon": "arrow-up",
+                    "colorIcon": "success-light",
+                    "colorInsideIcon": "success",
+                    "textColor": "success"
+                }
+            } else {
+                percentageValues[i] = {
+                    "value": result,
+                    "icon": "arrow-down",
+                    "colorIcon": "danger-light",
+                    "colorInsideIcon": "danger",
+                    "textColor": "danger"
+                }
             }
+
         }
         console.log("Valor para " + last7Hours[i] + " -> " + last7HoursValues[i] + " & " + last7HoursValues[i + 1] + " = " + percentageValues[i]);
     }
