@@ -58,31 +58,6 @@ function DAOgetAllDocuments() {
 
 }
 
-function checkWeek(time, doc) {
-
-    var originalDoc = doc;
-
-    time = getDay(time);
-    doc = getDay(doc);
-
-    if (((time - doc) < 8) && ((time - doc) > -1)) {
-        return true;
-    } else {
-
-        if ((time < 7) && (doc > 24)) {
-            if (((parseFloat(time) + parseFloat(daysInMonth(originalDoc))) - parseFloat(doc)) < 8) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-
-    }
-
-}
-
 function fillDocumentTable(table, data) {
 
     table.innerHTML = "";
