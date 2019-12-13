@@ -1,9 +1,85 @@
 var documentTableBody = $("#documentTableBody")[0];
+var movementWidgets = $("#movementWidgets")[0];
 
 function DAOgetAllDocuments() {
 
+    $('#movementWidgets').html('');
+
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/document`);
     fillDocumentTable(documentTableBody, response);
+
+    var documentsDay = 0;
+    var documentsWeek = 0;
+    var documentsMonth = 0;
+    var documentsYear = 0;
+    var documentsOnCourtyard = 0;
+    var totalData = {};
+
+    response.forEach(element => {
+
+        var time = getActualTime();
+        //var time = "06/12/2019 18:37:28";
+
+        if (element.data_entrada) {
+
+            if (element.data_saida == null) {
+                documentsOnCourtyard++;
+            }
+
+            if (checkYear(time, element.data_entrada)) {
+                documentsYear++;
+                if (checkMonth(time, element.data_entrada)) {
+                    documentsMonth++;
+                    if (checkWeek(time, element.data_entrada)) {
+                        documentsWeek++;
+                        if (checkDay(time, element.data_entrada)) {
+                            documentsDay++;
+                        }
+                    }
+                } else {
+                    if (checkWeek(time, element.data_entrada)) {
+                        documentsWeek++;
+                    };
+                }
+            }
+        }
+
+        totalData = {
+            "documentsDay": documentsDay,
+            "documentsWeek": documentsWeek,
+            "documentsMonth": documentsMonth,
+            "documentsYear": documentsYear,
+            "documentsOnCourtyard": documentsOnCourtyard
+        }
+
+    });
+
+    setMovementWidgets(movementWidgets, totalData);
+
+}
+
+function checkWeek(time, doc) {
+
+    var originalDoc = doc;
+
+    time = getDay(time);
+    doc = getDay(doc);
+
+    if (((time - doc) < 8) && ((time - doc) > -1)) {
+        return true;
+    } else {
+
+        if ((time < 7) && (doc > 24)) {
+            if (((parseFloat(time) + parseFloat(daysInMonth(originalDoc))) - parseFloat(doc)) < 8) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+    }
 
 }
 
