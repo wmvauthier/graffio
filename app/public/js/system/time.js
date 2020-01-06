@@ -13,6 +13,10 @@ function getActualTime() {
 
 }
 
+function formatDate(val) {
+    return `${val.slice(08, 10)}/${val.slice(05, 07)}/${val.slice(00, 04)}`;
+}
+
 function daysInMonth(time) {
     return new Date(getYear(time), getMonth(time), 0).getDate();
 }

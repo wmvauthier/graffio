@@ -16,6 +16,19 @@ function setDashboardSidebar(mainDashBoard) {
                                                     Dashboards
                                                 </li>
                                                 <li class="nav-item ">
+                                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                                                        data-target="#submenu-dashboard-movement" aria-controls="submenu-dashboard-movement"><i
+                                                            class="fa fa-fw fa-chart-line"></i>Movimento <span
+                                                            class="badge badge-success">6</span></a>
+                                                    <div id="submenu-dashboard-movement" class="collapse submenu">
+                                                        <ul class="nav flex-column">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" href="./dashboard_Movement_Daily">Diário</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item ">
                                                     <a class="nav-link" href="./dashboard_Courtyard">
                                                         <i class="fa fa-fw fa-car"></i>Pátios 
                                                     </a>
@@ -35,6 +48,19 @@ function setDashboardSidebar(mainDashBoard) {
                                                             </li>
                                                             <li class="nav-item">
                                                                 <a class="nav-link" href="./gerencial_User">Usuários</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item ">
+                                                    <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                                                        data-target="#submenu-report" aria-controls="submenu-report"><i
+                                                            class="fa fa-fw fa-chart-pie"></i>Relatórios <span
+                                                            class="badge badge-success">6</span></a>
+                                                    <div id="submenu-report" class="collapse submenu">
+                                                        <ul class="nav flex-column">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" href="./report_DailyMovement">Movimento Diário</a>
                                                             </li>
                                                         </ul>
                                                     </div>

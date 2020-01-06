@@ -37,6 +37,75 @@
 
                     <div id="movementWidgets" class="carousel-inner"></div>
 
+                    <!-- these js files are used for making PDF -->
+                    <script src="../assets/vendor/html2pdf/jspdf.js"></script>
+                    <script src="../assets/vendor/html2pdf/pdfFromHTML.js"></script>
+                    <script src="../assets/vendor/html2pdf/html2canvas.js"></script>
+                    <script src="../assets/vendor/html2pdf/html2canvas.min.js"></script>
+                    <script>
+                        function print() {
+                            const filename = 'ThisIsYourPDFFilename.pdf';
+
+                            html2canvas(document.querySelector("#movementWidgets"), { scale: 1 }).then(canvas => {
+                                let pdf = new jsPDF('p', 'mm', 'a4');
+                                pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 0, 0);
+                                pdf.save(filename);
+                            });
+
+                        }
+                    </script>
+                    <!-- here we call the function that makes PDF -->
+
+                </div>
+
+                <a onclick="print()">Download PDF</a>
+
+                <style>
+                    .doc {
+                        width: 210mm;
+                        height: 297mm;
+                        padding: 2%;
+                        border: 1px solid rgb(97, 97, 97);
+                    }
+
+                    .docItem {
+                        background-color: red;
+                        margin: 2mm;
+                        height: 20mm;
+                        padding: 0px;
+                    }
+                </style>
+
+                <div class="doc">
+
+                    <div class="row">
+                        <div class="docItem col-3">
+                            <h1>Nome do Cliente</h1>
+                        </div>
+                        <div class="docItem col-8">
+                            <h1>Prestação de Contas</h1>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-11">
+                            <table style="width: 100%">
+                                <tr>
+                                    <th>A</th>
+                                    <th>B</th>
+                                </tr>
+                                <tr>
+                                    <td>100</td>
+                                    <td>200</td>
+                                </tr>
+                                <tr>
+                                    <td>400</td>
+                                    <td>500</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
@@ -94,7 +163,7 @@
     window.onload = function () {
 
         renderPage();
-        setPageHeader(mainDashboardHeader, "Dashboard de Movimento");
+        setPageHeader(mainDashboardHeader, "Dashboard de Movimento - Diário");
         DAOgetAllMovement(movementWidgets);
 
     }

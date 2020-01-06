@@ -17,8 +17,8 @@ function DAOgetAllDocuments() {
 
     response.forEach(element => {
 
-        var time = getActualTime();
-        //var time = "06/12/2019 18:37:28";
+        //var time = getActualTime();
+        var time = "12/12/2019 18:37:28";
 
         if (element.data_entrada) {
 

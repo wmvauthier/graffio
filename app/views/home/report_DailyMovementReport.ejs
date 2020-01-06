@@ -1,0 +1,456 @@
+<html>
+
+<head>
+    <title>Relatório Diário - Gramatta</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrapOld.css">
+    <link href="../assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+</head>
+
+<body>
+
+    <style>
+        .docTableHOUR {
+            border: 1px solid rgb(97, 97, 97);
+            margin-bottom: 1%;
+            margin-right: 1%;
+            padding-top: 4mm;
+            padding-right: 5mm;
+            padding-left: 5mm;
+            padding-bottom: 4mm;
+            text-align: center;
+            width: 8cm;
+            float: left;
+        }
+
+        .docTableHOUR2 {
+            border: 1px solid rgb(97, 97, 97);
+            margin-bottom: 1%;
+            padding-top: 4mm;
+            padding-right: 5mm;
+            padding-left: 5mm;
+            padding-bottom: 4mm;
+            text-align: center;
+            width: 11.8cm;
+            float: left;
+        }
+
+        .widget {
+            width: 3.6cm;
+            position: relative;
+            float: left;
+        }
+    </style>
+
+    <div id="presconModel" style="border: 1px solid rgb(97, 97, 97);margin: 2mm;width: 210mm;">
+
+        <div class="row" style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
+            <div
+                style="width: 5.5cm;height: 2cm;border: 1px solid rgb(97, 97, 97);text-align: center;margin-right: 1%;float: left;">
+                <h5 style="margin-top: 15%;"><b>CARUARU SHOPPING</b></h5>
+                <h5><b></b></h5>
+            </div>
+            <div style="width: 14.3cm;height: 1cm;border: 1px solid rgb(97, 97, 97);text-align: center;float: left;">
+                <h5><b>RELATÓRIO DE PRESTAÇÃO DE CONTAS</b></h5>
+            </div>
+            <div style="width: 14.3cm;height: 1cm;border: 1px solid rgb(97, 97, 97);text-align: center;float: left;">
+                <h5><b>23 de DEZEMBRO DE 2012</b></h5>
+            </div>
+        </div>
+
+        <!-- RESUMO DE MOVIMENTO -->
+        <div class="row" style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
+            <h4><b>RESUMO DO MOVIMENTO</b></h4>
+            <div
+                style="border: 1px solid rgb(97, 97, 97);margin-bottom: 1%;padding-top: 4mm;padding-right: 5mm;padding-left: 5mm;padding-bottom: 4mm;text-align: center;">
+                <table style="width: 100%">
+                    <tr>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);"></th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);"></th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97); text-align: center;" colspan="2">Entradas
+                        </th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97); text-align: center;" colspan="2">Saídas
+                        </th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);"></th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97); text-align: center;" colspan="2">Carência
+                        </th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97); text-align: center;" colspan="2">Cortesia
+                        </th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97); text-align: center;" colspan="2">Pagantes
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: left;">Tipo de Cliente</th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">Pátio Ant.</th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">QT.</th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">%</th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">QT.</th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">%</th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">Cancel.</th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">QT.</th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">%</th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">QT.</th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">%</th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">QT.</th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">%</th>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">Afiliados</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">Autorizados</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">Mensalistas</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">Horistas</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: left;"><b>Total</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <div class="widget" style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
+                <h6><b>TOTAL DE </br>ENTRADAS</b></h6>
+                <div style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
+                    <b>85 Ent.</b>
+                </div>
+            </div>
+            <div class="widget" style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
+                <h6><b>MAIOR Nº DE ENTRADAS</b></h6>
+                <div style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
+                    <b>12:00PM</b>
+                </div>
+            </div>
+            <div class="widget" style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
+                <h6><b>MAIOR Nº DE SAÍDAS</b></h6>
+                <div style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
+                    <b>12:00PM</b>
+                </div>
+            </div>
+            <div class="widget" style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
+                <h6><b>ENT. / SAI. POR HORA</b></h6>
+                <div style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
+                    <b>12 Ent.</b>
+                </div>
+            </div>
+            <div class="widget" style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
+                <div>
+                    <h6><b>PERMANÊNCIA </br>MÉDIA</b></h6>
+                </div>
+                <div style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
+                    <b>65 min</b>
+                </div>
+            </div>
+
+            <div class="docTableHOUR">
+                <table style="width: 100%">
+                    <tr>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97); text-align: center;" colspan="5">Valores e
+                            Porcentagens</th>
+                    </tr>
+                    <tr>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">Horário</th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">Ent.</th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">%</th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">Sai.</th>
+                        <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">%</th>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">23 PM</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">22 PM</td>
+                        <td style="text-align: center;">20</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">21 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">20 PM</td>
+                        <td style="text-align: center;">21</td>
+                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;">01</td>
+                        <td style="text-align: center;">0%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="docTableHOUR2">
+
+                <div id="canvas" style="width: 100%; height: 220px;display: inline-block;"></div>
+                <div id="canvas2" style="width: 100%; height: 220px;display: inline-block;"></div>
+
+            </div>
+
+        </div>
+
+        </br>
+
+    </div>
+
+    <button onclick="print()">Imprimir</button>
+    <button onclick="window.history.back()">Voltar</button>
+
+</body>
+
+<!-- Graffio JS que contém a Biblioteca de Tempo-->
+<script src="js/system/time.js"></script>
+
+<!-- Graffio JS que contém o Business JS-->
+<script src="js/gerencial/report/report_DailyMovementReport.js"></script>
+
+<!-- Graffio JS que contém os Métodos de Requisição-->
+<script src="js/system/httpRequisitions.js"></script>
+
+<!-- Graffio JS que contém a Configuração do Servidor-->
+<script src="js/system/serverConfig.js"></script>
+
+<script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+<script src="../assets/vendor/html2pdf/printThis.js"></script>
+
+<script>
+
+    window.onload = function load() {
+
+        var choosenDay = localStorage.getItem('choosenDay');
+        localStorage.setItem('choosenDay', '');
+
+        DAOgetDataToReport(choosenDay);
+
+        if (confirm("Deseja imprimir o Relatório?")) {
+            print();
+        }
+
+    }
+
+    function print() {
+        $('#presconModel').printThis({
+            importCSS: true,
+            importStyle: true,
+            loadCSS: ['../assets/vendor/bootstrap/css/bootstrapOld.css',
+                '../assets/vendor/fonts/circular-std/style.css',
+                '../assets/vendor/fonts/fontawesome/css/fontawesome-all.css'
+            ]
+        });
+    }
+
+</script>
+
+</html>

@@ -1,19 +1,16 @@
 function DAOgetAllMovement(movementWidgets) {
 
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/document`);
-    console.log(response);
-    //var getValor
 
     //var time = getActualTime();
-    var time = "12/12/2019 17:37:28";
-    var actHour = getHour(time);
+    var time = "12/12/2019 18:37:28";
 
-    var last7Hours = [actHour, actHour - 1, actHour - 2, actHour - 3, actHour - 4, actHour - 5, actHour - 6, actHour - 7, actHour - 8];
-    var last7HoursValues = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     var entrancesPerDay = ["00 AM", "01 AM", "02 AM", "03 AM", "04 AM", "05 AM", "06 AM", "07 AM", "08 AM", "09 AM", "10 AM", "11 AM",
-        "12 PM", "13 PM", "14 PM", "15 PM", "16 PM", "17 PM", "18 PM", "19 PM", "20 PM", "21 PM", "22 PM", "23 PM"]
+        "12 PM", "13 PM", "14 PM", "15 PM", "16 PM", "17 PM", "18 PM", "19 PM", "20 PM", "21 PM", "22 PM", "23 PM"];
     var entrancesPerDayValues = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    var percentageValues = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    var percentageValues = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    var averagePermTime = 0;
+    var countAveragePermTime = 0;
 
     response.forEach(element => {
         if (element.data_entrada) {
@@ -23,15 +20,21 @@ function DAOgetAllMovement(movementWidgets) {
                     if (checkWeek(time, element.data_entrada)) {
                         if (checkDay(time, element.data_entrada)) {
 
-                            var dif = getHour(time) - getHour(element.data_entrada);
                             var h = getHour(element.data_entrada);
-
-                            if (dif < 9) {
-                                last7HoursValues[dif]++;
-                            }
 
                             if ((h > -1) && (h < 24)) {
                                 entrancesPerDayValues[h]++;
+                            }
+
+                            if (element.data_saida) {
+
+                                var hEnt = getHour(element.data_entrada) * 60;
+                                var mEnt = getMinute(element.data_entrada);
+                                var hSai = getHour(element.data_saida) * 60;
+                                var mSai = getMinute(element.data_saida);
+
+                                averagePermTime = parseFloat(hSai) + parseFloat(mSai) - hEnt - mEnt;
+                                countAveragePermTime++;
                             }
 
                         }
@@ -41,21 +44,47 @@ function DAOgetAllMovement(movementWidgets) {
         }
     });
 
-    console.log(last7HoursValues);
+    averagePermTime = (averagePermTime / countAveragePermTime).toFixed(0);
+    //console.log(entrancesPerDayValues);
 
     //Calcular Percentagens para Exibicao
-    for (var i = 1; i < percentageValues.length - 1; i++) {
-        if ((last7HoursValues[i] == last7HoursValues[i + 1])) {
+    for (var i = 0; i < entrancesPerDayValues.length; i++) {
+
+        if ((entrancesPerDayValues[i - 1] == entrancesPerDayValues[i])) {
             percentageValues[i] = {
-                "value": (0).toFixed(0),
+                "percentage": (0).toFixed(0),
+                "hour": entrancesPerDay[i],
+                "entrances": formatEntrances(entrancesPerDayValues[i]),
                 "icon": "minus",
                 "colorIcon": "dark",
                 "colorInsideIcon": "white",
                 "textColor": "black"
             }
-        } else if (last7HoursValues[i + 1] == 0) {
+        } else if ((entrancesPerDayValues[i - 1] == 0) && !(entrancesPerDayValues[i] == 0)) {
             percentageValues[i] = {
-                "value": (last7HoursValues[i] * 100).toFixed(0),
+                "percentage": (entrancesPerDayValues[i] * 100).toFixed(0),
+                "hour": entrancesPerDay[i],
+                "entrances": formatEntrances(entrancesPerDayValues[i]),
+                "icon": "arrow-up",
+                "colorIcon": "success-light",
+                "colorInsideIcon": "success",
+                "textColor": "success"
+            }
+        } else if ((entrancesPerDayValues[i - 1] == undefined) && (entrancesPerDayValues[i] == 0)) {
+            percentageValues[i] = {
+                "percentage": (0).toFixed(0),
+                "hour": entrancesPerDay[i],
+                "entrances": formatEntrances(entrancesPerDayValues[i]),
+                "icon": "minus",
+                "colorIcon": "dark",
+                "colorInsideIcon": "white",
+                "textColor": "black"
+            }
+        } else if ((entrancesPerDayValues[i - 1] == undefined) && !(entrancesPerDayValues[i] == 0)) {
+            percentageValues[i] = {
+                "percentage": (entrancesPerDayValues[i] * 100).toFixed(0),
+                "hour": entrancesPerDay[i],
+                "entrances": formatEntrances(entrancesPerDayValues[i]),
                 "icon": "arrow-up",
                 "colorIcon": "success-light",
                 "colorInsideIcon": "success",
@@ -63,11 +92,13 @@ function DAOgetAllMovement(movementWidgets) {
             }
         } else {
 
-            var result = (((last7HoursValues[i] - last7HoursValues[i + 1]) / last7HoursValues[i + 1]) * 100).toFixed(0);
+            var result = (((entrancesPerDayValues[i] - entrancesPerDayValues[i - 1]) / entrancesPerDayValues[i - 1]) * 100).toFixed(0);
 
             if (result > 0) {
                 percentageValues[i] = {
-                    "value": result,
+                    "percentage": result,
+                    "hour": entrancesPerDay[i],
+                    "entrances": formatEntrances(entrancesPerDayValues[i]),
                     "icon": "arrow-up",
                     "colorIcon": "success-light",
                     "colorInsideIcon": "success",
@@ -75,7 +106,9 @@ function DAOgetAllMovement(movementWidgets) {
                 }
             } else {
                 percentageValues[i] = {
-                    "value": result,
+                    "percentage": result,
+                    "hour": entrancesPerDay[i],
+                    "entrances": formatEntrances(entrancesPerDayValues[i]),
                     "icon": "arrow-down",
                     "colorIcon": "danger-light",
                     "colorInsideIcon": "danger",
@@ -84,39 +117,25 @@ function DAOgetAllMovement(movementWidgets) {
             }
 
         }
-        console.log("Valor para " + last7Hours[i] + " -> " + last7HoursValues[i] + " & " + last7HoursValues[i + 1] + " = " + percentageValues[i]);
+
     }
-
-    console.log(percentageValues);
-
-    //Formatar Horas para Exibicao
-    for (var i = 0; i < last7Hours.length; i++) {
-        if (last7Hours[i] > 11) {
-            last7Hours[i] = last7Hours[i].toString() + ":00 PM";
-        } else {
-            last7Hours[i] = last7Hours[i].toString() + ":00 AM";
-        }
-    }
-
-    //Formatar Entradas para Exibicao
-    for (var i = 0; i < last7HoursValues.length; i++) {
-        if (last7HoursValues[i] > 1) {
-            last7HoursValues[i] = ("0" + last7HoursValues[i]).slice(-2).toString() + " entradas";
-        } else if (last7HoursValues[i] == 1) {
-            last7HoursValues[i] = ("0" + last7HoursValues[i]).slice(-2).toString() + " entrada";
-        } else if (last7HoursValues[i] == 0) {
-            last7HoursValues[i] = "Nenhuma entrada";
-        }
-    }
-
-    //console.log(last7Hours);
-    //console.log(last7HoursValues);
-    //console.log(entrancesPerDay);
-    //console.log(entrancesPerDayValues);
 
     //Definir os Widgets e a Dashboard em si
 
-    setMovementWidgets(last7Hours, last7HoursValues, percentageValues);
+    setMovementWidgets(percentageValues, entrancesPerDayValues, entrancesPerDay, averagePermTime);
     setMovementChart(entrancesPerDay, entrancesPerDayValues);
+
+}
+
+//Formatar Entradas para Exibicao
+function formatEntrances(hour) {
+
+    if (hour > 1) {
+        return ("0" + hour).slice(-2).toString() + " entradas";
+    } else if (hour == 1) {
+        return ("0" + hour).slice(-2).toString() + " entrada";
+    } else if (hour == 0) {
+        return "Nenhuma entrada";
+    }
 
 }

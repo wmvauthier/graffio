@@ -18,6 +18,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/no-more-tables.css">
+    <link rel="stylesheet" type="text/css" href="css/report_DailyMovement.css">
 
 </head>
 
@@ -33,10 +34,20 @@
 
                 <div id="mainDashboardHeader"></div>
 
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-
-                    <div id="movementWidgets" class="carousel-inner"></div>
-
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Insira a data do Relatório desejado:
+                                    <button id="btnPreReportMovementDaily"
+                                        class="btn btn-rounded btn-success floatingRightButton">Gerar Relatório
+                                    </button>
+                                    <input id="choosenDay" type="date" class=" btn
+                                        btn-rounded floatingRightButton validationInput_Date" />
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -54,11 +65,7 @@
     <script src="../assets/vendor/multi-select/js/jquery.multi-select.js"></script>
     <script src="../assets/libs/js/main-js.js"></script>
 
-    <script src="assets/vendor/charts/chartist-bundle/chartist.min.js"></script>
-    <script src="assets/vendor/charts/sparkline/jquery.sparkline.js"></script>
-    <script src="assets/vendor/charts/morris-bundle/raphael.min.js"></script>
-    <script src="assets/vendor/charts/morris-bundle/morris.js"></script>
-    <script src="assets/libs/js/dashboard-ecommerce.js"></script>
+    <script src="../assets/vendor/html2pdf/printThis.js"></script>
 
     <!-- Graffio JS que contém os HTML Sections-->
     <script src="js/htmlSections/dashboardHeader.js"></script>
@@ -66,11 +73,12 @@
     <script src="js/htmlSections/dashboardMovementWidgets.js"></script>
     <script src="js/htmlSections/header.js"></script>
 
+    <!-- Graffio JS que contém os Input Validations-->
+    <script src="js/system/validationInput.js"></script>
+    <script src="js/jquery.mask.js"></script>
+
     <!-- Graffio JS que contém a Biblioteca de Tempo-->
     <script src="js/system/time.js"></script>
-
-    <!-- Graffio JS que contém o BusinessJS-->
-    <script src="js/dashboards/dashboard_Movement.js"></script>
 
     <!-- Graffio JS que contém a Autenticação-->
     <script src="js/system/authenticationLogout.js"></script>
@@ -94,8 +102,20 @@
     window.onload = function () {
 
         renderPage();
-        setPageHeader(mainDashboardHeader, "Dashboard de Movimento");
-        DAOgetAllMovement(movementWidgets);
+        setPageHeader(mainDashboardHeader, "Relatório de Movimento - Diário");
+
+        $("#btnPreReportMovementDaily").click(function () {
+
+            var choosenDay = formatDate($("#choosenDay").val());
+
+            if (choosenDay !== '//') {
+                localStorage.setItem('choosenDay', choosenDay);
+                window.location = './report_DailyMovementReport';
+            } else {
+                alert("Selecione uma Data para o Relatório!")
+            }
+
+        });
 
     }
 
