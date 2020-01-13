@@ -49,14 +49,14 @@
         <div class="row" style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
             <div
                 style="width: 5.5cm;height: 2cm;border: 1px solid rgb(97, 97, 97);text-align: center;margin-right: 1%;float: left;">
-                <h5 style="margin-top: 15%;"><b>CARUARU SHOPPING</b></h5>
+                <h5 style="margin-top: 15%;"><b id="clientName">-</b></h5>
                 <h5><b></b></h5>
             </div>
             <div style="width: 14.3cm;height: 1cm;border: 1px solid rgb(97, 97, 97);text-align: center;float: left;">
-                <h5><b>RELATÓRIO DE PRESTAÇÃO DE CONTAS</b></h5>
+                <h5><b>RELATÓRIO DE MOVIMENTO DIÁRIO</b></h5>
             </div>
             <div style="width: 14.3cm;height: 1cm;border: 1px solid rgb(97, 97, 97);text-align: center;float: left;">
-                <h5><b>23 de DEZEMBRO DE 2012</b></h5>
+                <h5><b id="choosenDay">-</b></h5>
             </div>
         </div>
 
@@ -97,79 +97,92 @@
                         <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">%</th>
                     </tr>
                     <tr>
-                        <td style="text-align: left;">Afiliados</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: left;" id="clientType01">0</td>
+                        <td style="text-align: center;" id="clientType01OldCourtyard">0</td>
+                        <td style="text-align: center;" id="clientType01Entrances">0</td>
+                        <td style="text-align: center;" id="clientType01EntrancesPercent">0%</td>
+                        <td style="text-align: center;" id="clientType01Exits">0</td>
+                        <td style="text-align: center;" id="clientType01ExitsPercent">0%</td>
+                        <td style="text-align: center;" id="clientType01CancelCourtyard">0</td>
+                        <td style="text-align: center;" id="clientType01Lack">0</td>
+                        <td style="text-align: center;" id="clientType01LackPercent">0%</td>
+                        <td style="text-align: center;" id="clientType01Courtesy">0</td>
+                        <td style="text-align: center;" id="clientType01CourtesyPercent">0%</td>
+                        <td style="text-align: center;" id="clientType01Pay">0</td>
+                        <td style="text-align: center;" id="clientType01PayPercent">0%</td>
                     </tr>
                     <tr>
-                        <td style="text-align: left;">Autorizados</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: left;" id="clientType02">0</td>
+                        <td style="text-align: center;" id="clientType02OldCourtyard">0</td>
+                        <td style="text-align: center;" id="clientType02Entrances">0</td>
+                        <td style="text-align: center;" id="clientType02EntrancesPercent">0%</td>
+                        <td style="text-align: center;" id="clientType02Exits">0</td>
+                        <td style="text-align: center;" id="clientType02ExitsPercent">0%</td>
+                        <td style="text-align: center;" id="clientType02CancelCourtyard">0</td>
+                        <td style="text-align: center;" id="clientType02Lack">0</td>
+                        <td style="text-align: center;" id="clientType02LackPercent">0%</td>
+                        <td style="text-align: center;" id="clientType02Courtesy">0</td>
+                        <td style="text-align: center;" id="clientType02CourtesyPercent">0%</td>
+                        <td style="text-align: center;" id="clientType02Pay">0</td>
+                        <td style="text-align: center;" id="clientType02PayPercent">0%</td>
                     </tr>
                     <tr>
-                        <td style="text-align: left;">Mensalistas</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: left;" id="clientType03">0</td>
+                        <td style="text-align: center;" id="clientType03OldCourtyard">0</td>
+                        <td style="text-align: center;" id="clientType03Entrances">0</td>
+                        <td style="text-align: center;" id="clientType03EntrancesPercent">0%</td>
+                        <td style="text-align: center;" id="clientType03Exits">0</td>
+                        <td style="text-align: center;" id="clientType03ExitsPercent">0%</td>
+                        <td style="text-align: center;" id="clientType03CancelCourtyard">0</td>
+                        <td style="text-align: center;" id="clientType03Lack">0</td>
+                        <td style="text-align: center;" id="clientType03LackPercent">0%</td>
+                        <td style="text-align: center;" id="clientType03Courtesy">0</td>
+                        <td style="text-align: center;" id="clientType03CourtesyPercent">0%</td>
+                        <td style="text-align: center;" id="clientType03Pay">0</td>
+                        <td style="text-align: center;" id="clientType03PayPercent">0%</td>
                     </tr>
                     <tr>
-                        <td style="text-align: left;">Horistas</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">0</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: left;" id="clientType04">0</td>
+                        <td style="text-align: center;" id="clientType04OldCourtyard">0</td>
+                        <td style="text-align: center;" id="clientType04Entrances">0</td>
+                        <td style="text-align: center;" id="clientType04EntrancesPercent">0%</td>
+                        <td style="text-align: center;" id="clientType04Exits">0</td>
+                        <td style="text-align: center;" id="clientType04ExitsPercent">0%</td>
+                        <td style="text-align: center;" id="clientType04CancelCourtyard">0</td>
+                        <td style="text-align: center;" id="clientType04Lack">0</td>
+                        <td style="text-align: center;" id="clientType04LackPercent">0%</td>
+                        <td style="text-align: center;" id="clientType04Courtesy">0</td>
+                        <td style="text-align: center;" id="clientType04CourtesyPercent">0%</td>
+                        <td style="text-align: center;" id="clientType04Pay">0</td>
+                        <td style="text-align: center;" id="clientType04PayPercent">0%</td>
                     </tr>
                     <tr>
-                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: left;"><b>Total</b></td>
-                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
-                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
-                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
-                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
-                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
-                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
-                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
-                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
-                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
-                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
-                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
-                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b>0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: left;"><b id="clientType05">0</b>
+                        </td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b
+                                id="clientType05OldCourtyard">0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b
+                                id="clientType05Entrances">0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b
+                                id="clientType05EntrancesPercent">0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b
+                                id="clientType05Exits">0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b
+                                id="clientType05ExitsPercent">0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b
+                                id="clientType05CancelCourtyard">0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b
+                                id="clientType05Lack">0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b
+                                id="clientType05LackPercent">0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b
+                                id="clientType05Courtesy">0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b
+                                id="clientType05CourtesyPercent">0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b
+                                id="clientType05Pay">0</b></td>
+                        <td style="border-top: 1px solid rgb(97, 97, 97);text-align: center;"><b
+                                id="clientType05PayPercent">0</b></td>
                     </tr>
                 </table>
 
@@ -178,25 +191,25 @@
             <div class="widget" style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
                 <h6><b>TOTAL DE </br>ENTRADAS</b></h6>
                 <div style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
-                    <b>85 Ent.</b>
+                    <b id="secondWidget01">-</b>
                 </div>
             </div>
             <div class="widget" style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
                 <h6><b>MAIOR Nº DE ENTRADAS</b></h6>
                 <div style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
-                    <b>12:00PM</b>
+                    <b id="secondWidget02">-</b>
                 </div>
             </div>
             <div class="widget" style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
                 <h6><b>MAIOR Nº DE SAÍDAS</b></h6>
                 <div style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
-                    <b>12:00PM</b>
+                    <b id="secondWidget03">-</b>
                 </div>
             </div>
             <div class="widget" style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
                 <h6><b>ENT. / SAI. POR HORA</b></h6>
                 <div style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
-                    <b>12 Ent.</b>
+                    <b id="secondWidget04">-</b>
                 </div>
             </div>
             <div class="widget" style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
@@ -204,7 +217,7 @@
                     <h6><b>PERMANÊNCIA </br>MÉDIA</b></h6>
                 </div>
                 <div style="border: 1px solid rgb(97, 97, 97);margin: 2mm;padding: 2mm;text-align: center;">
-                    <b>65 min</b>
+                    <b id="secondWidget05">-</b>
                 </div>
             </div>
 
@@ -222,172 +235,172 @@
                         <th style="border-bottom: 1px solid rgb(97, 97, 97);text-align: center;">%</th>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">23 PM</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget23description">-</td>
+                        <td style="text-align: center;" id="thirdWidget23entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget23entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget23exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget23exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">22 PM</td>
-                        <td style="text-align: center;">20</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget22description">-</td>
+                        <td style="text-align: center;" id="thirdWidget22entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget22entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget22exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget22exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">21 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget21description">-</td>
+                        <td style="text-align: center;" id="thirdWidget21entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget21entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget21exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget21exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget20description">-</td>
+                        <td style="text-align: center;" id="thirdWidget20entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget20entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget20exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget20exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget19description">-</td>
+                        <td style="text-align: center;" id="thirdWidget19entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget19entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget19exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget19exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget18description">-</td>
+                        <td style="text-align: center;" id="thirdWidget18entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget18entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget18exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget18exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget17description">-</td>
+                        <td style="text-align: center;" id="thirdWidget17entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget17entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget17exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget17exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget16description">-</td>
+                        <td style="text-align: center;" id="thirdWidget16entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget16entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget16exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget16exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget15description">-</td>
+                        <td style="text-align: center;" id="thirdWidget15entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget15entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget15exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget15exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget14description">-</td>
+                        <td style="text-align: center;" id="thirdWidget14entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget14entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget14exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget14exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget13description">-</td>
+                        <td style="text-align: center;" id="thirdWidget13entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget13entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget13exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget13exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget12description">-</td>
+                        <td style="text-align: center;" id="thirdWidget12entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget12entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget12exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget12exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget11description">-</td>
+                        <td style="text-align: center;" id="thirdWidget11entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget11entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget11exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget11exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget10description">-</td>
+                        <td style="text-align: center;" id="thirdWidget10entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget10entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget10exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget10exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget09description">-</td>
+                        <td style="text-align: center;" id="thirdWidget09entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget09entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget09exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget09exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget08description">-</td>
+                        <td style="text-align: center;" id="thirdWidget08entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget08entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget08exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget08exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget07description">-</td>
+                        <td style="text-align: center;" id="thirdWidget07entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget07entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget07exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget07exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget06description">-</td>
+                        <td style="text-align: center;" id="thirdWidget06entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget06entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget06exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget06exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget05description">-</td>
+                        <td style="text-align: center;" id="thirdWidget05entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget05entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget05exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget05exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget04description">-</td>
+                        <td style="text-align: center;" id="thirdWidget04entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget04entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget04exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget04exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget03description">-</td>
+                        <td style="text-align: center;" id="thirdWidget03entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget03entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget03exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget03exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget02description">-</td>
+                        <td style="text-align: center;" id="thirdWidget02entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget02entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget02exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget02exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget01description">-</td>
+                        <td style="text-align: center;" id="thirdWidget01entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget01entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget01exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget01exitsPercent">-</td>
                     </tr>
                     <tr>
-                        <td style="text-align: center;">20 PM</td>
-                        <td style="text-align: center;">21</td>
-                        <td style="text-align: center;">0%</td>
-                        <td style="text-align: center;">01</td>
-                        <td style="text-align: center;">0%</td>
+                        <td style="text-align: center;" id="thirdWidget00description">-</td>
+                        <td style="text-align: center;" id="thirdWidget00entrances">-</td>
+                        <td style="text-align: center;" id="thirdWidget00entrancesPercent">-</td>
+                        <td style="text-align: center;" id="thirdWidget00exits">-</td>
+                        <td style="text-align: center;" id="thirdWidget00exitsPercent">-</td>
                     </tr>
                 </table>
             </div>
@@ -410,6 +423,8 @@
 
 </body>
 
+<script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+
 <!-- Graffio JS que contém a Biblioteca de Tempo-->
 <script src="js/system/time.js"></script>
 
@@ -424,6 +439,8 @@
 
 <script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
 <script src="../assets/vendor/html2pdf/printThis.js"></script>
+
+<script>if (window.module) module = window.module;</script>
 
 <script>
 

@@ -2,6 +2,8 @@ function DAOgetDataToReport(choosenTime) {
 
     var response = httpGet(`http://${IP_DO_SERVIDOR}:3000/document`);
 
+    var client = httpGet(`http://${IP_DO_SERVIDOR}:3000/configParking`);
+
     //var time = getActualTime();
     var time = choosenTime + " 23:59:59";
 
@@ -230,7 +232,7 @@ function DAOgetDataToReport(choosenTime) {
 
     var firstReportMovementWidget = [0, 0, 0, 0];
     var secondReportMovementWidget = [0, 0, 0, 0, 0];
-    var thirdReportMovementWidget = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    var thirdReportMovementWidget = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
     // PRIMEIRO WIDGET
     for (var i = 0; i < clientTypes.length; i++) {
@@ -248,7 +250,7 @@ function DAOgetDataToReport(choosenTime) {
     }
 
     // SEGUNDO WIDGET
-    secondReportMovementWidget[0] = countTotal(entrancesPerDayValues);
+    secondReportMovementWidget[0] = countTotal(entrancesPerDayValues) + " Ent.";
     secondReportMovementWidget[1] = entrancesPerDay[returnIndexMax(entrancesPerDayValues)];
     secondReportMovementWidget[2] = entrancesPerDay[returnIndexMax(exitsPerDayValues)];
     secondReportMovementWidget[3] = divAndCheck(countTotal(entrancesPerDayValues), 24).toFixed(2) + " | " + divAndCheck(countTotal(exitsPerDayValues), 24).toFixed(2);
@@ -268,6 +270,256 @@ function DAOgetDataToReport(choosenTime) {
 
     }
 
+    if (firstReportMovementWidget) {
+
+        $("#clientType01").html(firstReportMovementWidget[0].description);
+        $("#clientType02").html(firstReportMovementWidget[1].description);
+        $("#clientType03").html(firstReportMovementWidget[2].description);
+        $("#clientType04").html(firstReportMovementWidget[3].description);
+        $("#clientType05").html("Total");
+
+        $("#clientType01OldCourtyard").html("-");
+        $("#clientType02OldCourtyard").html("-");
+        $("#clientType03OldCourtyard").html("-");
+        $("#clientType04OldCourtyard").html("-");
+        $("#clientType05OldCourtyard").html("-");
+
+        $("#clientType01Entrances").html(firstReportMovementWidget[0].entrances);
+        $("#clientType02Entrances").html(firstReportMovementWidget[1].entrances);
+        $("#clientType03Entrances").html(firstReportMovementWidget[2].entrances);
+        $("#clientType04Entrances").html(firstReportMovementWidget[3].entrances);
+        $("#clientType05Entrances").html(countTotal(entrancesPerDayValues));
+
+        $("#clientType01EntrancesPercent").html(firstReportMovementWidget[0].percentEntrances);
+        $("#clientType02EntrancesPercent").html(firstReportMovementWidget[1].percentEntrances);
+        $("#clientType03EntrancesPercent").html(firstReportMovementWidget[2].percentEntrances);
+        $("#clientType04EntrancesPercent").html(firstReportMovementWidget[3].percentEntrances);
+        $("#clientType05EntrancesPercent").html("-");
+
+        $("#clientType01Exits").html(firstReportMovementWidget[0].exits);
+        $("#clientType02Exits").html(firstReportMovementWidget[1].exits);
+        $("#clientType03Exits").html(firstReportMovementWidget[2].exits);
+        $("#clientType04Exits").html(firstReportMovementWidget[3].exits);
+        $("#clientType05Exits").html(countTotal(exitsPerDayValues));
+
+        $("#clientType01ExitsPercent").html(firstReportMovementWidget[0].percentExits);
+        $("#clientType02ExitsPercent").html(firstReportMovementWidget[1].percentExits);
+        $("#clientType03ExitsPercent").html(firstReportMovementWidget[2].percentExits);
+        $("#clientType04ExitsPercent").html(firstReportMovementWidget[3].percentExits);
+        $("#clientType05ExitsPercent").html("-");
+
+        $("#clientType01CancelCourtyard").html("-");
+        $("#clientType02CancelCourtyard").html("-");
+        $("#clientType03CancelCourtyard").html("-");
+        $("#clientType04CancelCourtyard").html("-");
+        $("#clientType05CancelCourtyard").html("-");
+
+        $("#clientType01Lack").html("-");
+        $("#clientType02Lack").html("-");
+        $("#clientType03Lack").html("-");
+        $("#clientType04Lack").html("-");
+        $("#clientType05Lack").html("-");
+
+        $("#clientType01LackPercent").html("-");
+        $("#clientType02LackPercent").html("-");
+        $("#clientType03LackPercent").html("-");
+        $("#clientType04LackPercent").html("-");
+        $("#clientType05LackPercent").html("-");
+
+        $("#clientType01Courtesy").html("-");
+        $("#clientType02Courtesy").html("-");
+        $("#clientType03Courtesy").html("-");
+        $("#clientType04Courtesy").html("-");
+        $("#clientType05Courtesy").html("-");
+
+        $("#clientType01CourtesyPercent").html("-");
+        $("#clientType02CourtesyPercent").html("-");
+        $("#clientType03CourtesyPercent").html("-");
+        $("#clientType04CourtesyPercent").html("-");
+        $("#clientType05CourtesyPercent").html("-");
+
+        $("#clientType01Pay").html("-");
+        $("#clientType02Pay").html("-");
+        $("#clientType03Pay").html("-");
+        $("#clientType04Pay").html("-");
+        $("#clientType05Pay").html("-");
+
+        $("#clientType01PayPercent").html("-");
+        $("#clientType02PayPercent").html("-");
+        $("#clientType03PayPercent").html("-");
+        $("#clientType04PayPercent").html("-");
+        $("#clientType05PayPercent").html("-");
+
+    }
+
+    if (secondReportMovementWidget) {
+
+        $("#secondWidget01").html(secondReportMovementWidget[0]);
+        $("#secondWidget02").html(secondReportMovementWidget[1]);
+        $("#secondWidget03").html(secondReportMovementWidget[2]);
+        $("#secondWidget04").html(secondReportMovementWidget[3]);
+        $("#secondWidget05").html(secondReportMovementWidget[4]);
+
+    }
+
+    if (thirdReportMovementWidget) {
+
+        $("#thirdWidget23description").html(thirdReportMovementWidget[23].descriptionEntrances);
+        $("#thirdWidget23entrances").html(thirdReportMovementWidget[23].entrances);
+        $("#thirdWidget23entrancesPercent").html(thirdReportMovementWidget[23].percentEntrances + "%");
+        $("#thirdWidget23exits").html(thirdReportMovementWidget[23].exits);
+        $("#thirdWidget23exitsPercent").html(thirdReportMovementWidget[23].percentExits + "%");
+
+        $("#thirdWidget22description").html(thirdReportMovementWidget[22].descriptionEntrances);
+        $("#thirdWidget22entrances").html(thirdReportMovementWidget[22].entrances);
+        $("#thirdWidget22entrancesPercent").html(thirdReportMovementWidget[22].percentEntrances + "%");
+        $("#thirdWidget22exits").html(thirdReportMovementWidget[22].exits);
+        $("#thirdWidget22exitsPercent").html(thirdReportMovementWidget[22].percentExits + "%");
+
+        $("#thirdWidget21description").html(thirdReportMovementWidget[21].descriptionEntrances);
+        $("#thirdWidget21entrances").html(thirdReportMovementWidget[21].entrances);
+        $("#thirdWidget21entrancesPercent").html(thirdReportMovementWidget[21].percentEntrances + "%");
+        $("#thirdWidget21exits").html(thirdReportMovementWidget[21].exits);
+        $("#thirdWidget21exitsPercent").html(thirdReportMovementWidget[21].percentExits + "%");
+
+        $("#thirdWidget20description").html(thirdReportMovementWidget[20].descriptionEntrances);
+        $("#thirdWidget20entrances").html(thirdReportMovementWidget[20].entrances);
+        $("#thirdWidget20entrancesPercent").html(thirdReportMovementWidget[20].percentEntrances + "%");
+        $("#thirdWidget20exits").html(thirdReportMovementWidget[20].exits);
+        $("#thirdWidget20exitsPercent").html(thirdReportMovementWidget[20].percentExits + "%");
+
+        $("#thirdWidget19description").html(thirdReportMovementWidget[19].descriptionEntrances);
+        $("#thirdWidget19entrances").html(thirdReportMovementWidget[19].entrances);
+        $("#thirdWidget19entrancesPercent").html(thirdReportMovementWidget[19].percentEntrances + "%");
+        $("#thirdWidget19exits").html(thirdReportMovementWidget[19].exits);
+        $("#thirdWidget19exitsPercent").html(thirdReportMovementWidget[19].percentExits + "%");
+
+        $("#thirdWidget18description").html(thirdReportMovementWidget[18].descriptionEntrances);
+        $("#thirdWidget18entrances").html(thirdReportMovementWidget[18].entrances);
+        $("#thirdWidget18entrancesPercent").html(thirdReportMovementWidget[18].percentEntrances + "%");
+        $("#thirdWidget18exits").html(thirdReportMovementWidget[18].exits);
+        $("#thirdWidget18exitsPercent").html(thirdReportMovementWidget[18].percentExits + "%");
+
+        $("#thirdWidget17description").html(thirdReportMovementWidget[17].descriptionEntrances);
+        $("#thirdWidget17entrances").html(thirdReportMovementWidget[17].entrances);
+        $("#thirdWidget17entrancesPercent").html(thirdReportMovementWidget[17].percentEntrances + "%");
+        $("#thirdWidget17exits").html(thirdReportMovementWidget[17].exits);
+        $("#thirdWidget17exitsPercent").html(thirdReportMovementWidget[17].percentExits + "%");
+
+        $("#thirdWidget16description").html(thirdReportMovementWidget[16].descriptionEntrances);
+        $("#thirdWidget16entrances").html(thirdReportMovementWidget[16].entrances);
+        $("#thirdWidget16entrancesPercent").html(thirdReportMovementWidget[16].percentEntrances + "%");
+        $("#thirdWidget16exits").html(thirdReportMovementWidget[16].exits);
+        $("#thirdWidget16exitsPercent").html(thirdReportMovementWidget[16].percentExits + "%");
+
+        $("#thirdWidget15description").html(thirdReportMovementWidget[15].descriptionEntrances);
+        $("#thirdWidget15entrances").html(thirdReportMovementWidget[15].entrances);
+        $("#thirdWidget15entrancesPercent").html(thirdReportMovementWidget[15].percentEntrances + "%");
+        $("#thirdWidget15exits").html(thirdReportMovementWidget[15].exits);
+        $("#thirdWidget15exitsPercent").html(thirdReportMovementWidget[15].percentExits + "%");
+
+        $("#thirdWidget14description").html(thirdReportMovementWidget[14].descriptionEntrances);
+        $("#thirdWidget14entrances").html(thirdReportMovementWidget[14].entrances);
+        $("#thirdWidget14entrancesPercent").html(thirdReportMovementWidget[14].percentEntrances + "%");
+        $("#thirdWidget14exits").html(thirdReportMovementWidget[14].exits);
+        $("#thirdWidget14exitsPercent").html(thirdReportMovementWidget[14].percentExits + "%");
+
+        $("#thirdWidget13description").html(thirdReportMovementWidget[13].descriptionEntrances);
+        $("#thirdWidget13entrances").html(thirdReportMovementWidget[13].entrances);
+        $("#thirdWidget13entrancesPercent").html(thirdReportMovementWidget[13].percentEntrances + "%");
+        $("#thirdWidget13exits").html(thirdReportMovementWidget[13].exits);
+        $("#thirdWidget13exitsPercent").html(thirdReportMovementWidget[13].percentExits + "%");
+
+        $("#thirdWidget12description").html(thirdReportMovementWidget[12].descriptionEntrances);
+        $("#thirdWidget12entrances").html(thirdReportMovementWidget[12].entrances);
+        $("#thirdWidget12entrancesPercent").html(thirdReportMovementWidget[12].percentEntrances + "%");
+        $("#thirdWidget12exits").html(thirdReportMovementWidget[12].exits);
+        $("#thirdWidget12exitsPercent").html(thirdReportMovementWidget[12].percentExits + "%");
+
+        $("#thirdWidget11description").html(thirdReportMovementWidget[11].descriptionEntrances);
+        $("#thirdWidget11entrances").html(thirdReportMovementWidget[11].entrances);
+        $("#thirdWidget11entrancesPercent").html(thirdReportMovementWidget[11].percentEntrances + "%");
+        $("#thirdWidget11exits").html(thirdReportMovementWidget[11].exits);
+        $("#thirdWidget11exitsPercent").html(thirdReportMovementWidget[11].percentExits + "%");
+
+        $("#thirdWidget10description").html(thirdReportMovementWidget[10].descriptionEntrances);
+        $("#thirdWidget10entrances").html(thirdReportMovementWidget[10].entrances);
+        $("#thirdWidget10entrancesPercent").html(thirdReportMovementWidget[10].percentEntrances + "%");
+        $("#thirdWidget10exits").html(thirdReportMovementWidget[10].exits);
+        $("#thirdWidget10exitsPercent").html(thirdReportMovementWidget[10].percentExits + "%");
+
+        $("#thirdWidget09description").html(thirdReportMovementWidget[09].descriptionEntrances);
+        $("#thirdWidget09entrances").html(thirdReportMovementWidget[09].entrances);
+        $("#thirdWidget09entrancesPercent").html(thirdReportMovementWidget[09].percentEntrances + "%");
+        $("#thirdWidget09exits").html(thirdReportMovementWidget[09].exits);
+        $("#thirdWidget09exitsPercent").html(thirdReportMovementWidget[09].percentExits + "%");
+
+        $("#thirdWidget08description").html(thirdReportMovementWidget[08].descriptionEntrances);
+        $("#thirdWidget08entrances").html(thirdReportMovementWidget[08].entrances);
+        $("#thirdWidget08entrancesPercent").html(thirdReportMovementWidget[08].percentEntrances + "%");
+        $("#thirdWidget08exits").html(thirdReportMovementWidget[08].exits);
+        $("#thirdWidget08exitsPercent").html(thirdReportMovementWidget[08].percentExits + "%");
+
+        $("#thirdWidget07description").html(thirdReportMovementWidget[07].descriptionEntrances);
+        $("#thirdWidget07entrances").html(thirdReportMovementWidget[07].entrances);
+        $("#thirdWidget07entrancesPercent").html(thirdReportMovementWidget[07].percentEntrances + "%");
+        $("#thirdWidget07exits").html(thirdReportMovementWidget[07].exits);
+        $("#thirdWidget07exitsPercent").html(thirdReportMovementWidget[07].percentExits + "%");
+
+        $("#thirdWidget06description").html(thirdReportMovementWidget[06].descriptionEntrances);
+        $("#thirdWidget06entrances").html(thirdReportMovementWidget[06].entrances);
+        $("#thirdWidget06entrancesPercent").html(thirdReportMovementWidget[06].percentEntrances + "%");
+        $("#thirdWidget06exits").html(thirdReportMovementWidget[06].exits);
+        $("#thirdWidget06exitsPercent").html(thirdReportMovementWidget[06].percentExits + "%");
+
+        $("#thirdWidget05description").html(thirdReportMovementWidget[05].descriptionEntrances);
+        $("#thirdWidget05entrances").html(thirdReportMovementWidget[05].entrances);
+        $("#thirdWidget05entrancesPercent").html(thirdReportMovementWidget[05].percentEntrances + "%");
+        $("#thirdWidget05exits").html(thirdReportMovementWidget[05].exits);
+        $("#thirdWidget05exitsPercent").html(thirdReportMovementWidget[05].percentExits + "%");
+
+        $("#thirdWidget04description").html(thirdReportMovementWidget[04].descriptionEntrances);
+        $("#thirdWidget04entrances").html(thirdReportMovementWidget[04].entrances);
+        $("#thirdWidget04entrancesPercent").html(thirdReportMovementWidget[04].percentEntrances + "%");
+        $("#thirdWidget04exits").html(thirdReportMovementWidget[04].exits);
+        $("#thirdWidget04exitsPercent").html(thirdReportMovementWidget[04].percentExits + "%");
+
+        $("#thirdWidget03description").html(thirdReportMovementWidget[03].descriptionEntrances);
+        $("#thirdWidget03entrances").html(thirdReportMovementWidget[03].entrances);
+        $("#thirdWidget03entrancesPercent").html(thirdReportMovementWidget[03].percentEntrances + "%");
+        $("#thirdWidget03exits").html(thirdReportMovementWidget[03].exits);
+        $("#thirdWidget03exitsPercent").html(thirdReportMovementWidget[03].percentExits + "%");
+
+        $("#thirdWidget02description").html(thirdReportMovementWidget[02].descriptionEntrances);
+        $("#thirdWidget02entrances").html(thirdReportMovementWidget[02].entrances);
+        $("#thirdWidget02entrancesPercent").html(thirdReportMovementWidget[02].percentEntrances + "%");
+        $("#thirdWidget02exits").html(thirdReportMovementWidget[02].exits);
+        $("#thirdWidget02exitsPercent").html(thirdReportMovementWidget[02].percentExits + "%");
+
+        $("#thirdWidget01description").html(thirdReportMovementWidget[01].descriptionEntrances);
+        $("#thirdWidget01entrances").html(thirdReportMovementWidget[01].entrances);
+        $("#thirdWidget01entrancesPercent").html(thirdReportMovementWidget[01].percentEntrances + "%");
+        $("#thirdWidget01exits").html(thirdReportMovementWidget[01].exits);
+        $("#thirdWidget01exitsPercent").html(thirdReportMovementWidget[01].percentExits + "%");
+
+        $("#thirdWidget00description").html(thirdReportMovementWidget[00].descriptionEntrances);
+        $("#thirdWidget00entrances").html(thirdReportMovementWidget[00].entrances);
+        $("#thirdWidget00entrancesPercent").html(thirdReportMovementWidget[00].percentEntrances + "%");
+        $("#thirdWidget00exits").html(thirdReportMovementWidget[00].exits);
+        $("#thirdWidget00exitsPercent").html(thirdReportMovementWidget[00].percentExits + "%");
+
+    }
+
+    if (client) {
+        $("#clientName").html(client.nome_fantasia);
+    }
+
+    if (choosenTime) {
+        $("#choosenDay").html(choosenTime);
+    }
+
+    console.log(client);
+    console.log(choosenTime);
     console.log(firstReportMovementWidget);
     console.log(secondReportMovementWidget);
     console.log(thirdReportMovementWidget);
@@ -278,11 +530,11 @@ function DAOgetDataToReport(choosenTime) {
 function formatEntrances(hour) {
 
     if (hour > 1) {
-        return ("0" + hour).slice(-2).toString() + " entradas";
+        return ("0" + hour).slice(-2).toString();
     } else if (hour == 1) {
-        return ("0" + hour).slice(-2).toString() + " entrada";
+        return ("0" + hour).slice(-2).toString();
     } else if (hour == 0) {
-        return "Nenhuma entrada";
+        return ("00");
     }
 
 }
