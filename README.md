@@ -1,5 +1,8 @@
 # Graffio - LinkC NE
 
+Um sistema de Automação para estacionamento contendo vários módulos que se integram entre si, conversando através do protocolo TCP/IP e 
+gerando uma rede de Cancelas Automáticas e equipamentos de rede, deixando o controle do estacionamento na palma da sua mão.
+
 - Módulo Gráfico para o Sistema Gramatta
 - Exibe Gráficos e Relatórios do Estacionamento
 
